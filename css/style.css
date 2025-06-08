@@ -753,12 +753,14 @@ a {
 }
 
 .candidate-bio {
+    display: none;
     color: #666;
     margin-bottom: 15px;
     font-size: 0.9rem;
 }
 
 .view-profile {
+    display: none!important;
     display: inline-block;
     padding: 8px 20px;
     background-color: #60cb30;
