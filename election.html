@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>การเลือกตั้ง | พรรคประชาภิวัฒน์ (PRT)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://slw-system.pages.dev/assets/css/font-face.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="พรรคประชาภิวัฒน์">
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="../index.html">หน้าหลัก</a></li>
+                    <li><a href="election.html" class="active">เลือกตั้ง</a></li>
+                    <li class="has-submenu">
+                        <a href="../about.html">เกี่ยวกับพรรค <i class="fas fa-chevron-down"></i></a>
+                        <ul class="submenu">
+                            <li><a href="../ideology.html">อุดมการณ์</a></li>
+                            <li><a href="../executives.html">ผู้บริหารพรรค</a></li>
+                            <li><a href="../announcements.html">ประกาศ</a></li>
+                            <li><a href="../regulations.html">ข้อบังคับพรรค</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../mps.html">สส.พรรค</a></li>
+                    <li><a href="../member.html">ระบบสมาชิก</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger" id="hamburger">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="close-btn" id="closeMenu">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <ul class="mobile-nav-list">
+            <li><a href="../index.html">หน้าหลัก</a></li>
+            <li><a href="election.html" class="active">เลือกตั้ง</a></li>
+            <li class="mobile-has-submenu">
+                <a href="javascript:void(0)">เกี่ยวกับพรรค <i class="fas fa-chevron-down"></i></a>
+                <ul class="mobile-submenu">
+                    <li><a href="../ideology.html">อุดมการณ์</a></li>
+                    <li><a href="../executives.html">ผู้บริหารพรรค</a></li>
+                    <li><a href="../announcements.html">ประกาศ</a></li>
+                    <li><a href="../regulations.html">ข้อบังคับพรรค</a></li>
+                </ul>
+            </li>
+            <li><a href="../mps.html">สส.พรรค</a></li>
+            <li><a href="../member.html">ระบบสมาชิก</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="election-hero">
+        <div class="container">
+            <h1>ผู้สมัครสมาชิกสภาผู้แทนราษฎร</h1>
+            <p>พรรคประชาภิวัฒน์ ขอเสนอผู้สมัครที่มีวิสัยทัศน์และความสามารถ เพื่อเป็นตัวแทนของประชาชนในสภาผู้แทนราษฎร</p>
+        </div>
+    </section>
+
+    <!-- Candidates Section -->
+    <section class="candidates-section">
+        <div class="container">
+            <div class="candidate-type-toggle">
+                <button class="toggle-btn active" data-type="party-list">แบบบัญชีรายชื่อ</button>
+                <button class="toggle-btn" data-type="constituency">แบบแบ่งเขต</button>
+            </div>
+            
+            <div id="party-list-candidates">
+                <h2 class="section-title">ผู้สมัครแบบบัญชีรายชื่อ</h2>
+                <div class="candidates-grid">
+                    <!-- Candidate 1 -->
+                    <div class="candidate-card">
+                        <div class="candidate-image">
+                            <img src="../images/candidate1.jpg" alt="ผู้สมัคร 1">
+                        </div>
+                        <div class="candidate-info">
+                            <div class="candidate-number">1</div>
+                            <h3 class="candidate-name">ดร.สมชาย ประชาชน</h3>
+                            <div class="candidate-position">หัวหน้าพรรคประชาภิวัฒน์</div>
+                            <p class="candidate-bio">อดีตอาจารย์มหาวิทยาลัย นักวิชาการด้านรัฐศาสตร์ ผู้มีประสบการณ์การทำงานเพื่อประชาชนมากว่า 20 ปี</p>
+                            <a href="#" class="view-profile">ดูประวัติ</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Candidate 2 -->
+                    <div class="candidate-card">
+                        <div class="candidate-image">
+                            <img src="../images/candidate2.jpg" alt="ผู้สมัคร 2">
+                        </div>
+                        <div class="candidate-info">
+                            <div class="candidate-number">2</div>
+                            <h3 class="candidate-name">นางสาวเพชรลดา ธำรงธรรม</h3>
+                            <div class="candidate-position">รองหัวหน้าพรรค</div>
+                            <p class="candidate-bio">นักกิจกรรมเพื่อสังคม ผู้ก่อตั้งมูลนิธิเพื่อการศึกษาแห่งชาติ และผู้เชี่ยวชาญด้านนโยบายสาธารณะ</p>
+                            <a href="#" class="view-profile">ดูประวัติ</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Candidate 3 -->
+                    <div class="candidate-card">
+                        <div class="candidate-image">
+                            <img src="../images/candidate3.jpg" alt="ผู้สมัคร 3">
+                        </div>
+                        <div class="candidate-info">
+                            <div class="candidate-number">3</div>
+                            <h3 class="candidate-name">นายอนุชา พัฒนาชาติ</h3>
+                            <div class="candidate-position">เลขาธิการพรรค</div>
+                            <p class="candidate-bio">นักเศรษฐศาสตร์การเมือง ผู้เชี่ยวชาญด้านนโยบายเศรษฐกิจและแรงงาน อดีตที่ปรึกษารัฐมนตรี</p>
+                            <a href="#" class="view-profile">ดูประวัติ</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Candidate 4 -->
+                    <div class="candidate-card">
+                        <div class="candidate-image">
+                            <img src="../images/candidate4.jpg" alt="ผู้สมัคร 4">
+                        </div>
+                        <div class="candidate-info">
+                            <div class="candidate-number">4</div>
+                            <h3 class="candidate-name">นางกัลยา ใจกว้าง</h3>
+                            <div class="candidate-position">เหรัญญิกพรรค</div>
+                            <p class="candidate-bio">ผู้เชี่ยวชาญด้านการคลังและการบริหารงบประมาณ อดีตผู้อำนวยการองค์กรอิสระเพื่อความโปร่งใส</p>
+                            <a href="#" class="view-profile">ดูประวัติ</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Candidate 5 -->
+                    <div class="candidate-card">
+                        <div class="candidate-image">
+                            <img src="../images/candidate5.jpg" alt="ผู้สมัคร 5">
+                        </div>
+                        <div class="candidate-info">
+                            <div class="candidate-number">5</div>
+                            <h3 class="candidate-name">นายวีระศักดิ์ สุขสันต์</h3>
+                            <div class="candidate-position">โฆษกพรรค</div>
+                            <p class="candidate-bio">นักสื่อสารมวลชนอาวุโส ผู้ดำเนินรายการวิเคราะห์การเมืองและมีประสบการณ์ด้านสื่อสารสาธารณะ</p>
+                            <a href="#" class="view-profile">ดูประวัติ</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Candidate 6 -->
+                    <div class="candidate-card">
+                        <div class="candidate-image">
+                            <img src="../images/candidate6.jpg" alt="ผู้สมัคร 6">
+                        </div>
+                        <div class="candidate-info">
+                            <div class="candidate-number">6</div>
+                            <h3 class="candidate-name">ดร.ธนวัฒน์ วิทยาธร</h3>
+                            <div class="candidate-position">กรรมการนโยบาย</div>
+                            <p class="candidate-bio">นักเทคโนโลยีและนวัตกรรม ผู้ก่อตั้งสตาร์ทอัพด้านการศึกษาและที่ปรึกษาด้านนโยบายดิจิทัล</p>
+                            <a href="#" class="view-profile">ดูประวัติ</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="constituency-candidates" style="display: none;">
+                <h2 class="section-title">ผู้สมัครแบบแบ่งเขต</h2>
+                <p class="text-center">กำลังเตรียมข้อมูลผู้สมัครแบบแบ่งเขต โปรดตรวจสอบอีกครั้งในภายหลัง</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>เกี่ยวกับพรรค</h3>
+                    <ul>
+                        <li><a href="../ideology.html">อุดมการณ์</a></li>
+                        <li><a href="../executives.html">ผู้บริหารพรรค</a></li>
+                        <li><a href="../announcements.html">ประกาศพรรค</a></li>
+                        <li><a href="../regulations.html">ข้อบังคับพรรค</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>กิจกรรม</h3>
+                    <ul>
+                        <li><a href="election.html">เลือกตั้ง</a></li>
+                        <li><a href="../activities.html">กิจกรรมพรรค</a></li>
+                        <li><a href="../volunteer.html">จิตอาสา</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>ติดต่อเรา</h3>
+                    <address>
+                        <p>สำนักงานใหญ่พรรคประชาภิวัฒน์</p>
+                        <p>123 ถนนประชาธิปไตย แขวงดุสิต เขตดุสิต กรุงเทพฯ 10300</p>
+                        <p>โทรศัพท์: 02-123-4567</p>
+                        <p>อีเมล: contact@prt.or.th</p>
+                    </address>
+                </div>
+                <div class="footer-col">
+                    <h3>ติดตามเรา</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <div class="newsletter">
+                        <h4>รับข่าวสารจากเรา</h4>
+                        <form>
+                            <input type="email" placeholder="อีเมลของคุณ">
+                            <button type="submit">สมัคร</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 พรรคประชาภิวัฒน์ (People's Reform Party - PRT). สงวนลิขสิทธิ์ทุกประการ.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/script.js"></script>
+    <script>
+        // Toggle between party list and constituency candidates
+        const toggleBtns = document.querySelectorAll('.toggle-btn');
+        const partyListSection = document.getElementById('party-list-candidates');
+        const constituencySection = document.getElementById('constituency-candidates');
+        
+        toggleBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                toggleBtns.forEach(b => b.classList.remove('active'));
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Show the corresponding section
+                if (this.dataset.type === 'party-list') {
+                    partyListSection.style.display = 'block';
+                    constituencySection.style.display = 'none';
+                } else {
+                    partyListSection.style.display = 'none';
+                    constituencySection.style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
