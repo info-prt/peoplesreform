@@ -845,3 +845,6 @@ li.active a {
 li.not-active a {
     font-weight: 500;
 }
+.show .submenu {
+    top: 44.2px;
+}
