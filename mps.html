@@ -17,6 +17,10 @@
             text-align: center;
         }
         
+        span.mp-badge.former {
+            display: none;
+        }
+        
         .mps-hero h1 {
             font-size: 2.5rem;
             margin-bottom: 20px;
@@ -235,10 +239,15 @@
             text-decoration: none;
             font-size: 0.9rem;
             transition: background-color 0.3s ease;
+            margin-top: 5px;
         }
         
         .watch-btn:hover {
             background-color: #d80043;
+        }
+        
+        .watch-btn a {
+            color: #fff;
         }
         
         @media (max-width: 768px) {
@@ -604,7 +613,7 @@
         // สร้างรายการการอภิปราย
         function createDebateItem(debate) {
           const item = document.createElement('div');
-          item.className = 'debate-item';
+          item.className = 'debate-card';
           
           item.innerHTML = `
             <div class="debate-header">
@@ -618,9 +627,9 @@
               `).join('')}
             </div>
             <p class="debate-summary">${debate.เนื้อหาสรุป}</p>
-            <div class="debate-actions">
+            <div class="watch-btn">
               <a href="${debate.ลิงก์วิดีโอ || '#'}" class="btn btn-watch" target="_blank">
-                <i class="fas fa-play"></i> ดูวิดีโอ
+                <i class="fas fa-play"></i> ดูเพิ่มเติม
               </a>
             </div>
           `;
