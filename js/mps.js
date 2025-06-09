@@ -129,7 +129,7 @@
             </div>
             <div class="mp-info">
               <h3 class="mp-name">${mp['ชื่อ-นามสกุล']}</h3>
-              `${mp.ประเภท === 'แบ่งเขต' ? `
+              `${mp.ประเภท) === 'แบ่งเขต' ? `
                   <p class="mp-constituency">
                     <i class="fas fa-map-marker-alt"></i> เขต ${mp.เขตเลือกตั้ง} ${mp.จังหวัด}
                   </p>
