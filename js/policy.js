@@ -156,3 +156,79 @@
                 }
             });
         });
+
+// ฟังก์ชันจัดการการคลิกที่ปุ่มหมวดหมู่
+function setupCategoryButtons() {
+    const categoryButtons = document.querySelectorAll('.category-btn');
+    
+    categoryButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // ลบ class active จากปุ่มทั้งหมด
+            categoryButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // เพิ่ม class active ให้ปุ่มที่คลิก
+            this.classList.add('active');
+            
+            // ดึงหมวดหมู่ที่เลือก
+            const selectedCategory = this.getAttribute('data-category');
+            
+            // กรองนโยบายตามหมวดหมู่
+            filterPolicies(selectedCategory);
+        });
+    });
+}
+
+// ฟังก์ชันกรองนโยบายตามหมวดหมู่
+function filterPolicies(category) {
+    if (category === 'all') {
+        // แสดงทั้งหมดถ้าเลือก "ทั้งหมด"
+        displayPolicies(allPolicies);
+    } else {
+        // กรองนโยบายตามหมวดหมู่
+        const filteredPolicies = allPolicies.filter(policy => 
+            policy.category === category
+        );
+        displayPolicies(filteredPolicies);
+    }
+}
+
+// ฟังก์ชันแสดงนโยบาย (แก้ไขให้ทำงานกับข้อมูลจริง)
+function displayPolicies(policies) {
+    const container = document.getElementById('policiesContainer');
+    
+    if (!policies || policies.length === 0) {
+        container.innerHTML = '<div class="loading">ไม่พบนโยบายในหมวดหมู่นี้</div>';
+        return;
+    }
+    
+    container.innerHTML = '';
+    
+    policies.forEach(policy => {
+        const policyCard = document.createElement('div');
+        policyCard.className = 'policy-card';
+        policyCard.setAttribute('data-category', policy.category);
+        
+        policyCard.innerHTML = `
+            <div class="policy-image">
+                <img src="${policy.image || '../images/policy-default.jpg'}" alt="${policy.title}">
+            </div>
+            <div class="policy-content">
+                <span class="policy-category">${policy.category}</span>
+                <h3 class="policy-title">${policy.title}</h3>
+                <p class="policy-excerpt">${policy.excerpt}</p>
+                <a href="policy-detail.html?id=${policy.id}" class="read-more">อ่านรายละเอียด</a>
+            </div>
+        `;
+        
+        container.appendChild(policyCard);
+    });
+}
+
+// เรียกใช้ฟังก์ชันเมื่อโหลดหน้าเว็บ
+document.addEventListener('DOMContentLoaded', function() {
+    // โหลดข้อมูลนโยบาย (ต้องมีฟังก์ชัน fetchPolicies() ที่ทำงานถูกต้อง)
+    fetchPolicies();
+    
+    // ตั้งค่าปุ่มหมวดหมู่
+    setupCategoryButtons();
+});
