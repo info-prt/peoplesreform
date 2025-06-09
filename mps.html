@@ -84,7 +84,6 @@
         }
         
         .mp-image {
-            height: 300px;
             overflow: hidden;
             position: relative;
         }
@@ -100,15 +99,26 @@
             transform: scale(1.05);
         }
         
+        .mp-image-container {
+            display: flex;
+            flex-direction: column;
+        }
+        
         .mp-constituency {
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
             background-color: #ff014f;
             color: white;
             padding: 5px 10px;
             border-radius: 20px;
             font-size: 0.8rem;
+            width: fit-content;
+            margin-bottom: 20px;
+        }
+        
+        span.mp-badge.constituency {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: 600;
+            display: none;
         }
         
         .mp-info {
@@ -328,10 +338,10 @@
     <main class="container">
         <div id="error-container"></div>
         
-        <div class="tabs">
-            <button class="tab-button active" data-tab="current-mps">สส.ปัจจุบัน</button>
-            <button class="tab-button" data-tab="former-mps">อดีตสส.</button>
-            <button class="tab-button" data-tab="debates">การอภิปราย</button>
+        <div class="tabs mps-tabs">
+            <button class="tab-btn tab-button active" data-tab="current-mps">สส.ปัจจุบัน</button>
+            <button class="tab-btn tab-button" data-tab="former-mps">อดีตสส.</button>
+            <button class="tab-btn tab-button" data-tab="debates">การอภิปราย</button>
         </div>
         
         <div id="current-mps" class="tab-content active">
