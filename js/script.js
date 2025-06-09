@@ -39,10 +39,8 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.has-submenu > a').forEach(function (link) {
         link.addEventListener('click', function (e) {
             e.preventDefault(); // ป้องกันไม่ให้ลิงก์ทำงาน
-            const submenu = this.nextElementSibling;
-            if (submenu && submenu.classList.contains('submenu')) {
-                submenu.classList.toggle('active');
-            }
+            const parent = this.parentElement;
+            parent.classList.toggle('active');
         });
     });
 });
