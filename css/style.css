@@ -792,3 +792,6 @@ a {
 button {
     font-family: inherit;
 }
+a.active {
+    font-weight: 600;
+}
