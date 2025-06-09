@@ -36,11 +36,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.has-submenu > a').forEach(function (link) {
+    const submenuLinks = document.querySelectorAll('.has-submenu > a');
+
+    submenuLinks.forEach(function (link) {
         link.addEventListener('click', function (e) {
-            e.preventDefault(); // ป้องกันไม่ให้ลิงก์ทำงาน
+            e.preventDefault();
             const parent = this.parentElement;
+
+            // ปิด .show ทั้งหมดก่อน
+            document.querySelectorAll('.has-submenu.show').forEach(function (item) {
+                if (item !== parent) {
+                    item.classList.remove('show');
+                }
+            });
+
+            // toggle ตัวที่คลิก
             parent.classList.toggle('show');
         });
+    });
+
+    // คลิกนอกเมนู => ปิดทั้งหมด
+    document.addEventListener('click', function (e) {
+        if (!e.target.closest('.has-submenu')) {
+            document.querySelectorAll('.has-submenu.show').forEach(function (item) {
+                item.classList.remove('show');
+            });
+        }
     });
 });
