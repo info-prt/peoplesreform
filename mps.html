@@ -415,8 +415,11 @@
             const response = await fetch('https://script.google.com/macros/s/AKfycbx4FXGqc7134cmsUOl6bWBkc-T68gc6evihz4pMLw01LDTtO2hcjkOqO9nXDYUlM9SR/exec');
             const data = await response.json();
             
-            // แสดงข้อมูลล่าสุด
-            document.getElementById('last-updated').textContent = `อัปเดตล่าสุด: ${formatDateTime(data.updatedAt)}`;
+            // ตรวจสอบก่อนว่า element มีอยู่จริง
+            const lastUpdatedElement = document.getElementById('last-updated');
+            if (lastUpdatedElement) {
+              lastUpdatedElement.textContent = `อัปเดตล่าสุด: ${formatDateTime(data.updatedAt)}`;
+            }
             
             // แสดงข้อมูลสส.ปัจจุบัน
             displayCurrentMPs(data.currentMps);
@@ -432,6 +435,57 @@
             showError('ไม่สามารถโหลดข้อมูลได้ กรุณาลองใหม่ในภายหลัง');
           }
         }
+        
+        // ฟังก์ชันแสดงข้อความผิดพลาด
+        function showError(message) {
+          const errorContainer = document.getElementById('error-container');
+          if (errorContainer) {
+            errorContainer.innerHTML = `
+              <div class="alert alert-error">
+                <i class="fas fa-exclamation-circle"></i> ${message}
+              </div>
+            `;
+            errorContainer.style.display = 'block';
+          }
+        }
+        
+        // ฟังก์ชันสำหรับจัดการแท็บ
+        function setupTabs() {
+          const tabButtons = document.querySelectorAll('.tab-button');
+          
+          if (tabButtons.length > 0) {
+            tabButtons.forEach(button => {
+              button.addEventListener('click', function() {
+                // เปลี่ยนแท็บที่ active
+                document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                // แสดงเนื้อหาที่เกี่ยวข้อง
+                const tabId = this.getAttribute('data-tab');
+                document.querySelectorAll('.tab-content').forEach(content => {
+                  content.style.display = 'none';
+                });
+                
+                const activeTab = document.getElementById(tabId);
+                if (activeTab) {
+                  activeTab.style.display = 'block';
+                }
+              });
+            });
+            
+            // เปิดแท็บแรกโดย default
+            tabButtons[0].click();
+          }
+        }
+        
+        // โหลดข้อมูลเมื่อหน้าเว็บโหลดเสร็จ
+        document.addEventListener('DOMContentLoaded', () => {
+          // ตั้งค่าแท็บก่อน
+          setupTabs();
+          
+          // แล้วจึงโหลดข้อมูล
+          loadData();
+        });
         
         // แสดงข้อมูลสส.ปัจจุบัน
         function displayCurrentMPs(mps) {
