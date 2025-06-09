@@ -133,7 +133,11 @@
                 <p class="mp-constituency">
                   <i class="fas fa-map-marker-alt"></i> เขต ${mp.เขตเลือกตั้ง} ${mp.จังหวัด}
                 </p>
-              ` : ''}
+              ` : '
+                <p class="mp-constituency">
+                  <i class="fas fa-map-marker-alt"></i> บัญชีรายชื่อ ลำดับที่ ${mp.เขตเลือกตั้ง}
+                </p>
+                '}
               ${isFormer ? `
                 <p class="mp-term">
                   <i class="fas fa-calendar-alt"></i> ${mp['ช่วงเวลาที่ดำรงตำแหน่ง']}
