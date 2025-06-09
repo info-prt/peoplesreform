@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>นโยบายพรรค | พรรคประชาภิวัฒน์ (PRT)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://slw-system.pages.dev/assets/css/font-face.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* เพิ่มสไตล์เฉพาะสำหรับหน้านี้ */
+        .policies-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/policies-bg.jpg') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .policies-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #60cb30;
+        }
+        
+        .policies-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .search-section {
+            padding: 40px 0;
+            background-color: #f9f9f9;
+        }
+        
+        .search-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #ddd;
+            border-radius: 50px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+            padding-right: 50px;
+        }
+        
+        .search-input:focus {
+            border-color: #60cb30;
+            box-shadow: 0 0 10px rgba(96, 203, 48, 0.3);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+        }
+        
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-height: 400px;
+            overflow-y: auto;
+            z-index: 100;
+            display: none;
+        }
+        
+        .search-result-item {
+            padding: 12px 20px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .search-result-item:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .search-result-item h4 {
+            margin: 0 0 5px;
+            color: #333;
+        }
+        
+        .search-result-item p {
+            margin: 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .no-results {
+            padding: 15px;
+            text-align: center;
+            color: #666;
+        }
+        
+        .policies-section {
+            padding: 60px 0;
+        }
+        
+        .policy-categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .category-btn {
+            padding: 8px 20px;
+            background-color: #f0f0f0;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .category-btn.active {
+            background-color: #60cb30;
+            color: white;
+        }
+        
+        .policies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .policy-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .policy-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .policy-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .policy-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .policy-card:hover .policy-image img {
+            transform: scale(1.05);
+        }
+        
+        .policy-content {
+            padding: 20px;
+        }
+        
+        .policy-category {
+            display: inline-block;
+            background-color: #ff014f;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .policy-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .policy-excerpt {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .read-more {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: #60cb30;
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease;
+        }
+        
+        .read-more:hover {
+            background-color: #4da826;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .policies-hero {
+                padding: 80px 0;
+            }
+            
+            .policies-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .policies-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container flex-header">
+            <div class="logo">
+                <a href="index.html">
+                    <!-- <img src="images/logo.png" alt="พรรคประชาภิวัฒน์"> -->
+                    พรรคประชาภิวัฒน์
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="index.html">หน้าหลัก</a></li>
+                    <li class="has-submenu active">
+                        <a>เลือกตั้ง <i class="fas fa-chevron-down"></i></a>
+                        <ul class="submenu">
+                            <li class="not-active"><a href="election.html">ผู้สมัคร สส.</a></li>
+                            <li class="active"><a href="policy.html">นโยบาย</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a>เกี่ยวกับพรรค <i class="fas fa-chevron-down"></i></a>
+                        <ul class="submenu">
+                            <li><a href="ideology.html">อุดมการณ์</a></li>
+                            <li><a href="executives.html">ผู้บริหารพรรค</a></li>
+                            <li><a href="announcements.html">ประกาศ</a></li>
+                            <li><a href="https://drive.google.com/file/d/1qGXgxyuI_jM6k2DB67PjfeqEx4EQqDY0/view?usp=sharing" target="_blank">ข้อบังคับพรรค</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="mps.html">สส.พรรค</a></li>
+                    <li><a href="member.html">ระบบสมาชิก</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger" id="hamburger">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="close-btn" id="closeMenu">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <ul class="mobile-nav-list">
+            <li><a href="index.html">หน้าหลัก</a></li>
+            <li class="mobile-has-submenu active">
+                <a href="javascript:void(0)">เลือกตั้ง <i class="fas fa-chevron-down"></i></a>
+                <ul class="mobile-submenu">
+                    <li class="not-active"><a href="election.html">ผู้สมัคร สส.</a></li>
+                    <li class="active"><a href="policy.html">นโยบาย</a></li>
+                </ul>
+            </li>
+            <li class="mobile-has-submenu">
+                <a href="javascript:void(0)">เกี่ยวกับพรรค <i class="fas fa-chevron-down"></i></a>
+                <ul class="mobile-submenu">
+                    <li><a href="ideology.html">อุดมการณ์</a></li>
+                    <li><a href="executives.html">ผู้บริหารพรรค</a></li>
+                    <li><a href="announcements.html">ประกาศ</a></li>
+                    <li><a href="https://drive.google.com/file/d/1qGXgxyuI_jM6k2DB67PjfeqEx4EQqDY0/view?usp=sharing" target="_blank">ข้อบังคับพรรค</a></li>
+                </ul>
+            </li>
+            <li><a href="mps.html">สส.พรรค</a></li>
+            <li><a href="member.html">ระบบสมาชิก</a></li>
+        </ul>
+    </div>
+
+
+    <!-- Hero Section -->
+    <section class="policies-hero">
+        <div class="container">
+            <h1>นโยบายพรรคประชาภิวัฒน์</h1>
+            <p>ค้นหาและศึกษานโยบายต่างๆ ของพรรคเรา ที่มุ่งสร้างการเปลี่ยนแปลงเพื่อประชาชนอย่างแท้จริง</p>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-container">
+                <input type="text" class="search-input" id="policySearch" placeholder="ค้นหานโยบาย...">
+                <i class="fas fa-search search-icon"></i>
+                <div class="search-results" id="searchResults"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Policies Section -->
+    <section class="policies-section">
+        <div class="container">
+            <div class="policy-categories" id="policyCategories">
+                <button class="category-btn active" data-category="all">ทั้งหมด</button>
+                <button class="category-btn" data-category="เศรษฐกิจ">เศรษฐกิจ</button>
+                <button class="category-btn" data-category="การศึกษา">การศึกษา</button>
+                <button class="category-btn" data-category="สาธารณสุข">สาธารณสุข</button>
+                <button class="category-btn" data-category="สิ่งแวดล้อม">สิ่งแวดล้อม</button>
+                <button class="category-btn" data-category="ความปลอดภัย">ความปลอดภัย</button>
+            </div>
+            
+            <div class="policies-grid" id="policiesContainer">
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i> กำลังโหลดนโยบาย...
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>เกี่ยวกับพรรค</h3>
+                    <ul>
+                        <li><a href="ideology.html">อุดมการณ์</a></li>
+                        <li><a href="executives.html">ผู้บริหารพรรค</a></li>
+                        <li><a href="announcements.html">ประกาศพรรค</a></li>
+                        <li><a href="https://drive.google.com/file/d/1qGXgxyuI_jM6k2DB67PjfeqEx4EQqDY0/view?usp=sharing" target="_blank">ข้อบังคับพรรค</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>กิจกรรม</h3>
+                    <ul>
+                        <li><a href="election.html">ผู้สมัคร สส.</a></li>
+                        <li><a href="policy.html">นโยบาย</a></li>
+                        <li><a href="activities.html">กิจกรรมพรรค</a></li>
+                        <li><a href="volunteer.html">จิตอาสา</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>ติดต่อเรา</h3>
+                    <address>
+                        <p>สำนักงานใหญ่พรรคประชาภิวัฒน์</p>
+                        <p>67 ถนนเศรษฐสิริ 2 แขวงพญาไท เขตพญาไท กรุงเทพฯ 10330</p>
+                        <p>โทรศัพท์: -</p>
+                        <p>อีเมล: info.peoples.reform@gmail.com</p>
+                    </address>
+                </div>
+                <div class="footer-col">
+                    <h3>ติดตามเรา</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <div class="newsletter">
+                        <h4>รับข่าวสารจากเรา</h4>
+                        <form>
+                            <input type="email" placeholder="อีเมลของคุณ">
+                            <button type="submit">สมัคร</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 พรรคประชาภิวัฒน์ (People's Reform Party - PRT). สงวนลิขสิทธิ์ทุกประการ.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script src="../js/policy.js"></script>
+</body>
+</html>
