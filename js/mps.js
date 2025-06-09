@@ -129,15 +129,16 @@
             </div>
             <div class="mp-info">
               <h3 class="mp-name">${mp['ชื่อ-นามสกุล']}</h3>
-              ${mp.ประเภท === 'แบ่งเขต' ? `
-                <p class="mp-constituency">
-                  <i class="fas fa-map-marker-alt"></i> เขต ${mp.เขตเลือกตั้ง} ${mp.จังหวัด}
-                </p>
-              ` : '
-                <p class="mp-constituency">
-                  <i class="fas fa-map-marker-alt"></i> บัญชีรายชื่อ ลำดับที่ ${mp.เขตเลือกตั้ง}
-                </p>
-                '}
+              `${mp.ประเภท === 'แบ่งเขต' ? `
+                  <p class="mp-constituency">
+                    <i class="fas fa-map-marker-alt"></i> เขต ${mp.เขตเลือกตั้ง} ${mp.จังหวัด}
+                  </p>
+                ` : `
+                  <p class="mp-constituency">
+                    <i class="fas fa-map-marker-alt"></i> บัญชีรายชื่อ ลำดับที่ ${mp.เขตเลือกตั้ง}
+                  </p>
+                `}`
+
               ${isFormer ? `
                 <p class="mp-term">
                   <i class="fas fa-calendar-alt"></i> ${mp['ช่วงเวลาที่ดำรงตำแหน่ง']}
