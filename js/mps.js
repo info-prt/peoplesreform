@@ -251,3 +251,16 @@
             });
           });
         });
+
+function showMPProfile(mpId) {
+  // ค้นหาข้อมูลสส.จากรหัส
+  const allMPs = [...currentMps, ...formerMps];
+  const mpData = allMPs.find(mp => mp.รหัส === mpId);
+  
+  if (mpData) {
+    // แสดง modal หรือเปลี่ยนหน้าไปที่โปรไฟล์
+    console.log('แสดงข้อมูลของ:', mpData['ชื่อ-นามสกุล']);
+    // หรือเปลี่ยนหน้าไปที่ /mp/prt01
+    window.location.href = `/mp/${mpId}`;
+  }
+}
