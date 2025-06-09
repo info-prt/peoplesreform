@@ -182,7 +182,7 @@
           item.innerHTML = `
             <div class="debate-header">
                 <h3 class="debate-title">${debate.หัวข้อ}</h3>
-                <span class="debate-date">${formatDate(debate.วันที่)}</span>
+                <span class="debate-date">${debate.วันที่}</span>
             </div>
             <div class="debate-mp">โดย: ${debate['ชื่อ-นามสกุล']}</div>
             <div class="debate-tags">
