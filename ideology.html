@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>อุดมการณ์พรรค | พรรคประชาภิวัฒน์ (PRT)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://slw-system.pages.dev/assets/css/font-face.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* สไตล์เฉพาะสำหรับหน้านี้ */
+        .ideology-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/ideology-bg.jpg') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 120px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .ideology-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #60cb30;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .ideology-hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .ideology-section {
+            padding: 80px 0;
+            background-color: #f9f9f9;
+        }
+        
+        .ideology-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .ideology-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .ideology-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .ideology-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background-color: #60cb30;
+        }
+        
+        .ideology-title {
+            color: #ff014f;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .ideology-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 10px;
+            height: 10px;
+            background-color: #ff014f;
+            border-radius: 50%;
+        }
+        
+        .ideology-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #444;
+        }
+        
+        .ideology-content p {
+            margin-bottom: 20px;
+        }
+        
+        .ideology-content ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        
+        .ideology-content li {
+            margin-bottom: 10px;
+            position: relative;
+        }
+        
+        .ideology-content li::before {
+            content: '•';
+            color: #60cb30;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .core-values {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .value-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background-color: #60cb30;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 2rem;
+        }
+        
+        .value-title {
+            color: #ff014f;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        
+        .value-description {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        @media (max-width: 768px) {
+            .ideology-hero {
+                padding: 80px 0;
+            }
+            
+            .ideology-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .ideology-hero p {
+                font-size: 1.1rem;
+            }
+            
+            .ideology-card {
+                padding: 25px;
+            }
+            
+            .ideology-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container flex-header">
+            <div class="logo">
+                <a href="index.html">
+                    <!-- <img src="images/logo.png" alt="พรรคประชาภิวัฒน์"> -->
+                    พรรคประชาภิวัฒน์
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="index.html">หน้าหลัก</a></li>
+                    <li class="has-submenu">
+                        <a>เลือกตั้ง <i class="fas fa-chevron-down"></i></a>
+                        <ul class="submenu">
+                            <li><a href="election.html">ผู้สมัคร สส.</a></li>
+                            <li><a href="policy.html">นโยบาย</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu active">
+                        <a>เกี่ยวกับพรรค <i class="fas fa-chevron-down"></i></a>
+                        <ul class="submenu">
+                            <li class="active"><a href="ideology.html">อุดมการณ์</a></li>
+                            <li class="not-active"><a href="executives.html">ผู้บริหารพรรค</a></li>
+                            <li class="not-active"><a href="announcements.html">ประกาศ</a></li>
+                            <li class="not-active"><a href="https://drive.google.com/file/d/1qGXgxyuI_jM6k2DB67PjfeqEx4EQqDY0/view?usp=sharing" target="_blank">ข้อบังคับพรรค</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="mps.html">สส.พรรค</a></li>
+                    <li><a href="member.html">ระบบสมาชิก</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger" id="hamburger">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="close-btn" id="closeMenu">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <ul class="mobile-nav-list">
+            <li><a href="index.html">หน้าหลัก</a></li>
+            <li class="mobile-has-submenu">
+                <a href="javascript:void(0)">เลือกตั้ง <i class="fas fa-chevron-down"></i></a>
+                <ul class="mobile-submenu">
+                    <li><a href="election.html">ผู้สมัคร สส.</a></li>
+                    <li><a href="policy.html">นโยบาย</a></li>
+                </ul>
+            </li>
+            <li class="mobile-has-submenu active">
+                <a href="javascript:void(0)">เกี่ยวกับพรรค <i class="fas fa-chevron-down"></i></a>
+                <ul class="mobile-submenu">
+                    <li class="active"><a href="ideology.html">อุดมการณ์</a></li>
+                    <li class="not-active"><a href="executives.html">ผู้บริหารพรรค</a></li>
+                    <li class="not-active"><a href="announcements.html">ประกาศ</a></li>
+                    <li class="not-active"><a href="https://drive.google.com/file/d/1qGXgxyuI_jM6k2DB67PjfeqEx4EQqDY0/view?usp=sharing" target="_blank">ข้อบังคับพรรค</a></li>
+                </ul>
+            </li>
+            <li><a href="mps.html">สส.พรรค</a></li>
+            <li><a href="member.html">ระบบสมาชิก</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="ideology-hero">
+        <div class="container">
+            <h1>อุดมการณ์พรรคประชาภิวัฒน์</h1>
+            <p>แนวคิดและหลักการพื้นฐานที่ขับเคลื่อนการทำงานของพรรคเพื่อประชาชนทุกคน</p>
+        </div>
+    </section>
+
+    <!-- Ideology Content Section -->
+    <section class="ideology-section">
+        <div class="ideology-container">
+            <!-- วิสัยทัศน์พรรค -->
+            <div class="ideology-card">
+                <h2 class="ideology-title">วิสัยทัศน์</h2>
+                <div class="ideology-content">
+                    <p>พรรคประชาภิวัฒน์มุ่งสร้างสังคมที่ประชาชนทุกคนมีคุณภาพชีวิตที่ดี มีความเสมอภาค และมีส่วนร่วมในการพัฒนาประเทศอย่างแท้จริง โดยยึดหลักการปฏิรูปที่ยั่งยืน โปร่งใส และเป็นธรรม</p>
+                    <p>เราเชื่อในการสร้างระบบที่เอื้อให้ประชาชนสามารถกำหนดทิศทางการพัฒนาประเทศได้อย่างแท้จริง ผ่านกระบวนการประชาธิปไตยที่เข้มแข็งและมีส่วนร่วม</p>
+                </div>
+            </div>
+            
+            <!-- หลักการพื้นฐาน -->
+            <div class="ideology-card">
+                <h2 class="ideology-title">หลักการพื้นฐาน</h2>
+                <div class="ideology-content">
+                    <p>พรรคประชาภิวัฒน์ยึดมั่นในหลักการสำคัญ 3 ประการที่ประกอบกันเป็นอุดมการณ์หลักของพรรค:</p>
+                    <ul>
+                        <li><strong>หลักประชาธิปไตยแบบมีส่วนร่วม</strong> - ส่งเสริมให้ประชาชนมีส่วนร่วมในการตัดสินใจในทุกระดับ</li>
+                        <li><strong>หลักความเสมอภาคและความเป็นธรรม</strong> - สร้างสังคมที่ทุกคนมีโอกาสเท่าเทียมกัน</li>
+                        <li><strong>หลักการพัฒนาที่ยั่งยืน</strong> - มุ่งพัฒนาประเทศโดยไม่ทำลายทรัพยากรสำหรับคนรุ่นต่อไป</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- เป้าหมายหลัก -->
+            <div class="ideology-card">
+                <h2 class="ideology-title">เป้าหมายหลัก</h2>
+                <div class="ideology-content">
+                    <p>พรรคประชาภิวัฒน์ตั้งเป้าหมายที่จะสร้างการเปลี่ยนแปลงใน 4 มิติหลัก:</p>
+                    <ul>
+                        <li><strong>การเมืองที่โปร่งใส</strong> - ลดการทุจริตคอร์รัปชัน สร้างระบบตรวจสอบถ่วงดุลที่มีประสิทธิภาพ</li>
+                        <li><strong>เศรษฐกิจที่ยั่งยืน</strong> - พัฒนาเศรษฐกิจที่กระจายความมั่งคั่งอย่างเป็นธรรม</li>
+                        <li><strong>สังคมที่เอื้ออาทร</strong> - สร้างระบบสวัสดิการที่เข้าถึงทุกคนอย่างเท่าเทียม</li>
+                        <li><strong>สิ่งแวดล้อมที่ยั่งยืน</strong> - พัฒนาประเทศโดยไม่ทำลายทรัพยากรธรรมชาติ</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- ค่านิยมหลักของพรรค -->
+            <h2 style="text-align: center; color: #60cb30; margin-bottom: 30px; font-size: 2rem;">ค่านิยมหลักของพรรค</h2>
+            <div class="core-values">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="value-title">ประชาชนเป็นศูนย์กลาง</h3>
+                    <p class="value-description">ทุกนโยบายต้องคำนึงถึงประโยชน์สูงสุดของประชาชนเป็นหลัก</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3 class="value-title">ความโปร่งใส</h3>
+                    <p class="value-description">ทำงานด้วยความซื่อสัตย์ ตรวจสอบได้ทุกขั้นตอน</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3 class="value-title">ความยั่งยืน</h3>
+                    <p class="value-description">มุ่งสร้างการพัฒนาที่ไม่ทำลายอนาคตของลูกหลาน</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="value-title">นวัตกรรม</h3>
+                    <p class="value-description">แก้ปัญหาด้วยความคิดสร้างสรรค์และแนวทางใหม่ๆ</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>เกี่ยวกับพรรค</h3>
+                    <ul>
+                        <li><a href="ideology.html">อุดมการณ์</a></li>
+                        <li><a href="executives.html">ผู้บริหารพรรค</a></li>
+                        <li><a href="announcements.html">ประกาศพรรค</a></li>
+                        <li><a href="https://drive.google.com/file/d/1qGXgxyuI_jM6k2DB67PjfeqEx4EQqDY0/view?usp=sharing" target="_blank">ข้อบังคับพรรค</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>กิจกรรม</h3>
+                    <ul>
+                        <li><a href="election.html">ผู้สมัคร สส.</a></li>
+                        <li><a href="policy.html">นโยบาย</a></li>
+                        <li><a href="activities.html">กิจกรรมพรรค</a></li>
+                        <li><a href="volunteer.html">จิตอาสา</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>ติดต่อเรา</h3>
+                    <address>
+                        <p>สำนักงานใหญ่พรรคประชาภิวัฒน์</p>
+                        <p>67 ถนนเศรษฐสิริ 2 แขวงพญาไท เขตพญาไท กรุงเทพฯ 10330</p>
+                        <p>โทรศัพท์: -</p>
+                        <p>อีเมล: info.peoples.reform@gmail.com</p>
+                    </address>
+                </div>
+                <div class="footer-col">
+                    <h3>ติดตามเรา</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <div class="newsletter">
+                        <h4>รับข่าวสารจากเรา</h4>
+                        <form>
+                            <input type="email" placeholder="อีเมลของคุณ">
+                            <button type="submit">สมัคร</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 พรรคประชาภิวัฒน์ (People's Reform Party - PRT). สงวนลิขสิทธิ์ทุกประการ.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
