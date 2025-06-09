@@ -5,7 +5,7 @@
         async function fetchPolicies() {
             try {
                 // URL ของ Google Apps Script ที่ deploy เป็น Web App
-                const scriptUrl = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+                const scriptUrl = 'https://script.google.com/macros/s/AKfycbyFb9YiZ2ZVbt6IqqEjZghlsRdztCDMCN7O23lYJcYCYcy5h24cBnGOPTR_5foaK5eq/exec';
                 
                 const response = await fetch(scriptUrl);
                 const data = await response.json();
