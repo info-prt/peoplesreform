@@ -684,8 +684,8 @@ a {
 
 @media (min-width: 1200px) {
   .election-hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-                url('../img/bg/bg1.png') no-repeat center 80%;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../img/bg/bg1.png') no-repeat center 80%;
+    background-size: cover;
   }
 }
 
