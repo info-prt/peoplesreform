@@ -617,16 +617,16 @@
           
           item.innerHTML = `
             <div class="debate-header">
-              <span class="debate-date">${formatDate(debate.วันที่)}</span>
-              <span class="debate-mp">โดย: ${debate['ชื่อ-นามสกุล']}</span>
+                <h3 class="debate-title">${debate.หัวข้อ}</h3>
+                <span class="debate-date">${formatDate(debate.วันที่)}</span>
             </div>
-            <h4 class="debate-title">${debate.หัวข้อ}</h4>
+            <div class="debate-mp">โดย: ${debate['ชื่อ-นามสกุล']}</div>
             <div class="debate-tags">
               ${debate.ป้ายกำกับ.split(',').map(tag => `
                 <span class="tag">${tag.trim()}</span>
               `).join('')}
             </div>
-            <p class="debate-summary">${debate.เนื้อหาสรุป}</p>
+            <p class="debate-excerpt">"${debate.เนื้อหาสรุป}"</p>
             <div class="watch-btn">
               <a href="${debate.ลิงก์วิดีโอ || '#'}" class="btn btn-watch" target="_blank">
                 <i class="fas fa-play"></i> ดูเพิ่มเติม
