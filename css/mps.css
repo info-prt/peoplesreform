@@ -262,3 +262,7 @@ span.mp-badge.constituency {
         font-size: 0.9rem;
     }
 }
+.mp-actions {
+    display: grid;
+    gap: 5px;
+}
