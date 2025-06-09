@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
         link.addEventListener('click', function (e) {
             e.preventDefault(); // ป้องกันไม่ให้ลิงก์ทำงาน
             const parent = this.parentElement;
-            parent.classList.toggle('active');
+            parent.classList.toggle('show');
         });
     });
 });
