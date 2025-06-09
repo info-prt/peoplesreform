@@ -147,7 +147,7 @@ body {
     transition: all 0.3s ease;
     z-index: 100;
 }
-.has-submenu.active .submenu,
+.has-submenu.show .submenu,
 .has-submenu:hover .submenu {
     opacity: 1;
     visibility: visible;
