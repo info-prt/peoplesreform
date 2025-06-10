@@ -22,7 +22,7 @@ memberTabs.forEach(tab => {
 });
 
 // URL ของ Google Apps Script ที่ deploy แล้ว
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx9Zrtidv6hkkPT0dZs0L3Ws6CqlAJnP9FiFYF6HUiWy7MFmrcN_tKsD-I8BKFbboqMVQ/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxplxS4mLz4BpYsOyTgFYQ3Ra6vDWtaTEr0PwljQDxLnsT3nWjwaA7gIFn7LIjXsMkM8w/exec';
 
 // ฟังก์ชันสมัครสมาชิก
 async function registerMember(memberData) {
