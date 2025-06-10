@@ -1,0 +1,175 @@
+/* สไตล์เฉพาะสำหรับหน้านี้ */
+.ideology-hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/ideology-bg.jpg') no-repeat center center;
+    background-size: cover;
+    color: white;
+    padding: 120px 0;
+    text-align: center;
+    position: relative;
+}
+
+.ideology-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #60cb30;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.ideology-hero p {
+    font-size: 1.3rem;
+    max-width: 800px;
+    margin: 0 auto;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.ideology-section {
+    padding: 80px 0;
+    background-color: #f9f9f9;
+}
+
+.ideology-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.ideology-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ideology-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.ideology-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background-color: #60cb30;
+}
+
+.ideology-title {
+    color: #ff014f;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.ideology-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    background-color: #ff014f;
+    border-radius: 50%;
+}
+
+.ideology-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #444;
+}
+
+.ideology-content p {
+    margin-bottom: 20px;
+}
+
+.ideology-content ul {
+    margin-bottom: 20px;
+    padding-left: 20px;
+}
+
+.ideology-content li {
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.ideology-content li::before {
+    content: '•';
+    color: #60cb30;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+.core-values {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.value-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.value-card:hover {
+    transform: translateY(-10px);
+}
+
+.value-icon {
+    width: 80px;
+    height: 80px;
+    background-color: #60cb30;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    color: white;
+    font-size: 2rem;
+}
+
+.value-title {
+    color: #ff014f;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+}
+
+.value-description {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+    .ideology-hero {
+        padding: 80px 0;
+    }
+
+    .ideology-hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .ideology-hero p {
+        font-size: 1.1rem;
+    }
+
+    .ideology-card {
+        padding: 25px;
+    }
+
+    .ideology-title {
+        font-size: 1.5rem;
+    }
+}
