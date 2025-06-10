@@ -10,7 +10,35 @@
     <!-- เพิ่ม CSS และ JavaScript ที่จำเป็น -->
 </head>
 <body>
-    <!-- ส่วน header เหมือนกับหน้าอื่นๆ -->
+    <!-- Header -->
+    <header id="header">
+        <div class="container flex-header">
+            <div class="logo">
+                <a href="/member/dashboard">
+                    <!-- <img src="images/logo.png" alt="พรรคประชาภิวัฒน์"> -->
+                    ระบบพรรคประชาภิวัฒน์
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="/member/dashboard">หน้าหลัก</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger" id="hamburger">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="close-btn" id="closeMenu">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <ul class="mobile-nav-list">
+            <li><a href="/member/dashboard">หน้าหลัก</a></li>
+        </ul>
+    </div>
     
       <main class="dashboard-container">
         <h1>ยินดีต้อนรับ, <span id="memberName"></span></h1>
@@ -22,6 +50,7 @@
     
     <!-- ส่วน footer เหมือนกับหน้าอื่นๆ -->
     
+    <script src="js/script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
           const user = JSON.parse(localStorage.getItem('prt_member'));
