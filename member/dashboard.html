@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แดชบอร์ดสมาชิก | พรรคประชาภิวัฒน์ (PRT)</title>
+    <!-- เพิ่ม CSS และ JavaScript ที่จำเป็น -->
+</head>
+<body>
+    <!-- ส่วน header เหมือนกับหน้าอื่นๆ -->
+    
+    <main class="dashboard-container">
+        <h1>ยินดีต้อนรับ, <span id="memberName"></span></h1>
+        <div class="member-info">
+            <!-- แสดงข้อมูลสมาชิก -->
+        </div>
+        <button id="logoutBtn" class="btn">ออกจากระบบ</button>
+    </main>
+    
+    <!-- ส่วน footer เหมือนกับหน้าอื่นๆ -->
+    
+    <script>
+        // ตรวจสอบการล็อกอิน
+        const member = JSON.parse(localStorage.getItem('member'));
+        
+        if (!member) {
+            window.location.href = 'member.html';
+        } else {
+            document.getElementById('memberName').textContent = member.usernameRoblox;
+        }
+        
+        // ออกจากระบบ
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            localStorage.removeItem('member');
+            window.location.href = 'member.html';
+        });
+    </script>
+</body>
+</html>
