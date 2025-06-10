@@ -49,11 +49,11 @@ async function registerMember(memberData) {
 }
 
 // ฟังก์ชันเข้าสู่ระบบแบบใหม่
-async function loginUser(loginUsernameRoblox, password) {
+async function loginUser(usernameRoblox, password) {
   try {
     const formData = new FormData();
     formData.append('action', 'login');
-    formData.append('loginUsernameRoblox', loginUsernameRoblox);
+    formData.append('usernameRoblox', usernameRoblox);
     formData.append('password', password);
     
     // ใช้ fetch พร้อมกับ FormData
@@ -96,10 +96,10 @@ async function loginUser(loginUsernameRoblox, password) {
 document.getElementById('loginForm')?.addEventListener('submit', async function(e) {
   e.preventDefault();
   
-  const loginUsernameRoblox = document.getElementById('loginUsernameRoblox').value.trim();
+  const usernameRoblox = document.getElementById('loginUsernameRoblox').value.trim();
   const password = document.getElementById('loginPassword').value;
   
-  if (!loginUsernameRoblox || !password) {
+  if (!usernameRoblox || !password) {
     showAlert('กรุณากรอกอีเมลและรหัสผ่าน', 'error');
     return;
   }
@@ -110,7 +110,7 @@ document.getElementById('loginForm')?.addEventListener('submit', async function(
   submitBtn.disabled = true;
   submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> กำลังเข้าสู่ระบบ...';
   
-  await loginUser(loginUsernameRoblox, password);
+  await loginUser(usernameRoblox, password);
   
   // คืนค่าเดิมให้ปุ่ม
   submitBtn.disabled = false;
