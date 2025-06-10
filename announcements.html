@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ประกาศพรรค | พรรคประชาภิวัฒน์ (PRT)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://slw-system.pages.dev/assets/css/font-face.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* เพิ่มสไตล์เฉพาะสำหรับหน้านี้ */
+        .announcements-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/announcements-bg.jpg') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 120px 0;
+            text-align: center;
+        }
+        
+        .announcements-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #60cb30;
+        }
+        
+        .announcements-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .announcements-section {
+            padding: 60px 0;
+        }
+        
+        .last-updated {
+            text-align: right;
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+        }
+        
+        .announcements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .announcement-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .announcement-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .announcement-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .announcement-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .announcement-card:hover .announcement-image img {
+            transform: scale(1.05);
+        }
+        
+        .announcement-content {
+            padding: 20px;
+        }
+        
+        .announcement-date {
+            color: #ff014f;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .announcement-date i {
+            margin-right: 5px;
+        }
+        
+        .announcement-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .read-more {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: #60cb30;
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease;
+        }
+        
+        .read-more:hover {
+            background-color: #4da826;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 50px;
+            grid-column: 1 / -1;
+        }
+        
+        .loading i {
+            font-size: 2rem;
+            color: #60cb30;
+            margin-bottom: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .announcements-hero {
+                padding: 80px 0;
+            }
+            
+            .announcements-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .announcements-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container flex-header">
+            <div class="logo">
+                <a href="index.html">
+                    <!-- <img src="images/logo.png" alt="พรรคประชาภิวัฒน์"> -->
+                    พรรคประชาภิวัฒน์
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="index.html">หน้าหลัก</a></li>
+                    <li class="has-submenu">
+                        <a>เลือกตั้ง <i class="fas fa-chevron-down"></i></a>
+                        <ul class="submenu">
+                            <li><a href="election.html">ผู้สมัคร สส.</a></li>
+                            <li><a href="policy.html">นโยบาย</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu active">
+                        <a>เกี่ยวกับพรรค <i class="fas fa-chevron-down"></i></a>
+                        <ul class="submenu">
+                            <li class="not-active"><a href="ideology.html">อุดมการณ์</a></li>
+                            <li class="not-active"><a href="executives.html">ผู้บริหารพรรค</a></li>
+                            <li><a href="announcements.html">ประกาศ</a></li>
+                            <li class="not-active"><a href="https://drive.google.com/file/d/1qGXgxyuI_jM6k2DB67PjfeqEx4EQqDY0/view?usp=sharing" target="_blank">ข้อบังคับพรรค</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="mps.html">สส.พรรค</a></li>
+                    <li><a href="member.html">ระบบสมาชิก</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger" id="hamburger">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="close-btn" id="closeMenu">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <ul class="mobile-nav-list">
+            <li><a href="index.html">หน้าหลัก</a></li>
+            <li class="mobile-has-submenu">
+                <a href="javascript:void(0)">เลือกตั้ง <i class="fas fa-chevron-down"></i></a>
+                <ul class="mobile-submenu">
+                    <li><a href="election.html">ผู้สมัคร สส.</a></li>
+                    <li><a href="policy.html">นโยบาย</a></li>
+                </ul>
+            </li>
+            <li class="mobile-has-submenu active">
+                <a href="javascript:void(0)">เกี่ยวกับพรรค <i class="fas fa-chevron-down"></i></a>
+                <ul class="mobile-submenu">
+                    <li class="not-active"><a href="ideology.html">อุดมการณ์</a></li>
+                    <li class="not-active"><a href="executives.html">ผู้บริหารพรรค</a></li>
+                    <li class="active"><a href="announcements.html">ประกาศ</a></li>
+                    <li class="not-active"><a href="https://drive.google.com/file/d/1qGXgxyuI_jM6k2DB67PjfeqEx4EQqDY0/view?usp=sharing" target="_blank">ข้อบังคับพรรค</a></li>
+                </ul>
+            </li>
+            <li><a href="mps.html">สส.พรรค</a></li>
+            <li><a href="member.html">ระบบสมาชิก</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="announcements-hero">
+        <div class="container">
+            <h1>ประกาศพรรคประชาภิวัฒน์</h1>
+            <p>ติดตามประกาศและข่าวสารล่าสุดจากพรรคของเรา</p>
+        </div>
+    </section>
+
+    <!-- Announcements Section -->
+    <section class="announcements-section">
+        <div class="container">
+            <div class="last-updated" id="lastUpdated">
+                <!-- ข้อมูลเวลาอัปเดตล่าสุดจะแสดงที่นี่ -->
+            </div>
+            
+            <div class="announcements-grid" id="announcementsContainer">
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>กำลังโหลดประกาศ...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>เกี่ยวกับพรรค</h3>
+                    <ul>
+                        <li><a href="ideology.html">อุดมการณ์</a></li>
+                        <li><a href="executives.html">ผู้บริหารพรรค</a></li>
+                        <li><a href="announcements.html">ประกาศพรรค</a></li>
+                        <li><a href="https://drive.google.com/file/d/1qGXgxyuI_jM6k2DB67PjfeqEx4EQqDY0/view?usp=sharing" target="_blank">ข้อบังคับพรรค</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>กิจกรรม</h3>
+                    <ul>
+                        <li><a href="election.html">ผู้สมัคร สส.</a></li>
+                        <li><a href="policy.html">นโยบาย</a></li>
+                        <li><a href="activities.html">กิจกรรมพรรค</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>ติดต่อเรา</h3>
+                    <address>
+                        <p>สำนักงานใหญ่พรรคประชาภิวัฒน์</p>
+                        <p>67 ถนนเศรษฐสิริ 2 แขวงพญาไท เขตพญาไท กรุงเทพฯ 10330</p>
+                        <p>โทรศัพท์: -</p>
+                        <p>อีเมล: info.peoples.reform@gmail.com</p>
+                    </address>
+                </div>
+                <div class="footer-col">
+                    <h3>ติดตามเรา</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <div class="newsletter">
+                        <h4>รับข่าวสารจากเรา</h4>
+                        <form>
+                            <input type="email" placeholder="อีเมลของคุณ">
+                            <button type="submit">สมัคร</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 พรรคประชาภิวัฒน์ (People's Reform Party - PRT). สงวนลิขสิทธิ์ทุกประการ.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script>
+        // URL ของ Google Apps Script
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz4O7eJYZC-9qiUW5YwhZSrYJfrBkxoWDUcJb6DybPNxAvF9prq2t_IUdVPx8bg_z5F9g/exec';
+        
+        // ฟังก์ชันดึงข้อมูลประกาศ
+        async function fetchAnnouncements() {
+            try {
+                const response = await fetch(SCRIPT_URL);
+                const data = await response.json();
+                
+                if (data && data.announce) {
+                    // แสดงเวลาอัปเดตล่าสุด
+                    displayLastUpdated(data.updatedAt);
+                    
+                    // แสดงประกาศ
+                    displayAnnouncements(data.announce);
+                } else {
+                    showError('ไม่พบข้อมูลประกาศ');
+                }
+            } catch (error) {
+                console.error('Error fetching announcements:', error);
+                showError('เกิดข้อผิดพลาดในการโหลดข้อมูล');
+            }
+        }
+        
+        // ฟังก์ชันแสดงเวลาอัปเดตล่าสุด
+        function displayLastUpdated(updatedAt) {
+            const lastUpdatedEl = document.getElementById('lastUpdated');
+            if (!updatedAt) return;
+            
+            const updatedDate = new Date(updatedAt);
+            const options = { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            };
+            
+            const formattedDate = updatedDate.toLocaleDateString('th-TH', options);
+            lastUpdatedEl.textContent = `อัปเดตล่าสุด: ${formattedDate}`;
+        }
+        
+        // ฟังก์ชันแสดงประกาศ
+        function displayAnnouncements(announcements) {
+            const container = document.getElementById('announcementsContainer');
+            
+            if (!announcements || announcements.length === 0) {
+                container.innerHTML = '<div class="loading">ไม่พบประกาศในขณะนี้</div>';
+                return;
+            }
+            
+            container.innerHTML = '';
+            
+            announcements.forEach(announcement => {
+                const announcementCard = document.createElement('div');
+                announcementCard.className = 'announcement-card';
+                
+                announcementCard.innerHTML = `
+                    <div class="announcement-image">
+                        <img src="${announcement.img}" alt="${announcement.title}">
+                    </div>
+                    <div class="announcement-content">
+                        <div class="announcement-date">
+                            <i class="far fa-calendar-alt"></i>
+                            ${announcement.date} • ${announcement.time}
+                        </div>
+                        <h3 class="announcement-title">${announcement.title}</h3>
+                        <a href="${announcement.link}" class="read-more">อ่านเพิ่มเติม</a>
+                    </div>
+                `;
+                
+                container.appendChild(announcementCard);
+            });
+        }
+        
+        // ฟังก์ชันแสดงข้อความผิดพลาด
+        function showError(message) {
+            const container = document.getElementById('announcementsContainer');
+            container.innerHTML = `
+                <div class="loading">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <p>${message}</p>
+                </div>
+            `;
+        }
+        
+        // โหลดข้อมูลเมื่อหน้าเว็บโหลดเสร็จ
+        document.addEventListener('DOMContentLoaded', fetchAnnouncements);
+    </script>
+</body>
+</html>
