@@ -1,0 +1,194 @@
+        /* เพิ่มสไตล์เฉพาะสำหรับหน้านี้ */
+        .member-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/member-bg.jpg') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 120px 0;
+            text-align: center;
+        }
+        
+        .member-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #60cb30;
+        }
+        
+        .member-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .member-section {
+            padding: 60px 0;
+        }
+        
+        .member-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .member-tab {
+            padding: 12px 30px;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            color: #666;
+        }
+        
+        .member-tab.active {
+            border-bottom: 3px solid #60cb30;
+            color: #60cb30;
+        }
+        
+        .tab-content {
+            display: none;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .member-form {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: #60cb30;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(96, 203, 48, 0.2);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #60cb30;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+        
+        .btn:hover {
+            background-color: #4da826;
+        }
+        
+        .btn-secondary {
+            background-color: #ff014f;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #d80043;
+        }
+        
+        .form-footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+        }
+        
+        .form-footer a {
+            color: #60cb30;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .member-benefits {
+            margin-top: 50px;
+        }
+        
+        .benefits-title {
+            text-align: center;
+            color: #60cb30;
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .benefit-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        .benefit-icon {
+            font-size: 2rem;
+            color: #60cb30;
+            margin-bottom: 15px;
+        }
+        
+        .benefit-title {
+            color: #ff014f;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .benefit-description {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .member-hero {
+                padding: 80px 0;
+            }
+            
+            .member-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .member-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .member-tab {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
