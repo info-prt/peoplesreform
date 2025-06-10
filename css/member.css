@@ -192,3 +192,9 @@
                 font-size: 0.9rem;
             }
         }
+label[for="registerPassword"], label[for="registerConfirmPassword"] {
+    font-family: inherit;
+}
+label, .form-control {
+    font-family: monospace;
+}
