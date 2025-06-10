@@ -29,6 +29,35 @@
             margin: 0 auto;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
+        .badge {
+            display: inline-block;
+            padding: 8px 14px;
+            font-size: .875rem;
+            font-weight: 400;
+            line-height: 1;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: 16px;
+            transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        }
+
+        .badge.badge-warning {
+            border-color: #ffd829;
+            background-color: rgba(255,216,41,.3);
+        }
+        
+        .badge.badge-member {
+            border-color: #32bea6;
+            background-color: rgb(50 190 166 / 30%);
+        }
+        
+        .badge {
+            line-height: 18px;
+            color: #000;
+            border-width: 1px;
+            border-style: solid;
+        }
     </style>
 </head>
 <body>
@@ -81,33 +110,54 @@
     
     <script src="/js/script.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-          const user = JSON.parse(localStorage.getItem('prt_member'));
-        
-          if (!user) {
-            alert('กรุณาเข้าสู่ระบบก่อน');
-            window.location.href = '../login.html'; // ย้อนกลับไปหน้า login
-            return;
-          }
-        
-          // แสดงชื่อใน span
-          document.getElementById('memberName').textContent = user.usernameRoblox || user.discordName || 'ผู้ใช้';
-        
-          // แสดงข้อมูลอื่น ๆ
-          const infoDiv = document.getElementById('memberInfo');
-          infoDiv.innerHTML = `
-            <p><strong>Roblox Name:</strong> ${user.usernameRoblox || '-'}</p>
-          `;
-        
-          // ออกจากระบบ
-          document.getElementById('logoutBtn').addEventListener('click', function () {
-            if (confirm('คุณแน่ใจหรือไม่ว่าต้องการออกจากระบบ?')) {
-              localStorage.removeItem('prt_member');
-              window.location.href = '../login.html';
+      document.addEventListener('DOMContentLoaded', function () {
+        const user = JSON.parse(localStorage.getItem('prt_member'));
+    
+        if (!user) {
+          alert('กรุณาเข้าสู่ระบบก่อน');
+          window.location.href = '../login.html'; // ย้อนกลับไปหน้า login
+          return;
+        }
+    
+        // แสดงชื่อใน span
+        document.getElementById('memberName').textContent = user.usernameRoblox || user.discordName || 'ผู้ใช้';
+    
+        // ดึงข้อมูลจาก Google Apps Script
+        fetch('https://script.google.com/macros/s/AKfycbwEYR0y1fL82RuPPktnzawKD2oJtqvLBW8ZUXe6aB7ZPUSf7o8F4vZEC3-huirNtWZCIg/exec')
+          .then(response => response.json())
+          .then(data => {
+            // หาข้อมูลของ user จากข้อมูลทั้งหมด
+            const matchedUser = data.find(item => item.usernameRoblox === user.usernameRoblox);
+    
+            // ถ้าเจอข้อมูล
+            const status = matchedUser ? matchedUser.status : '-';
+            let statusClass = '';
+    
+            if (status === 'สมาชิกพรรค') {
+              statusClass = 'badge-member';
+            } else if (status === 'เจ้าหน้าที่กำลังตรวจสอบ') {
+              statusClass = 'badge-warning';
             }
+    
+            // แสดงข้อมูล
+            const infoDiv = document.getElementById('memberInfo');
+            infoDiv.innerHTML = `
+              <p><strong>Roblox Name:</strong> ${user.usernameRoblox || '-'}</p>
+              <p><strong>สถานะสมาชิกพรรค:</strong> <span class="badge ${statusClass}">${status}</span></p>
+            `;
+          })
+          .catch(error => {
+            console.error('เกิดข้อผิดพลาดในการโหลดข้อมูล:', error);
           });
+    
+        // ออกจากระบบ
+        document.getElementById('logoutBtn').addEventListener('click', function () {
+          if (confirm('คุณแน่ใจหรือไม่ว่าต้องการออกจากระบบ?')) {
+            localStorage.removeItem('prt_member');
+            window.location.href = '../login.html';
+          }
         });
-
+      });
     </script>
 </body>
 </html>
