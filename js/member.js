@@ -153,15 +153,3 @@ document.getElementById('registerForm').addEventListener('submit', function (e) 
 
     registerMember(memberData);
 });
-
-// แก้ไข event listener สำหรับฟอร์มเข้าสู่ระบบ
-document.getElementById('loginForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-
-    const loginData = {
-        usernameRoblox: document.getElementById('loginUsernameRoblox').value,
-        password: document.getElementById('loginPassword').value // ในทางปฏิบัติควรเข้ารหัสก่อนส่ง
-    };
-
-    loginMember(loginData);
-});
