@@ -22,7 +22,7 @@ memberTabs.forEach(tab => {
 });
 
 // URL ของ Google Apps Script ที่ deploy แล้ว
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbznL_Q9LvzVG1tYAJtaPySh9EGkCfbU0avEHe17fp4v3WCB2dZByzlZIrQ9DS0NgxDFoA/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx9Zrtidv6hkkPT0dZs0L3Ws6CqlAJnP9FiFYF6HUiWy7MFmrcN_tKsD-I8BKFbboqMVQ/exec';
 
 // ฟังก์ชันสมัครสมาชิก
 async function registerMember(memberData) {
@@ -48,34 +48,87 @@ async function registerMember(memberData) {
   }
 }
 
-// ฟังก์ชันเข้าสู่ระบบ
-async function loginMember(loginData) {
+// ฟังก์ชันเข้าสู่ระบบแบบใหม่
+async function loginUser(loginUsernameRoblox, password) {
+  try {
+    const formData = new FormData();
+    formData.append('action', 'login');
+    formData.append('loginUsernameRoblox', loginUsernameRoblox);
+    formData.append('password', password);
+    
+    // ใช้ fetch พร้อมกับ FormData
+    const response = await fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: formData,
+      redirect: 'follow' // สำคัญสำหรับ Google Apps Script
+    });
+    
+    // ใช้ text() แทน json() เพราะ Google Apps Script อาจ return HTML
+    const text = await response.text();
+    let data;
+    
     try {
-        const response = await fetch(SCRIPT_URL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                action: 'login',
-                ...loginData
-            })
-        });
-
-        const data = await response.json();
-
-        if (data.success) {
-            alert(data.message);
-            // บันทึกข้อมูลการล็อกอินและ redirect
-            localStorage.setItem('member', JSON.stringify(data.members));
-            window.location.href = 'member/dashboard.html';
-        } else {
-            throw new Error(data.error || 'การเข้าสู่ระบบล้มเหลว');
-        }
-    } catch (error) {
-        alert(error.message);
-        console.error('Login error:', error);
+      data = JSON.parse(text);
+    } catch {
+      // กรณีที่ response เป็น HTML
+      const jsonMatch = text.match(/{.*}/);
+      if (jsonMatch) data = JSON.parse(jsonMatch[0]);
+      else throw new Error('Invalid response format');
     }
+    
+    if (data.success) {
+      // บันทึกข้อมูลผู้ใช้ใน localStorage
+      localStorage.setItem('prt_member', JSON.stringify(data.user));
+      
+      // Redirect ไปหน้าแดชบอร์ด
+      window.location.href = 'member-dashboard.html';
+    } else {
+      throw new Error(data.error || 'เข้าสู่ระบบไม่สำเร็จ');
+    }
+  } catch (error) {
+    console.error('Login error:', error);
+    showAlert(error.message, 'error');
+    return false;
+  }
+}
+
+// แก้ไข event listener สำหรับฟอร์มเข้าสู่ระบบ
+document.getElementById('loginForm')?.addEventListener('submit', async function(e) {
+  e.preventDefault();
+  
+  const loginUsernameRoblox = document.getElementById('loginUsernameRoblox').value.trim();
+  const password = document.getElementById('loginPassword').value;
+  
+  if (!loginUsernameRoblox || !password) {
+    showAlert('กรุณากรอกอีเมลและรหัสผ่าน', 'error');
+    return;
+  }
+  
+  // แสดง loading state
+  const submitBtn = this.querySelector('button[type="submit"]');
+  const originalText = submitBtn.textContent;
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> กำลังเข้าสู่ระบบ...';
+  
+  await loginUser(loginUsernameRoblox, password);
+  
+  // คืนค่าเดิมให้ปุ่ม
+  submitBtn.disabled = false;
+  submitBtn.textContent = originalText;
+});
+
+// ฟังก์ชันแสดง Alert
+function showAlert(message, type = 'success') {
+  const alertDiv = document.createElement('div');
+  alertDiv.className = `alert alert-${type}`;
+  alertDiv.textContent = message;
+  
+  const container = document.querySelector('.member-section .container');
+  container.prepend(alertDiv);
+  
+  setTimeout(() => {
+    alertDiv.remove();
+  }, 5000);
 }
 
 // แก้ไข event listener สำหรับฟอร์มสมัครสมาชิก
