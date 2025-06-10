@@ -9,31 +9,46 @@
 <body>
     <!-- ส่วน header เหมือนกับหน้าอื่นๆ -->
     
-    <main class="dashboard-container">
+      <main class="dashboard-container">
         <h1>ยินดีต้อนรับ, <span id="memberName"></span></h1>
-        <div class="member-info">
-            <!-- แสดงข้อมูลสมาชิก -->
+        <div class="member-info" id="memberInfo">
+          <!-- แสดงข้อมูลสมาชิก -->
         </div>
         <button id="logoutBtn" class="btn">ออกจากระบบ</button>
-    </main>
+      </main>
     
     <!-- ส่วน footer เหมือนกับหน้าอื่นๆ -->
     
     <script>
-        // ตรวจสอบการล็อกอิน
-        const member = JSON.parse(localStorage.getItem('member'));
+        document.addEventListener('DOMContentLoaded', function () {
+          const user = JSON.parse(localStorage.getItem('prt_member'));
         
-        if (!member) {
-            window.location.href = '/member.html';
-        } else {
-            document.getElementById('memberName').textContent = member.usernameRoblox;
-        }
+          if (!user) {
+            alert('กรุณาเข้าสู่ระบบก่อน');
+            window.location.href = '../login.html'; // ย้อนกลับไปหน้า login
+            return;
+          }
         
-        // ออกจากระบบ
-        document.getElementById('logoutBtn').addEventListener('click', function() {
-            localStorage.removeItem('member');
-            window.location.href = '/member.html';
+          // แสดงชื่อใน span
+          document.getElementById('memberName').textContent = user.name || user.email || 'ผู้ใช้';
+        
+          // แสดงข้อมูลอื่น ๆ
+          const infoDiv = document.getElementById('memberInfo');
+          infoDiv.innerHTML = `
+            <p><strong>ชื่อ:</strong> ${user.name || '-'}</p>
+            <p><strong>อีเมล:</strong> ${user.email || '-'}</p>
+            <p><strong>รหัสสมาชิก:</strong> ${user.id || '-'}</p>
+          `;
+        
+          // ออกจากระบบ
+          document.getElementById('logoutBtn').addEventListener('click', function () {
+            if (confirm('คุณแน่ใจหรือไม่ว่าต้องการออกจากระบบ?')) {
+              localStorage.removeItem('prt_member');
+              window.location.href = '../login.html';
+            }
+          });
         });
+
     </script>
 </body>
 </html>
