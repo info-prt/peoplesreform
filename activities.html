@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>กิจกรรมพรรค | พรรคประชาภิวัฒน์ (PRT)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://slw-system.pages.dev/assets/css/font-face.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/activities.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container flex-header">
+            <div class="logo">
+                <a href="index.html">
+                    <!-- <img src="images/logo.png" alt="พรรคประชาภิวัฒน์"> -->
+                    พรรคประชาภิวัฒน์
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="index.html">หน้าหลัก</a></li>
+                    <li class="has-submenu">
+                        <a>เลือกตั้ง <i class="fas fa-chevron-down"></i></a>
+                        <ul class="submenu">
+                            <li><a href="election.html">ผู้สมัคร สส.</a></li>
+                            <li><a href="policy.html">นโยบาย</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a>เกี่ยวกับพรรค <i class="fas fa-chevron-down"></i></a>
+                        <ul class="submenu">
+                            <li><a href="ideology.html">อุดมการณ์</a></li>
+                            <li><a href="executives.html">ผู้บริหารพรรค</a></li>
+                            <li><a href="announcements.html">ประกาศ</a></li>
+                            <li><a href="https://drive.google.com/file/d/1qGXgxyuI_jM6k2DB67PjfeqEx4EQqDY0/view?usp=sharing" target="_blank">ข้อบังคับพรรค</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="mps.html">สส.พรรค</a></li>
+                    <li><a href="member.html">ระบบสมาชิก</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger" id="hamburger">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="close-btn" id="closeMenu">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <ul class="mobile-nav-list">
+            <li><a href="index.html">หน้าหลัก</a></li>
+            <li class="mobile-has-submenu">
+                <a href="javascript:void(0)">เลือกตั้ง <i class="fas fa-chevron-down"></i></a>
+                <ul class="mobile-submenu">
+                    <li><a href="election.html">ผู้สมัคร สส.</a></li>
+                    <li><a href="policy.html">นโยบาย</a></li>
+                </ul>
+            </li>
+            <li class="mobile-has-submenu">
+                <a href="javascript:void(0)">เกี่ยวกับพรรค <i class="fas fa-chevron-down"></i></a>
+                <ul class="mobile-submenu">
+                    <li><a href="ideology.html">อุดมการณ์</a></li>
+                    <li><a href="executives.html">ผู้บริหารพรรค</a></li>
+                    <li><a href="announcements.html">ประกาศ</a></li>
+                    <li><a href="https://drive.google.com/file/d/1qGXgxyuI_jM6k2DB67PjfeqEx4EQqDY0/view?usp=sharing" target="_blank">ข้อบังคับพรรค</a></li>
+                </ul>
+            </li>
+            <li><a href="mps.html">สส.พรรค</a></li>
+            <li><a href="member.html">ระบบสมาชิก</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="activities-hero">
+        <div class="container">
+            <h1>กิจกรรมพรรคประชาภิวัฒน์</h1>
+            <p>ติดตามกิจกรรมล่าสุดและงานพบปะสมาชิกของพรรคเรา</p>
+        </div>
+    </section>
+
+    <!-- Activities Section -->
+    <section class="activities-section">
+        <div class="container">
+            <div class="last-updated" id="lastUpdated">
+                <!-- ข้อมูลเวลาอัปเดตล่าสุดจะแสดงที่นี่ -->
+            </div>
+            
+            <div class="activities-grid" id="activitiesContainer">
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>กำลังโหลดกิจกรรม...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>เกี่ยวกับพรรค</h3>
+                    <ul>
+                        <li><a href="ideology.html">อุดมการณ์</a></li>
+                        <li><a href="executives.html">ผู้บริหารพรรค</a></li>
+                        <li><a href="announcements.html">ประกาศพรรค</a></li>
+                        <li><a href="https://drive.google.com/file/d/1qGXgxyuI_jM6k2DB67PjfeqEx4EQqDY0/view?usp=sharing" target="_blank">ข้อบังคับพรรค</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>กิจกรรม</h3>
+                    <ul>
+                        <li><a href="election.html">ผู้สมัคร สส.</a></li>
+                        <li><a href="policy.html">นโยบาย</a></li>
+                        <li><a href="activities.html">กิจกรรมพรรค</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>ติดต่อเรา</h3>
+                    <address>
+                        <p>สำนักงานใหญ่พรรคประชาภิวัฒน์</p>
+                        <p>67 ถนนเศรษฐสิริ 2 แขวงพญาไท เขตพญาไท กรุงเทพฯ 10330</p>
+                        <p>โทรศัพท์: -</p>
+                        <p>อีเมล: info.peoples.reform@gmail.com</p>
+                    </address>
+                </div>
+                <div class="footer-col">
+                    <h3>ติดตามเรา</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <div class="newsletter">
+                        <h4>รับข่าวสารจากเรา</h4>
+                        <form>
+                            <input type="email" placeholder="อีเมลของคุณ">
+                            <button type="submit">สมัคร</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 พรรคประชาภิวัฒน์ (People's Reform Party - PRT). สงวนลิขสิทธิ์ทุกประการ.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script src="../js/activities.js"></script>
+</body>
+</html>
