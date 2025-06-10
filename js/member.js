@@ -52,7 +52,7 @@ async function registerMember(memberData) {
 async function loginMember(loginData) {
     try {
         const response = await fetch(SCRIPT_URL, {
-            method: 'POST',
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
             },
