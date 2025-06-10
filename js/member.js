@@ -56,41 +56,37 @@ async function loginUser(usernameRoblox, password) {
     formData.append('usernameRoblox', usernameRoblox);
     formData.append('password', password);
     
-    // ใช้ fetch พร้อมกับ FormData
     const response = await fetch(SCRIPT_URL, {
       method: 'POST',
       body: formData,
-      redirect: 'follow' // สำคัญสำหรับ Google Apps Script
+      redirect: 'follow'
     });
     
-    // ใช้ text() แทน json() เพราะ Google Apps Script อาจ return HTML
     const text = await response.text();
+    console.log('Raw response:', text); // <== เพิ่มไว้ดูว่าได้อะไรกลับมา
+
     let data;
-    
     try {
       data = JSON.parse(text);
     } catch {
-      // กรณีที่ response เป็น HTML
       const jsonMatch = text.match(/{.*}/);
       if (jsonMatch) data = JSON.parse(jsonMatch[0]);
-      else throw new Error('Invalid response format');
+      else throw new Error('รูปแบบข้อมูลที่ได้ไม่ถูกต้อง');
     }
-    
-    if (data.success) {
-      // บันทึกข้อมูลผู้ใช้ใน localStorage
+
+    if (data.success && data.user) {
       localStorage.setItem('prt_member', JSON.stringify(data.user));
-      
-      // Redirect ไปหน้าแดชบอร์ด
       window.location.href = 'member-dashboard.html';
     } else {
-      throw new Error(data.error || 'เข้าสู่ระบบไม่สำเร็จ');
+      throw new Error(data.error || 'เข้าสู่ระบบไม่สำเร็จ (ไม่มีข้อมูลผู้ใช้)');
     }
   } catch (error) {
     console.error('Login error:', error);
-    showAlert(error.message, 'error');
+    showAlert(error.message || 'เกิดข้อผิดพลาดขณะเข้าสู่ระบบ', 'error');
     return false;
   }
 }
+
 
 // แก้ไข event listener สำหรับฟอร์มเข้าสู่ระบบ
 document.getElementById('loginForm')?.addEventListener('submit', async function(e) {
