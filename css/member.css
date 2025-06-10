@@ -1,6 +1,6 @@
         /* เพิ่มสไตล์เฉพาะสำหรับหน้านี้ */
         .member-hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/member-bg.jpg') no-repeat center center;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/img/bg4.avif') no-repeat center center;
             background-size: cover;
             color: white;
             padding: 120px 0;
