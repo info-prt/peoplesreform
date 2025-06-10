@@ -61,6 +61,10 @@
             border-width: 1px;
             border-style: solid;
         }
+        .member-info p {
+            border-top: 1px solid #c7c7cc;
+            padding: 20px 0;
+        }
     </style>
 </head>
 <body>
@@ -106,7 +110,7 @@
         <div class="member-info" id="memberInfo">
           <!-- แสดงข้อมูลสมาชิก -->
         </div>
-        <button id="logoutBtn" class="btn" style=" cursor: pointer; ">ออกจากระบบ</button>
+        <button id="logoutBtn" class="btn" style="cursor: pointer;width: 100%;">ออกจากระบบ</button>
       </main>
     
     <!-- ส่วน footer เหมือนกับหน้าอื่นๆ -->
@@ -145,7 +149,7 @@
             // แสดงข้อมูล
             const infoDiv = document.getElementById('memberInfo');
             infoDiv.innerHTML = `
-              <p><strong>Roblox Name:</strong> ${user.usernameRoblox || '-'}</p>
+              <p><strong>ชื่อ:</strong> ${user.usernameRoblox || '-'}</p>
               <p><strong>สถานะสมาชิกพรรค:</strong> <span class="badge ${statusClass}">${status}</span></p>
             `;
           })
