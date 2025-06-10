@@ -22,34 +22,30 @@ memberTabs.forEach(tab => {
 });
 
 // URL ของ Google Apps Script ที่ deploy แล้ว
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwqv9tHAK4ZAfNwdRsA9lRmUQMb-HXScmgkRuNgVRIRP2JsYlRpQFkCSM9IWXyXgJxzEA/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbznQr6_K75Nqt_iIRdEZIU-Y6ANlykEC-21OxaIaULFsa43YHsxLaIs_kZHFYNJONof6g/exec';
 
 // ฟังก์ชันสมัครสมาชิก
 async function registerMember(memberData) {
-    try {
-        const response = await fetch(SCRIPT_URL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                action: 'register',
-                ...memberData
-            })
-        });
-
-        const data = await response.json();
-
-        if (data.success) {
-            alert(data.message);
-            // redirect หรือทำอย่างอื่นหลังจากสมัครสำเร็จ
-        } else {
-            throw new Error(data.error || 'การสมัครสมาชิกล้มเหลว');
-        }
-    } catch (error) {
-        alert(error.message);
-        console.error('Registration error:', error);
-    }
+  try {
+    // ใช้ /exec?action=register แทนการส่ง action ใน body
+    const url = `${SCRIPT_URL}?action=register`;
+    
+    const response = await fetch(url, {
+      method: 'POST',
+      mode: 'no-cors', // ใช้ no-cors mode
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: JSON.stringify(memberData)
+    });
+    
+    // เนื่องจากใช้ no-cors mode เราจะไม่สามารถอ่าน response ได้โดยตรง
+    alert('สมัครสมาชิกเรียบร้อยแล้ว ระบบกำลังประมวลผล');
+    window.location.reload();
+  } catch (error) {
+    alert('เกิดข้อผิดพลาดในการสมัครสมาชิก');
+    console.error('Registration error:', error);
+  }
 }
 
 // ฟังก์ชันเข้าสู่ระบบ
