@@ -52,7 +52,7 @@ async function registerMember(memberData) {
 async function loginMember(loginData) {
     try {
         const response = await fetch(SCRIPT_URL, {
-            method: 'GET',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -67,7 +67,7 @@ async function loginMember(loginData) {
         if (data.success) {
             alert(data.message);
             // บันทึกข้อมูลการล็อกอินและ redirect
-            localStorage.setItem('member', JSON.stringify(data.member));
+            localStorage.setItem('member', JSON.stringify(data.members));
             window.location.href = 'member/dashboard.html';
         } else {
             throw new Error(data.error || 'การเข้าสู่ระบบล้มเหลว');
