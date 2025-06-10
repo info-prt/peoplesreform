@@ -1,5 +1,5 @@
 .executives-hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/executives-bg.jpg') no-repeat center center;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/img/bg/bg.jpg') no-repeat center center;
     background-size: cover;
     color: white;
     padding: 100px 0;
