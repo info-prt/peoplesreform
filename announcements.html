@@ -7,136 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="https://slw-system.pages.dev/assets/css/font-face.css">
     <link rel="stylesheet" href="../css/style.css">
-    <style>
-        /* เพิ่มสไตล์เฉพาะสำหรับหน้านี้ */
-        .announcements-hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/announcements-bg.jpg') no-repeat center center;
-            background-size: cover;
-            color: white;
-            padding: 120px 0;
-            text-align: center;
-        }
-        
-        .announcements-hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: #60cb30;
-        }
-        
-        .announcements-hero p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .announcements-section {
-            padding: 60px 0;
-        }
-        
-        .last-updated {
-            text-align: right;
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 30px;
-        }
-        
-        .announcements-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-        }
-        
-        .announcement-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-        
-        .announcement-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .announcement-image {
-            height: 200px;
-            overflow: hidden;
-        }
-        
-        .announcement-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .announcement-card:hover .announcement-image img {
-            transform: scale(1.05);
-        }
-        
-        .announcement-content {
-            padding: 20px;
-        }
-        
-        .announcement-date {
-            color: #ff014f;
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .announcement-date i {
-            margin-right: 5px;
-        }
-        
-        .announcement-title {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            color: #333;
-        }
-        
-        .read-more {
-            display: inline-block;
-            padding: 8px 20px;
-            background-color: #60cb30;
-            color: white;
-            border-radius: 30px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: background-color 0.3s ease;
-        }
-        
-        .read-more:hover {
-            background-color: #4da826;
-        }
-        
-        .loading {
-            text-align: center;
-            padding: 50px;
-            grid-column: 1 / -1;
-        }
-        
-        .loading i {
-            font-size: 2rem;
-            color: #60cb30;
-            margin-bottom: 15px;
-        }
-        
-        @media (max-width: 768px) {
-            .announcements-hero {
-                padding: 80px 0;
-            }
-            
-            .announcements-hero h1 {
-                font-size: 2rem;
-            }
-            
-            .announcements-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="../css/announcements.css">
 </head>
 <body>
     <!-- Header -->
@@ -206,7 +77,7 @@
     </div>
 
     <!-- Hero Section -->
-    <section class="announcements-hero">
+    <section class="announcements-hero" style=" margin-top: 59.2px; ">
         <div class="container">
             <h1>ประกาศพรรคประชาภิวัฒน์</h1>
             <p>ติดตามประกาศและข่าวสารล่าสุดจากพรรคของเรา</p>
