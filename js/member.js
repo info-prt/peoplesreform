@@ -76,7 +76,7 @@ async function loginUser(usernameRoblox, password) {
 
     if (data.success && data.user) {
       localStorage.setItem('prt_member', JSON.stringify(data.user));
-      window.location.href = 'member-dashboard.html';
+      window.location.href = 'member/dashboard.html';
     } else {
       throw new Error(data.error || 'เข้าสู่ระบบไม่สำเร็จ (ไม่มีข้อมูลผู้ใช้)');
     }
