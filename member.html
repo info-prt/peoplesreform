@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบสมาชิก | พรรคประชาภิวัฒน์ (PRT)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://slw-system.pages.dev/assets/css/font-face.css">
+    <link rel="stylesheet" href="../css/member.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container flex-header">
+            <div class="logo">
+                <a href="/index.html">
+                    <!-- <img src="images/logo.png" alt="พรรคประชาภิวัฒน์"> -->
+                    พรรคประชาภิวัฒน์
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="../index.html">หน้าหลัก</a></li>
+                    <li class="has-submenu">
+                        <a>เลือกตั้ง <i class="fas fa-chevron-down"></i></a>
+                        <ul class="submenu">
+                            <li><a href="election.html">ผู้สมัคร สส.</a></li>
+                            <li><a href="policy.html">นโยบาย</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a>เกี่ยวกับพรรค <i class="fas fa-chevron-down"></i></a>
+                        <ul class="submenu">
+                            <li><a href="../ideology.html">อุดมการณ์</a></li>
+                            <li><a href="../executives.html">ผู้บริหารพรรค</a></li>
+                            <li><a href="../announcements.html">ประกาศ</a></li>
+                            <li><a href="https://drive.google.com/file/d/1qGXgxyuI_jM6k2DB67PjfeqEx4EQqDY0/view?usp=sharing" target="_blank">ข้อบังคับพรรค</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../mps.html">สส.พรรค</a></li>
+                    <li><a href="../member.html">ระบบสมาชิก</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger" id="hamburger">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="close-btn" id="closeMenu">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <ul class="mobile-nav-list">
+            <li><a href="../index.html">หน้าหลัก</a></li>
+            <li class="mobile-has-submenu">
+                <a href="javascript:void(0)">เลือกตั้ง <i class="fas fa-chevron-down"></i></a>
+                <ul class="mobile-submenu">
+                    <li><a href="election.html">ผู้สมัคร สส.</a></li>
+                    <li><a href="policy.html">นโยบาย</a></li>
+                </ul>
+            </li>
+            <li class="mobile-has-submenu">
+                <a href="javascript:void(0)">เกี่ยวกับพรรค <i class="fas fa-chevron-down"></i></a>
+                <ul class="mobile-submenu">
+                    <li><a href="../ideology.html">อุดมการณ์</a></li>
+                    <li><a href="../executives.html">ผู้บริหารพรรค</a></li>
+                    <li><a href="../announcements.html">ประกาศ</a></li>
+                    <li><a href="https://drive.google.com/file/d/1qGXgxyuI_jM6k2DB67PjfeqEx4EQqDY0/view?usp=sharing" target="_blank">ข้อบังคับพรรค</a></li>
+                </ul>
+            </li>
+            <li><a href="../mps.html">สส.พรรค</a></li>
+            <li class="active"><a href="../member.html">ระบบสมาชิก</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="member-hero">
+        <div class="container">
+            <h1>ระบบสมาชิกพรรคประชาภิวัฒน์</h1>
+            <p>ร่วมเป็นส่วนหนึ่งของการเปลี่ยนแปลงประเทศกับพรรคของเรา</p>
+        </div>
+    </section>
+
+    <!-- Member Section -->
+    <section class="member-section">
+        <div class="container">
+            <div class="member-tabs">
+                <button class="member-tab active" data-tab="login">เข้าสู่ระบบ</button>
+                <button class="member-tab" data-tab="register">สมัครสมาชิก</button>
+            </div>
+            
+            <!-- เข้าสู่ระบบ -->
+            <div class="tab-content active" id="login-tab">
+                <div class="member-form">
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="loginEmail">อีเมล</label>
+                            <input type="email" id="loginEmail" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">รหัสผ่าน</label>
+                            <input type="password" id="loginPassword" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn">เข้าสู่ระบบ</button>
+                        <div class="form-footer">
+                            ลืมรหัสผ่าน? <a href="#" id="forgotPassword">คลิกที่นี่</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- สมัครสมาชิก -->
+            <div class="tab-content" id="register-tab">
+                <div class="member-form">
+                    <form id="registerForm">
+                        <div class="form-group">
+                            <label for="registerName">ชื่อ-นามสกุล</label>
+                            <input type="text" id="registerName" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerEmail">อีเมล</label>
+                            <input type="email" id="registerEmail" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerPhone">หมายเลขโทรศัพท์</label>
+                            <input type="tel" id="registerPhone" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerIdCard">เลขบัตรประชาชน</label>
+                            <input type="text" id="registerIdCard" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerAddress">ที่อยู่</label>
+                            <textarea id="registerAddress" class="form-control" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerPassword">รหัสผ่าน</label>
+                            <input type="password" id="registerPassword" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerConfirmPassword">ยืนยันรหัสผ่าน</label>
+                            <input type="password" id="registerConfirmPassword" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-secondary">สมัครสมาชิก</button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- สิทธิประโยชน์ของการเป็นสมาชิก -->
+            <div class="member-benefits">
+                <h2 class="benefits-title">สิทธิประโยชน์ของการเป็นสมาชิก</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-vote-yea"></i>
+                        </div>
+                        <h3 class="benefit-title">สิทธิ์เลือกตั้งภายในพรรค</h3>
+                        <p class="benefit-description">มีสิทธิ์เลือกตั้งผู้บริหารพรรคและมีส่วนร่วมในการตัดสินใจสำคัญ</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
+                        <h3 class="benefit-title">รับข่าวสารก่อนใคร</h3>
+                        <p class="benefit-description">ได้รับข้อมูลข่าวสารและนโยบายของพรรคก่อนประชาชนทั่วไป</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="benefit-title">ร่วมกิจกรรมพิเศษ</h3>
+                        <p class="benefit-description">ได้รับเชิญเข้าร่วมกิจกรรมเฉพาะสมาชิกและงานพบปะผู้บริหาร</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3 class="benefit-title">เป็นส่วนหนึ่งของการเปลี่ยนแปลง</h3>
+                        <p class="benefit-description">มีโอกาสเสนอความคิดเห็นและร่วมกำหนดทิศทางของพรรค</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>เกี่ยวกับพรรค</h3>
+                    <ul>
+                        <li><a href="ideology.html">อุดมการณ์</a></li>
+                        <li><a href="executives.html">ผู้บริหารพรรค</a></li>
+                        <li><a href="announcements.html">ประกาศพรรค</a></li>
+                        <li><a href="https://drive.google.com/file/d/1qGXgxyuI_jM6k2DB67PjfeqEx4EQqDY0/view?usp=sharing" target="_blank">ข้อบังคับพรรค</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>กิจกรรม</h3>
+                    <ul>
+                        <li><a href="election.html">ผู้สมัคร สส.</a></li>
+                        <li><a href="policy.html">นโยบาย</a></li>
+                        <li><a href="activities.html">กิจกรรมพรรค</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>ติดต่อเรา</h3>
+                    <address>
+                        <p>สำนักงานใหญ่พรรคประชาภิวัฒน์</p>
+                        <p>67 ถนนเศรษฐสิริ 2 แขวงพญาไท เขตพญาไท กรุงเทพฯ 10330</p>
+                        <p>โทรศัพท์: -</p>
+                        <p>อีเมล: info.peoples.reform@gmail.com</p>
+                    </address>
+                </div>
+                <div class="footer-col">
+                    <h3>ติดตามเรา</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <div class="newsletter">
+                        <h4>รับข่าวสารจากเรา</h4>
+                        <form>
+                            <input type="email" placeholder="อีเมลของคุณ">
+                            <button type="submit">สมัคร</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 พรรคประชาภิวัฒน์ (People's Reform Party - PRT). สงวนลิขสิทธิ์ทุกประการ.</p>
+            </div>
+        </div>
+    </footer>
+  
+    <script src="../js/script.js"></script>
+    <script src="../js/member.js"></script>
+</body>
+</html>
