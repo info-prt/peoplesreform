@@ -49,7 +49,7 @@ async function loginMember(loginData) {
       alert(data.message);
       // บันทึกข้อมูลการล็อกอินและ redirect
       localStorage.setItem('member', JSON.stringify(data.member));
-      window.location.href = 'dashboard/member.html';
+      window.location.href = 'member/dashboard.html';
     } else {
       throw new Error(data.error || 'การเข้าสู่ระบบล้มเหลว');
     }
