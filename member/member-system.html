@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ระบบสมาชิก</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://slw-system.pages.dev/assets/css/font-face.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .member-count {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container flex-header">
+            <div class="logo">
+                <a href="/member/dashboard">
+                    <!-- <img src="images/logo.png" alt="พรรคประชาภิวัฒน์"> -->
+                    ระบบพรรคประชาภิวัฒน์
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="/member/dashboard">หน้าหลัก</a></li>
+                    <li><a href="/member/policy-submit">เสนอนโยบาย</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger" id="hamburger">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="close-btn" id="closeMenu">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <ul class="mobile-nav-list">
+            <li><a href="/member/dashboard">หน้าหลัก</a></li>
+            <li><a href="/member/policy-submit">เสนอนโยบาย</a></li>
+        </ul>
+    </div>
+
+    <main class="container">
+        <div class="member-count">
+            <i class="fa-solid fa-user"></i> จำนวนสมาชิก <span id="memberCount">0</span> คน
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>ชื่อผู้ใช้ Roblox</th>
+                </tr>
+            </thead>
+            <tbody id="memberTableBody">
+                <!-- สมาชิกจะถูกเพิ่มตรงนี้ -->
+            </tbody>
+        </table>
+    </main>
+
+    <footer class="footer" style=" margin-top: 3em; ">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>© 2025 พรรคประชาภิวัฒน์ (People's Reform Party - PRT). สงวนลิขสิทธิ์ทุกประการ.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/script.js"></script>
+
+    <script>
+        const API_URL = "https://script.google.com/macros/s/AKfycbwEYR0y1fL82RuPPktnzawKD2oJtqvLBW8ZUXe6aB7ZPUSf7o8F4vZEC3-huirNtWZCIg/exec";
+
+        async function loadMembers() {
+            try {
+                const res = await fetch(API_URL);
+                const data = await res.json();
+
+                const tbody = document.getElementById("memberTableBody");
+                const countSpan = document.getElementById("memberCount");
+
+                let count = 0;
+                tbody.innerHTML = ""; // เคลียร์ตารางก่อน
+
+                data.forEach((item, index) => {
+                    if (item.usernameRoblox) {
+                        count++;
+                        const row = document.createElement("tr");
+                        row.innerHTML = `
+              <td>${count}</td>
+              <td>${item.usernameRoblox}</td>
+            `;
+                        tbody.appendChild(row);
+                    }
+                });
+
+                countSpan.textContent = count;
+            } catch (error) {
+                console.error("เกิดข้อผิดพลาดในการโหลดข้อมูล:", error);
+            }
+        }
+
+        // โหลดข้อมูลเมื่อเปิดหน้า
+        loadMembers();
+    </script>
+
+</body>
+</html>
