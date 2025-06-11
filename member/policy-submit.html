@@ -142,35 +142,36 @@
         <div id="alertBox"></div>
 
         <div class="policy-form">
-            <form id="policyForm">
-                <div class="form-group">
-                    <label for="usernameRoblox">ชื่อ Roblox (สมาชิกพรรค)</label>
-                    <input type="text" id="usernameRoblox" readonly>
-                </div>
+                <form id="land-registration-form">
+                    <div class="form-group">
+                        <label for="usernameRoblox">ชื่อ Roblox (สมาชิกพรรค)</label>
+                        <input type="text" id="usernameRoblox" readonly>
+                    </div>
+        
+                    <div class="form-group">
+                        <label for="policyType">ประเภทนโยบาย</label>
+                        <select id="policyType" required>
+                            <option value="">-- กรุณาเลือกประเภท --</option>
+                            <option value="สังคม">สังคม</option>
+                            <option value="เศรษฐกิจ">เศรษฐกิจ</option>
+                            <option value="กฎหมาย">กฎหมาย</option>
+                            <option value="โครงสร้างพื้นฐาน">โครงสร้างพื้นฐาน</option>
+                        </select>
+                    </div>
                 
-                <div class="form-group">
-                    <label for="policyType">ประเภทนโยบาย</label>
-                    <select id="policyType" required>
-                        <option value="">-- กรุณาเลือกประเภท --</option>
-                        <option value="สังคม">สังคม</option>
-                        <option value="เศรษฐกิจ">เศรษฐกิจ</option>
-                        <option value="กฎหมาย">กฎหมาย</option>
-                        <option value="โครงสร้างพื้นฐาน">โครงสร้างพื้นฐาน</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="policyName">ชื่อนโยบาย</label>
-                    <input type="text" id="policyName" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="policyDetails">รายละเอียดนโยบาย</label>
-                    <textarea id="policyDetails" required></textarea>
-                </div>
-                
-                <button type="submit" class="btn">เสนอแนะนโยบาย</button>
-            </form>
+                    <div class="form-group">
+                        <label for="policyName">ชื่อนโยบาย</label>
+                        <input type="text" id="policyName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="policyDetails">รายละเอียดนโยบาย</label>
+                        <textarea id="policyDetails" required></textarea>
+                    </div>
+        
+                    <button type="submit" id="submit-btn">ยืนยันการจอง</button>
+                    <div id="button-status" class="status">ระบบยังไม่เปิดใช้งาน</div>
+                </form>
         </div>
 
         <h2>นโยบายที่คุณเสนอ</h2>
@@ -178,204 +179,85 @@
             <i class="fas fa-spinner fa-spin"></i>
             <p>กำลังโหลดข้อมูลนโยบาย...</p>
         </div>
-        <div id="policyTableContainer" style="display: none;">
-            <table class="policy-table">
-                <thead>
-                    <tr>
-                        <th>วันที่เสนอ</th>
-                        <th>ประเภท</th>
-                        <th>ชื่อนโยบาย</th>
-                        <th>สถานะ</th>
-                    </tr>
-                </thead>
-                <tbody id="policyList">
-                    <!-- ข้อมูลนโยบายจะแสดงที่นี่ -->
-                </tbody>
-            </table>
-        </div>
+        <div class="table">
+                    <table id="registrations-table">
+                      <thead>
+                        <tr>
+                          <th>ชื่อ</th>
+                          <th>ประเภท</th>
+                          <th>นโยบาย</th>
+                          <th>รายละเอียด</th>
+                          <th>สถานะ</th>
+                        </tr>
+                      </thead>
+                      <tbody id="registrations-table-body"></tbody>
+                    </table>
+                </div>
     </div>
 
     <script>
-        // URL ของ Google Apps Scripts
-        const POLICY_SUBMIT_URL = 'https://script.google.com/macros/s/AKfycbwzxG_atsOSQQZOnwrAqQYfG-rI7AeeuWoSwTlj1HsOvXqo_qvwlbuz89EBhy7E48V8/exec';
-        
-        // ตรวจสอบการล็อกอิน
-        const member = JSON.parse(localStorage.getItem('prt_member'));
-        if (!member || !member.usernameRoblox) {
-            window.location.href = '/member.html';
-        }
-        
-        // เมื่อหน้าเว็บโหลดเสร็จ
-        document.addEventListener('DOMContentLoaded', async function () {
-          try {
-            const member = JSON.parse(localStorage.getItem('prt_member'));
-        
-            if (!member || !member.usernameRoblox) {
-              showAlert('กรุณาเข้าสู่ระบบก่อน', 'danger');
-              window.location.href = '../login.html';
-              return;
-            }
-        
-            // ใส่ค่า username ลงในช่องฟอร์ม
-            document.getElementById('usernameRoblox').value = member.usernameRoblox;
-        
-            // ดึงข้อมูลสมาชิกจาก Google Apps Script
-            const response = await fetch('https://script.google.com/macros/s/AKfycbxwSdQvcrNCGOC5PlIjlnC6lsASM7po81ThESlzfIT6QdsgooJVkJAkjJmdfIjxCoOi/exec');
-            const data = await response.json();
-        
-            const matchedUser = data.find(item => item.usernameRoblox === member.usernameRoblox);
-        
-            if (matchedUser && matchedUser.status === 'สมาชิกพรรค') {
-              // แสดงฟอร์ม และโหลดนโยบาย
-              document.getElementById('policyForm').style.display = 'block';
-              loadPolicies(); // เรียกฟังก์ชันโหลดข้อมูล
+      const scriptURL = "https://script.google.com/macros/s/AKfycbzeyQEy2TbJLFtgIXjqFrt4Pw9_qUJ-ROYCN_yRjfr3UytcOOuEPDHrp-BauZKL6iLw9w/exec"; // 🔁 ใส่ URL จาก Deploy Web App
+    
+      // 1. บันทึกสถานะไปยังเซลล์ B1
+      document.getElementById("save-settings-btn").addEventListener("click", () => {
+        const status = document.getElementById("registration-status").value;
+    
+        fetch(scriptURL, {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams({ status: status }),
+        })
+        .then((res) => res.text())
+        .then((text) => {
+          console.log("Response from GAS:", text);
+          alert("บันทึกสถานะเรียบร้อยแล้ว!");
+        })
+        .catch((err) => {
+          console.error("Error:", err);
+          alert("เกิดข้อผิดพลาดในการบันทึก");
+        });
+      });
+    
+      // 2. ดึงข้อมูลจาก B1 เพื่อจัดการปุ่ม submit เมื่อโหลดหน้า
+      window.addEventListener("DOMContentLoaded", () => {
+        fetch(scriptURL)
+          .then((res) => res.text())
+          .then((status) => {
+            const submitBtn = document.getElementById("submit-btn");
+            if (status.trim().toLowerCase() === "open") {
+              submitBtn.disabled = false;
             } else {
-              // ไม่ใช่สมาชิกพรรค
-              document.getElementById('policyForm').style.display = 'none';
-              showAlert('เฉพาะสมาชิกพรรคเท่านั้นที่สามารถเสนอนโยบายได้', 'danger');
+              submitBtn.disabled = true;
             }
-          } catch (error) {
-            console.error('Error:', error);
-            showAlert('เกิดข้อผิดพลาดในการตรวจสอบสมาชิกภาพ', 'danger');
-          }
-        });
+          })
+          .catch((err) => console.error("Error fetching status:", err));
+      });
 
+        setTimeout(function () {
+          const submitBtn = document.getElementById("submit-btn");
+          const statusDiv = document.getElementById("button-status");
         
-        // ฟังก์ชันตรวจสอบสถานะสมาชิก
-        async function checkMemberStatus(usernameRoblox) {
-            try {
-                const response = await fetch(`${MEMBER_CHECK_URL}?usernameRoblox=${encodeURIComponent(usernameRoblox)}`);
-                const data = await response.json();
-                
-                return data.isMember && data.status === 'สมาชิกพรรค';
-            } catch (error) {
-                console.error('Error checking member status:', error);
-                throw error;
-            }
-        }
+          if (submitBtn.disabled) {
+            statusDiv.style.display = "block";
+          } else {
+            statusDiv.style.display = "none";
+          }
+        }, 3000);
+          // แสดง Loader 4 วินาที
+          setTimeout(function () {
+            document.getElementById("loader").style.display = "none";
+            document.getElementById("main-content").style.display = "block";
         
-        // ฟังก์ชันโหลดนโยบายที่เคยเสนอ
-        async function loadPolicies() {
-            try {
-                const response = await fetch(`${POLICY_SUBMIT_URL}?action=getPolicies&usernameRoblox=${encodeURIComponent(member.usernameRoblox)}`);
-                const data = await response.json();
-                
-                document.getElementById('loadingPolicies').style.display = 'none';
-                document.getElementById('policyTableContainer').style.display = 'block';
-                
-                const policyList = document.getElementById('policyList');
-                policyList.innerHTML = '';
-                
-                if (data.length === 0) {
-                    policyList.innerHTML = `
-                        <tr>
-                            <td colspan="4" style="text-align: center;">คุณยังไม่มีนโยบายที่เสนอ</td>
-                        </tr>
-                    `;
-                    return;
-                }
-                
-                data.forEach(policy => {
-                    const row = document.createElement('tr');
-                    
-                    // จัดรูปแบบวันที่
-                    const date = new Date(policy.timestamp);
-                    const dateStr = date.toLocaleDateString('th-TH', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit'
-                    });
-                    
-                    // กำหนดคลาสสถานะ
-                    let statusClass = '';
-                    if (policy.status === 'อนุมัติ') {
-                        statusClass = 'status-approved';
-                    } else if (policy.status === 'ปฏิเสธ') {
-                        statusClass = 'status-rejected';
-                    } else {
-                        statusClass = 'status-pending';
-                    }
-                    
-                    row.innerHTML = `
-                        <td>${dateStr}</td>
-                        <td>${policy.policyType}</td>
-                        <td>${policy.policyName}</td>
-                        <td class="${statusClass}">${policy.status}</td>
-                    `;
-                    
-                    policyList.appendChild(row);
-                });
-            } catch (error) {
-                console.error('Error loading policies:', error);
-                document.getElementById('loadingPolicies').innerHTML = `
-                    <div class="alert alert-danger">
-                        <i class="fas fa-exclamation-circle"></i>
-                        เกิดข้อผิดพลาดในการโหลดนโยบาย
-                    </div>
-                `;
-            }
-        }
+            // ตรวจสอบปุ่มหลังจาก 3 วินาที (หลัง Loader หาย)
+            setTimeout(function () {
+              const submitBtn = document.getElementById("submit-btn");
+              const statusDiv = document.getElementById("button-status");
         
-        // ฟังก์ชันเสนอนโยบาย
-        document.getElementById('policyForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> กำลังส่งข้อมูล...';
-            
-            const policyData = {
-                action: 'submitPolicy',
-                usernameRoblox: member.usernameRoblox,
-                policyType: document.getElementById('policyType').value,
-                policyName: document.getElementById('policyName').value,
-                policyDetails: document.getElementById('policyDetails').value
-            };
-            
-            try {
-                const response = await fetch(POLICY_SUBMIT_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(policyData)
-                });
-                
-                const result = await response.json();
-                
-                if (result.success) {
-                    showAlert('เสนอนโยบายเรียบร้อยแล้ว!', 'success');
-                    this.reset();
-                    loadPolicies();
-                } else {
-                    throw new Error(result.error || 'การเสนอนโยบายไม่สำเร็จ');
-                }
-            } catch (error) {
-                console.error('Error submitting policy:', error);
-                showAlert(error.message || 'เกิดข้อผิดพลาดในการเสนอนโยบาย', 'danger');
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalText;
-            }
-        });
-        
-        // ฟังก์ชันแสดง Alert
-        function showAlert(message, type) {
-            const alertBox = document.getElementById('alertBox');
-            alertBox.innerHTML = `
-                <div class="alert alert-${type}">
-                    ${message}
-                </div>
-            `;
-            
-            // ลบ Alert หลังจาก 5 วินาที
-            setTimeout(() => {
-                alertBox.innerHTML = '';
-            }, 5000);
-        }
+              if (submitBtn.disabled) {
+                statusDiv.style.display = "block";
+              }
+            }, 3000);
+          }, 4000);
     </script>
 </body>
 </html>
