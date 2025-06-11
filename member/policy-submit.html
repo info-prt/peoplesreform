@@ -196,8 +196,9 @@
     </div>
 
     <script>
+      document.getElementById('usernameRoblox').value = member.usernameRoblox;
       const scriptURL = "https://script.google.com/macros/s/AKfycbzeyQEy2TbJLFtgIXjqFrt4Pw9_qUJ-ROYCN_yRjfr3UytcOOuEPDHrp-BauZKL6iLw9w/exec"; // 🔁 ใส่ URL จาก Deploy Web App
-    
+        
       // 1. บันทึกสถานะไปยังเซลล์ B1
       document.getElementById("save-settings-btn").addEventListener("click", () => {
         const status = document.getElementById("registration-status").value;
