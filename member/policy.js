@@ -40,7 +40,7 @@
               policyType: policyType,
               policyName: policyName,
               policyDetails: policyDetails,
-              status: statusText,
+              status: status,
               timestamp: new Date().toLocaleString(),
             };
         
