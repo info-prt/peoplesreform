@@ -7,8 +7,80 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="https://slw-system.pages.dev/assets/css/font-face.css">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* พื้นหลังครอบ popup */
+        .popup {
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.5); /* มืดพื้นหลัง */
+          justify-content: center;
+          align-items: center;
+          z-index: 9999;
+        }
+        
+        /* กล่อง popup */
+        .popup-content {
+          position: relative;
+          background: white;
+          padding: 0;
+          border-radius: 10px;
+          overflow: hidden;
+          max-width: 90%;
+          max-height: 90%;
+          box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        /* รูปภาพ */
+        .popup-content img {
+          display: block;
+          width: 100%;
+          height: auto;
+        }
+        
+        /* ปุ่มปิด */
+        .close-btn {
+          position: absolute;
+          top: 8px;
+          right: 12px;
+          background: transparent;
+          border: none;
+          font-size: 24px;
+          font-weight: bold;
+          color: white;
+          text-shadow: 0 0 5px black;
+          cursor: pointer;
+          z-index: 10000;
+        }
+
+    </style>
 </head>
 <body>
+    
+  <!-- Popup Container -->
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <button class="close-btn" onclick="closePopup()">×</button>
+      <img src="/img/popup.png" alt="Popup Image">
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    // ปิด popup
+    function closePopup() {
+      document.getElementById('popup').style.display = 'none';
+    }
+
+    // แสดง popup เมื่อโหลดหน้า
+    window.onload = function() {
+      document.getElementById('popup').style.display = 'flex';
+    };
+  </script>
+    
     <!-- Header -->
     <header id="header">
         <div class="container flex-header">
