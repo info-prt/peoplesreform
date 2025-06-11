@@ -23,7 +23,7 @@
             <nav class="main-nav">
                 <ul class="nav-list">
                     <li><a href="/member/dashboard">หน้าหลัก</a></li>
-                    <li><a href="/member/policy-submit">เสนอนโยบาย</a></li>
+                    <li id="hide"><a href="/member/policy-submit">เสนอนโยบาย</a></li>
                 </ul>
             </nav>
             <button class="hamburger" id="hamburger">
@@ -86,6 +86,7 @@
         const loadingDiv = document.getElementById('loading');
         const infoDiv = document.getElementById('memberInfo');
         const buttonsDiv = document.getElementById('memberButtons');
+        const list = document.getElementById('hide');
     
         // เริ่มโหลดข้อมูล
         fetch('https://script.google.com/macros/s/AKfycbwEYR0y1fL82RuPPktnzawKD2oJtqvLBW8ZUXe6aB7ZPUSf7o8F4vZEC3-huirNtWZCIg/exec')
@@ -98,8 +99,10 @@
             if (status === 'สมาชิกพรรค') {
               statusClass = 'badge-member';
               buttonsDiv.style.display = 'block'; // แสดงปุ่มสมาชิก
+              list.style.display = 'block'; // แสดงปุ่มสมาชิก
             } else if (status === 'เจ้าหน้าที่กำลังตรวจสอบ') {
               statusClass = 'badge-warning';
+              list.style.display = 'none'; // แสดงปุ่มสมาชิก
             }
     
             infoDiv.innerHTML = `
