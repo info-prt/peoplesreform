@@ -3,78 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>เสนอนโยบาย | พรรคประชาภิวัฒน์</title>
+    <title>เสนอนโยบาย | พรรคประชาภิวัฒน์ (PRT)</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <style>
-        .policy-container {
-            max-width: 800px;
+        body {
+            font-family: 'CPN', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
         }
-        .policy-form {
-            background: #f9f9f9;
+        .header {
+            background-color: #60cb30;
+            color: white;
             padding: 20px;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+            margin-bottom: 30px;
+        }
+        .policy-form {
+            background-color: white;
+            padding: 30px;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
         }
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         label {
             display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #444;
         }
         input, select, textarea {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             border: 1px solid #ddd;
-            border-radius: 4px;
+            border-radius: 5px;
             font-size: 16px;
+            font-family: 'CPN', sans-serif;
+        }
+        input:read-only {
+            background-color: #f0f0f0;
         }
         textarea {
             height: 150px;
+            resize: vertical;
         }
         .btn {
+            display: inline-block;
+            padding: 12px 30px;
             background-color: #60cb30;
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
+            border-radius: 5px;
             font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
         .btn:hover {
             background-color: #4da826;
+        }
+        .btn-secondary {
+            background-color: #ff014f;
+        }
+        .btn-secondary:hover {
+            background-color: #d80043;
         }
         .policy-table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 30px;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         .policy-table th, .policy-table td {
-            border: 1px solid #ddd;
-            padding: 8px;
+            padding: 12px 15px;
             text-align: left;
+            border-bottom: 1px solid #ddd;
         }
         .policy-table th {
-            background-color: #f2f2f2;
+            background-color: #f5f5f5;
+            font-weight: 500;
         }
-        .approved {
-            color: green;
+        .status-approved {
+            color: #28a745;
+            font-weight: 500;
         }
-        .rejected {
-            color: red;
+        .status-pending {
+            color: #ffc107;
+            font-weight: 500;
         }
-        .pending {
-            color: orange;
+        .status-rejected {
+            color: #dc3545;
+            font-weight: 500;
+        }
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .loading {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+        }
+        .loading i {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #60cb30;
         }
     </style>
 </head>
 <body>
-    <div class="policy-container">
-        <h1>ระบบเสนอนโยบายสำหรับสมาชิกพรรค</h1>
-        
+    <div class="container">
+        <div class="header">
+            <h1>ระบบเสนอนโยบายสำหรับสมาชิกพรรค</h1>
+            <p>ร่วมเสนอแนวคิดและนโยบายเพื่อพัฒนาพรรคของเรา</p>
+        </div>
+
+        <div id="alertBox"></div>
+
         <div class="policy-form">
             <form id="policyForm">
                 <div class="form-group">
@@ -85,7 +150,7 @@
                 <div class="form-group">
                     <label for="policyType">ประเภทนโยบาย</label>
                     <select id="policyType" required>
-                        <option value="">-- เลือกประเภท --</option>
+                        <option value="">-- กรุณาเลือกประเภท --</option>
                         <option value="สังคม">สังคม</option>
                         <option value="เศรษฐกิจ">เศรษฐกิจ</option>
                         <option value="กฎหมาย">กฎหมาย</option>
@@ -106,64 +171,118 @@
                 <button type="submit" class="btn">เสนอแนะนโยบาย</button>
             </form>
         </div>
-        
+
         <h2>นโยบายที่คุณเสนอ</h2>
-        <table class="policy-table">
-            <thead>
-                <tr>
-                    <th>วันที่เสนอ</th>
-                    <th>ประเภท</th>
-                    <th>ชื่อนโยบาย</th>
-                    <th>สถานะ</th>
-                </tr>
-            </thead>
-            <tbody id="policyList">
-                <!-- ข้อมูลนโยบายจะแสดงที่นี่ -->
-            </tbody>
-        </table>
+        <div id="loadingPolicies" class="loading">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>กำลังโหลดข้อมูลนโยบาย...</p>
+        </div>
+        <div id="policyTableContainer" style="display: none;">
+            <table class="policy-table">
+                <thead>
+                    <tr>
+                        <th>วันที่เสนอ</th>
+                        <th>ประเภท</th>
+                        <th>ชื่อนโยบาย</th>
+                        <th>สถานะ</th>
+                    </tr>
+                </thead>
+                <tbody id="policyList">
+                    <!-- ข้อมูลนโยบายจะแสดงที่นี่ -->
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <script>
-        const POLICY_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwzxG_atsOSQQZOnwrAqQYfG-rI7AeeuWoSwTlj1HsOvXqo_qvwlbuz89EBhy7E48V8/exec';
+        // URL ของ Google Apps Scripts
+        const POLICY_SUBMIT_URL = 'https://script.google.com/macros/s/AKfycbwzxG_atsOSQQZOnwrAqQYfG-rI7AeeuWoSwTlj1HsOvXqo_qvwlbuz89EBhy7E48V8/exec';
+        const MEMBER_CHECK_URL = 'https://script.google.com/macros/s/AKfycbwEYR0y1fL82RuPPktnzawKD2oJtqvLBW8ZUXe6aB7ZPUSf7o8F4vZEC3-huirNtWZCIg/exec';
         
-        // ดึงข้อมูลผู้ใช้จาก localStorage
+        // ตรวจสอบการล็อกอิน
         const member = JSON.parse(localStorage.getItem('prt_member'));
-        
-        // ถ้าไม่ได้ล็อกอิน ให้กลับไปหน้าล็อกอิน
         if (!member || !member.usernameRoblox) {
             window.location.href = '/member.html';
         }
         
-        // เตรียมฟอร์ม
-        document.addEventListener('DOMContentLoaded', function() {
+        // เมื่อหน้าเว็บโหลดเสร็จ
+        document.addEventListener('DOMContentLoaded', async function() {
+            // เติมชื่อผู้ใช้ในฟอร์ม
             document.getElementById('usernameRoblox').value = member.usernameRoblox;
-            loadPolicies();
+            
+            // ตรวจสอบสถานะสมาชิก
+            try {
+                const isMember = await checkMemberStatus(member.usernameRoblox);
+                if (!isMember) {
+                    showAlert('เฉพาะสมาชิกพรรคเท่านั้นที่สามารถเสนอนโยบายได้', 'danger');
+                    document.getElementById('policyForm').style.display = 'none';
+                    return;
+                }
+                
+                // โหลดนโยบายที่เคยเสนอ
+                loadPolicies();
+            } catch (error) {
+                console.error('Error:', error);
+                showAlert('เกิดข้อผิดพลาดในการตรวจสอบสมาชิกภาพ', 'danger');
+            }
         });
         
-        // ฟังก์ชันโหลดนโยบาย
+        // ฟังก์ชันตรวจสอบสถานะสมาชิก
+        async function checkMemberStatus(usernameRoblox) {
+            try {
+                const response = await fetch(`${MEMBER_CHECK_URL}?usernameRoblox=${encodeURIComponent(usernameRoblox)}`);
+                const data = await response.json();
+                
+                return data.isMember && data.status === 'สมาชิกพรรค';
+            } catch (error) {
+                console.error('Error checking member status:', error);
+                throw error;
+            }
+        }
+        
+        // ฟังก์ชันโหลดนโยบายที่เคยเสนอ
         async function loadPolicies() {
             try {
-                const response = await fetch(`${POLICY_SCRIPT_URL}?action=getPolicies&usernameRoblox=${member.usernameRoblox}`);
+                const response = await fetch(`${POLICY_SUBMIT_URL}?action=getPolicies&usernameRoblox=${encodeURIComponent(member.usernameRoblox)}`);
                 const data = await response.json();
+                
+                document.getElementById('loadingPolicies').style.display = 'none';
+                document.getElementById('policyTableContainer').style.display = 'block';
                 
                 const policyList = document.getElementById('policyList');
                 policyList.innerHTML = '';
                 
                 if (data.length === 0) {
-                    policyList.innerHTML = '<tr><td colspan="4" style="text-align: center;">ยังไม่มีนโยบายที่เสนอ</td></tr>';
+                    policyList.innerHTML = `
+                        <tr>
+                            <td colspan="4" style="text-align: center;">คุณยังไม่มีนโยบายที่เสนอ</td>
+                        </tr>
+                    `;
                     return;
                 }
                 
                 data.forEach(policy => {
                     const row = document.createElement('tr');
                     
+                    // จัดรูปแบบวันที่
                     const date = new Date(policy.timestamp);
-                    const dateStr = date.toLocaleDateString('th-TH');
+                    const dateStr = date.toLocaleDateString('th-TH', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
                     
+                    // กำหนดคลาสสถานะ
                     let statusClass = '';
-                    if (policy.status === 'อนุมัติ') statusClass = 'approved';
-                    else if (policy.status === 'ปฏิเสธ') statusClass = 'rejected';
-                    else if (policy.status === 'รอตรวจสอบ') statusClass = 'pending';
+                    if (policy.status === 'อนุมัติ') {
+                        statusClass = 'status-approved';
+                    } else if (policy.status === 'ปฏิเสธ') {
+                        statusClass = 'status-rejected';
+                    } else {
+                        statusClass = 'status-pending';
+                    }
                     
                     row.innerHTML = `
                         <td>${dateStr}</td>
@@ -176,7 +295,12 @@
                 });
             } catch (error) {
                 console.error('Error loading policies:', error);
-                alert('เกิดข้อผิดพลาดในการโหลดนโยบาย');
+                document.getElementById('loadingPolicies').innerHTML = `
+                    <div class="alert alert-danger">
+                        <i class="fas fa-exclamation-circle"></i>
+                        เกิดข้อผิดพลาดในการโหลดนโยบาย
+                    </div>
+                `;
             }
         }
         
@@ -184,7 +308,12 @@
         document.getElementById('policyForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            const formData = {
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> กำลังส่งข้อมูล...';
+            
+            const policyData = {
                 action: 'submitPolicy',
                 usernameRoblox: member.usernameRoblox,
                 policyType: document.getElementById('policyType').value,
@@ -193,28 +322,46 @@
             };
             
             try {
-                const response = await fetch(POLICY_SCRIPT_URL, {
+                const response = await fetch(POLICY_SUBMIT_URL, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(formData)
+                    body: JSON.stringify(policyData)
                 });
                 
                 const result = await response.json();
                 
                 if (result.success) {
-                    alert(result.message);
+                    showAlert('เสนอนโยบายเรียบร้อยแล้ว!', 'success');
                     this.reset();
                     loadPolicies();
                 } else {
-                    throw new Error(result.error || 'การเสนอนโยบายล้มเหลว');
+                    throw new Error(result.error || 'การเสนอนโยบายไม่สำเร็จ');
                 }
             } catch (error) {
-                alert(error.message);
                 console.error('Error submitting policy:', error);
+                showAlert(error.message || 'เกิดข้อผิดพลาดในการเสนอนโยบาย', 'danger');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
             }
         });
+        
+        // ฟังก์ชันแสดง Alert
+        function showAlert(message, type) {
+            const alertBox = document.getElementById('alertBox');
+            alertBox.innerHTML = `
+                <div class="alert alert-${type}">
+                    ${message}
+                </div>
+            `;
+            
+            // ลบ Alert หลังจาก 5 วินาที
+            setTimeout(() => {
+                alertBox.innerHTML = '';
+            }, 5000);
+        }
     </script>
 </body>
 </html>
