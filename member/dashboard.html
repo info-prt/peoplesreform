@@ -8,67 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="https://slw-system.pages.dev/assets/css/font-face.css">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="style.css">
     <!-- เพิ่ม CSS และ JavaScript ที่จำเป็น -->
-    <style>
-        .dashboard-container {
-            padding-top: 25px;
-            padding-bottom: 25px;
-        }
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/img/bg/bg2.jpg') no-repeat center center;
-            background-size: cover;
-            color: white;
-            padding: 120px 0;
-            text-align: center;
-            position: relative;
-        }
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: #60cb30;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-        .hero p {
-            font-size: 1.3rem;
-            max-width: 800px;
-            margin: 0 auto;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-        }
-        .badge {
-            display: inline-block;
-            padding: 8px 14px;
-            font-size: .875rem;
-            font-weight: 400;
-            line-height: 1;
-            text-align: center;
-            white-space: nowrap;
-            vertical-align: baseline;
-            border-radius: 16px;
-            transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-        }
-
-        .badge.badge-warning {
-            border-color: #ffd829;
-            background-color: rgba(255,216,41,.3);
-        }
-        
-        .badge.badge-member {
-            border-color: #32bea6;
-            background-color: rgb(50 190 166 / 30%);
-        }
-        
-        .badge {
-            line-height: 18px;
-            color: #000;
-            border-width: 1px;
-            border-style: solid;
-        }
-        .member-info p {
-            border-top: 1px solid #c7c7cc;
-            padding: 20px 0;
-        }
-    </style>
-</head>
 <body>
     <!-- Header -->
     <header id="header">
@@ -152,7 +93,7 @@
             }
     
             infoDiv.innerHTML = `
-              <p><strong>Roblox Name:</strong> ${user.usernameRoblox || '-'}</p>
+              <p><strong>ชื่อ:</strong> ${user.usernameRoblox || '-'}</p>
               <p><strong>สถานะสมาชิกพรรค:</strong> <span class="badge ${statusClass}">${status}</span></p>
             `;
     
