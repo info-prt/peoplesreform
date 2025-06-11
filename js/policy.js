@@ -216,7 +216,7 @@ function displayPolicies(policies) {
                 <span class="policy-category">${policy.category}</span>
                 <h3 class="policy-title">${policy.title}</h3>
                 <p class="policy-excerpt">${policy.excerpt}</p>
-                <a href="policy-detail.html?id=${policy.id}" class="read-more">อ่านรายละเอียด</a>
+                <a href="/id=${policy.id}" class="read-more">อ่านรายละเอียด</a>
             </div>
         `;
         
