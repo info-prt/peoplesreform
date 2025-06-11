@@ -10,7 +10,8 @@
     <!-- เพิ่ม CSS และ JavaScript ที่จำเป็น -->
     <style>
         .dashboard-container {
-            margin-top: 20px;
+            padding-top: 25px;
+            padding-bottom: 25px;
         }
         .hero {
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/img/bg/bg2.jpg') no-repeat center center;
@@ -107,10 +108,12 @@
     
       <main class="dashboard-container container">
         <h1>ยินดีต้อนรับ, <span id="memberName"></span></h1>
-        <div class="member-info" id="memberInfo">
-          <!-- แสดงข้อมูลสมาชิก -->
+        <div id="loading" style="text-align:center; margin-top:20px;">
+          <i class="fas fa-spinner fa-spin"></i> กำลังเข้าสู่ระบบ...
         </div>
-        <button id="logoutBtn" class="btn" style="cursor: pointer;width: 100%;">ออกจากระบบ</button>
+        <div class="member-info" id="memberInfo"></div>
+        
+        <button id="logoutBtn" class="btn" style="cursor: pointer;">ออกจากระบบ</button>
       </main>
     
     <!-- ส่วน footer เหมือนกับหน้าอื่นๆ -->
@@ -129,14 +132,15 @@
         // แสดงชื่อใน span
         document.getElementById('memberName').textContent = user.usernameRoblox || user.discordName || 'ผู้ใช้';
     
-        // ดึงข้อมูลจาก Google Apps Script
+        // แสดงข้อความโหลด
+        const loadingDiv = document.getElementById('loading');
+        const infoDiv = document.getElementById('memberInfo');
+    
+        // เริ่มโหลดข้อมูล
         fetch('https://script.google.com/macros/s/AKfycbwEYR0y1fL82RuPPktnzawKD2oJtqvLBW8ZUXe6aB7ZPUSf7o8F4vZEC3-huirNtWZCIg/exec')
           .then(response => response.json())
           .then(data => {
-            // หาข้อมูลของ user จากข้อมูลทั้งหมด
             const matchedUser = data.find(item => item.usernameRoblox === user.usernameRoblox);
-    
-            // ถ้าเจอข้อมูล
             const status = matchedUser ? matchedUser.status : '-';
             let statusClass = '';
     
@@ -146,15 +150,18 @@
               statusClass = 'badge-warning';
             }
     
-            // แสดงข้อมูล
-            const infoDiv = document.getElementById('memberInfo');
             infoDiv.innerHTML = `
-              <p><strong>ชื่อ:</strong> ${user.usernameRoblox || '-'}</p>
-              <p><strong>สถานะสมาชิกพรรค:</strong> <span class="badge ${statusClass}">${status}</span></p>
+              <p><strong>Roblox Name:</strong> ${user.usernameRoblox || '-'}</p>
+              <p><strong>สถานะสมาชิกพรรค:</strong> <span class="${statusClass}">${status}</span></p>
             `;
+    
+            // แสดงข้อมูล + ซ่อน loading
+            loadingDiv.style.display = 'none';
+            infoDiv.style.display = 'block';
           })
           .catch(error => {
-            console.error('เกิดข้อผิดพลาดในการโหลดข้อมูล:', error);
+            loadingDiv.innerHTML = '<span style="color:red;">เกิดข้อผิดพลาดในการโหลดข้อมูล</span>';
+            console.error('เกิดข้อผิดพลาด:', error);
           });
     
         // ออกจากระบบ
