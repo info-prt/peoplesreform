@@ -198,7 +198,6 @@
     <script>
         // URL ของ Google Apps Scripts
         const POLICY_SUBMIT_URL = 'https://script.google.com/macros/s/AKfycbwzxG_atsOSQQZOnwrAqQYfG-rI7AeeuWoSwTlj1HsOvXqo_qvwlbuz89EBhy7E48V8/exec';
-        const MEMBER_CHECK_URL = 'https://script.google.com/macros/s/AKfycbwEYR0y1fL82RuPPktnzawKD2oJtqvLBW8ZUXe6aB7ZPUSf7o8F4vZEC3-huirNtWZCIg/exec';
         
         // ตรวจสอบการล็อกอิน
         const member = JSON.parse(localStorage.getItem('prt_member'));
@@ -207,26 +206,40 @@
         }
         
         // เมื่อหน้าเว็บโหลดเสร็จ
-        document.addEventListener('DOMContentLoaded', async function() {
-            // เติมชื่อผู้ใช้ในฟอร์ม
-            document.getElementById('usernameRoblox').value = member.usernameRoblox;
-            
-            // ตรวจสอบสถานะสมาชิก
-            try {
-                const isMember = await checkMemberStatus(member.usernameRoblox);
-                if (!isMember) {
-                    showAlert('เฉพาะสมาชิกพรรคเท่านั้นที่สามารถเสนอนโยบายได้', 'danger');
-                    document.getElementById('policyForm').style.display = 'none';
-                    return;
-                }
-                
-                // โหลดนโยบายที่เคยเสนอ
-                loadPolicies();
-            } catch (error) {
-                console.error('Error:', error);
-                showAlert('เกิดข้อผิดพลาดในการตรวจสอบสมาชิกภาพ', 'danger');
+        document.addEventListener('DOMContentLoaded', async function () {
+          try {
+            const member = JSON.parse(localStorage.getItem('prt_member'));
+        
+            if (!member || !member.usernameRoblox) {
+              showAlert('กรุณาเข้าสู่ระบบก่อน', 'danger');
+              window.location.href = '../login.html';
+              return;
             }
+        
+            // ใส่ค่า username ลงในช่องฟอร์ม
+            document.getElementById('usernameRoblox').value = member.usernameRoblox;
+        
+            // ดึงข้อมูลสมาชิกจาก Google Apps Script
+            const response = await fetch('https://script.google.com/macros/s/AKfycbwEYR0y1fL82RuPPktnzawKD2oJtqvLBW8ZUXe6aB7ZPUSf7o8F4vZEC3-huirNtWZCIg/exec');
+            const data = await response.json();
+        
+            const matchedUser = data.find(item => item.usernameRoblox === member.usernameRoblox);
+        
+            if (matchedUser && matchedUser.status === 'สมาชิกพรรค') {
+              // แสดงฟอร์ม และโหลดนโยบาย
+              document.getElementById('policyForm').style.display = 'block';
+              loadPolicies(); // เรียกฟังก์ชันโหลดข้อมูล
+            } else {
+              // ไม่ใช่สมาชิกพรรค
+              document.getElementById('policyForm').style.display = 'none';
+              showAlert('เฉพาะสมาชิกพรรคเท่านั้นที่สามารถเสนอนโยบายได้', 'danger');
+            }
+          } catch (error) {
+            console.error('Error:', error);
+            showAlert('เกิดข้อผิดพลาดในการตรวจสอบสมาชิกภาพ', 'danger');
+          }
         });
+
         
         // ฟังก์ชันตรวจสอบสถานะสมาชิก
         async function checkMemberStatus(usernameRoblox) {
