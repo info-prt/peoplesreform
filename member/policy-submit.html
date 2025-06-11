@@ -195,9 +195,28 @@
     </div>
 
     <script>
-      document.getElementById('usernameRoblox').value = member.usernameRoblox;
+      
       const scriptURL = "https://script.google.com/macros/s/AKfycbzeyQEy2TbJLFtgIXjqFrt4Pw9_qUJ-ROYCN_yRjfr3UytcOOuEPDHrp-BauZKL6iLw9w/exec"; // 🔁 ใส่ URL จาก Deploy Web App
         
+      document.addEventListener('DOMContentLoaded', async function () {
+          try {
+            const member = JSON.parse(localStorage.getItem('prt_member'));
+        
+            if (!member || !member.usernameRoblox) {
+              showAlert('กรุณาเข้าสู่ระบบก่อน', 'danger');
+              window.location.href = '../login.html';
+              return;
+            }
+        
+            // ใส่ค่า username ลงในช่องฟอร์ม
+            document.getElementById('usernameRoblox').value = member.usernameRoblox;
+        
+          } catch (error) {
+            console.error('Error:', error);
+            showAlert('เกิดข้อผิดพลาดในการตรวจสอบสมาชิกภาพ', 'danger');
+          }
+        });
+
       // 1. บันทึกสถานะไปยังเซลล์ B1
       document.getElementById("save-settings-btn").addEventListener("click", () => {
         const status = document.getElementById("registration-status").value;
