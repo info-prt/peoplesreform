@@ -8,6 +8,76 @@
     <link rel="stylesheet" href="https://slw-system.pages.dev/assets/css/font-face.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/policy.css">
+    <style>
+        /* พื้นหลังมืด */
+        #popup-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.5);
+          z-index: 999;
+          animation: fadeIn 0.3s ease-in-out;
+        }
+        
+        /* กล่อง Popup */
+        #popup {
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: #fff;
+          border-radius: 10px;
+          padding: 25px;
+          width: 90%;
+          max-width: 400px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+          z-index: 1000;
+          animation: fadeIn 0.3s ease-in-out;
+        }
+        
+        /* ปุ่มปิด */
+        #popup button {
+          position: absolute;
+          top: 10px;
+          right: 15px;
+          background: transparent;
+          border: none;
+          font-size: 20px;
+          cursor: pointer;
+        }
+        
+        /* รูปภาพ */
+        #popup img {
+          margin-top: 15px;
+          max-width: 100%;
+          border-radius: 8px;
+        }
+        
+        /* ตัวหนังสือ */
+        #popup-title {
+          font-size: 1.5em;
+          margin-bottom: 10px;
+        }
+        
+        #popup-excerpt {
+          font-size: 1em;
+          color: #444;
+        }
+        
+        /* Animation fade-in */
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translate(-50%, -45%);
+          }
+          to {
+            opacity: 1;
+            transform: translate(-50%, -50%);
+          }
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -74,6 +144,18 @@
             <li><a href="mps.html">สส.พรรค</a></li>
             <li><a href="member.html">ระบบสมาชิก</a></li>
         </ul>
+    </div>
+
+    <!-- HTML ส่วน Popup -->
+    <!-- Overlay มืด -->
+    <div id="popup-overlay" style="display:none;"></div>
+    
+    <!-- Popup กล่อง -->
+    <div id="popup" style="display:none;">
+      <button onclick="closePopup()">✖</button>
+      <h2 id="popup-title"></h2>
+      <p id="popup-excerpt"></p>
+      <img id="popup-image" src="" alt="">
     </div>
 
 
@@ -170,5 +252,47 @@
 
     <script src="../js/script.js"></script>
     <script src="../js/policy.js"></script>
+    <script>
+    function getQueryParam(name) {
+      const params = new URLSearchParams(window.location.search);
+      return params.get(name);
+    }
+    
+    function showPopup(dataItem) {
+      document.getElementById("popup-title").textContent = dataItem.title;
+      document.getElementById("popup-excerpt").textContent = dataItem.excerpt;
+      document.getElementById("popup-image").src = dataItem.image;
+    
+      document.getElementById("popup").style.display = "block";
+      document.getElementById("popup-overlay").style.display = "block";
+    }
+    
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+      document.getElementById("popup-overlay").style.display = "none";
+      document.getElementById("popup-overlay").addEventListener("click", closePopup);
+      const url = new URL(window.location.href);
+      url.searchParams.delete('data');
+      window.history.replaceState({}, document.title, url.pathname + url.search);
+    }
+    
+    // เริ่มทำงาน
+    document.addEventListener("DOMContentLoaded", () => {
+      const idParam = getQueryParam("data");
+      if (!idParam) return;
+    
+      fetch("https://script.google.com/macros/s/AKfycbyFb9YiZ2ZVbt6IqqEjZghlsRdztCDMCN7O23lYJcYCYcy5h24cBnGOPTR_5foaK5eq/exec")
+        .then(response => response.json())
+        .then(json => {
+          if (json.status === "success" && Array.isArray(json.data)) {
+            const match = json.data.find(item => item.id === `?data=${idParam}`);
+            if (match) {
+              showPopup(match);
+            }
+          }
+        })
+        .catch(error => console.error("เกิดข้อผิดพลาด:", error));
+    });
+    </script>
 </body>
 </html>
