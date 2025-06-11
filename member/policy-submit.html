@@ -6,6 +6,7 @@
     <title>เสนอนโยบาย | พรรคประชาภิวัฒน์ (PRT)</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="https://slw-system.pages.dev/assets/css/font-face.css">
+    <link rel="stylesheet" href="../css/style.css">
     <style>
         * {
             padding: 0;
@@ -174,7 +175,39 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <!-- Header -->
+    <header id="header">
+        <div class="container flex-header">
+            <div class="logo">
+                <a href="/member/dashboard">
+                    <!-- <img src="images/logo.png" alt="พรรคประชาภิวัฒน์"> -->
+                    ระบบพรรคประชาภิวัฒน์
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="/member/dashboard">หน้าหลัก</a></li>
+                    <li><a href="/member/policy-submit">เสนอนโยบาย</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger" id="hamburger">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="close-btn" id="closeMenu">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <ul class="mobile-nav-list">
+            <li><a href="/member/dashboard">หน้าหลัก</a></li>
+            <li><a href="/member/policy-submit">เสนอนโยบาย</a></li>
+        </ul>
+    </div>
+    
+    <div class="container" style=" margin-top: 59.2px; ">
         <div class="header">
             <h1>ระบบเสนอนโยบายสำหรับสมาชิกพรรค</h1>
             <p>ร่วมเสนอแนวคิดและนโยบายเพื่อพัฒนาพรรคของเรา</p>
