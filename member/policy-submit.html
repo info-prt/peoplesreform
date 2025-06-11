@@ -14,11 +14,13 @@
             background-color: #f5f5f5;
             color: #333;
         }
+
         .container {
             max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
         }
+
         .header {
             background-color: #60cb30;
             color: white;
@@ -27,23 +29,29 @@
             border-radius: 8px 8px 0 0;
             margin-bottom: 30px;
         }
+
         .policy-form {
             background-color: white;
             padding: 30px;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 30px;
         }
+
         .form-group {
             margin-bottom: 20px;
         }
+
         label {
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
             color: #444;
         }
-        input, select, textarea {
+
+        input,
+        select,
+        textarea {
             width: 100%;
             padding: 12px;
             border: 1px solid #ddd;
@@ -51,13 +59,16 @@
             font-size: 16px;
             font-family: 'CPN', sans-serif;
         }
+
         input:read-only {
             background-color: #f0f0f0;
         }
+
         textarea {
             height: 150px;
             resize: vertical;
         }
+
         .btn {
             display: inline-block;
             padding: 12px 30px;
@@ -70,61 +81,76 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
+
         .btn:hover {
             background-color: #4da826;
         }
+
         .btn-secondary {
             background-color: #ff014f;
         }
+
         .btn-secondary:hover {
             background-color: #d80043;
         }
+
         .policy-table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 30px;
             background-color: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-        .policy-table th, .policy-table td {
+
+        .policy-table th,
+        .policy-table td {
             padding: 12px 15px;
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
+
         .policy-table th {
             background-color: #f5f5f5;
             font-weight: 500;
         }
+
         .status-approved {
             color: #28a745;
             font-weight: 500;
         }
+
         .status-pending {
             color: #ffc107;
             font-weight: 500;
         }
+
         .status-rejected {
             color: #dc3545;
             font-weight: 500;
         }
+
         .alert {
             padding: 15px;
             margin-bottom: 20px;
             border-radius: 5px;
         }
+
         .alert-success {
             background-color: #d4edda;
             color: #155724;
         }
+
         .alert-danger {
             background-color: #f8d7da;
             color: #721c24;
         }
+
         .loading {
             text-align: center;
             padding: 30px;
             color: #666;
         }
+
         .loading i {
             font-size: 24px;
             margin-bottom: 10px;
@@ -142,35 +168,35 @@
         <div id="alertBox"></div>
 
         <div class="policy-form">
-                <form id="land-registration-form">
-                    <div class="form-group">
-                        <label for="usernameRoblox">ชื่อ Roblox (สมาชิกพรรค)</label>
-                        <input type="text" id="usernameRoblox" readonly>
-                    </div>
-        
-                    <div class="form-group">
-                        <label for="policyType">ประเภทนโยบาย</label>
-                        <select id="policyType" required>
-                            <option value="">-- กรุณาเลือกประเภท --</option>
-                            <option value="สังคม">สังคม</option>
-                            <option value="เศรษฐกิจ">เศรษฐกิจ</option>
-                            <option value="กฎหมาย">กฎหมาย</option>
-                            <option value="โครงสร้างพื้นฐาน">โครงสร้างพื้นฐาน</option>
-                        </select>
-                    </div>
-                
-                    <div class="form-group">
-                        <label for="policyName">ชื่อนโยบาย</label>
-                        <input type="text" id="policyName" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="policyDetails">รายละเอียดนโยบาย</label>
-                        <textarea id="policyDetails" required></textarea>
-                    </div>
-        
-                    <button type="submit" id="submit-btn" class="btn">ยืนยันการจอง</button>
-                </form>
+            <form id="land-registration-form">
+                <div class="form-group">
+                    <label for="usernameRoblox">ชื่อ Roblox (สมาชิกพรรค)</label>
+                    <input type="text" id="usernameRoblox" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="policyType">ประเภทนโยบาย</label>
+                    <select id="policyType" required>
+                        <option value="">-- กรุณาเลือกประเภท --</option>
+                        <option value="สังคม">สังคม</option>
+                        <option value="เศรษฐกิจ">เศรษฐกิจ</option>
+                        <option value="กฎหมาย">กฎหมาย</option>
+                        <option value="โครงสร้างพื้นฐาน">โครงสร้างพื้นฐาน</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="policyName">ชื่อนโยบาย</label>
+                    <input type="text" id="policyName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="policyDetails">รายละเอียดนโยบาย</label>
+                    <textarea id="policyDetails" required></textarea>
+                </div>
+
+                <button type="submit" id="submit-btn" class="btn">ยืนยันการจอง</button>
+            </form>
         </div>
 
         <h2>นโยบายที่คุณเสนอ</h2>
@@ -179,85 +205,59 @@
             <p>กำลังโหลดข้อมูลนโยบาย...</p>
         </div>
         <div class="table">
-                    <table id="registrations-table">
-                      <thead>
-                        <tr>
-                          <th>ชื่อ</th>
-                          <th>ประเภท</th>
-                          <th>นโยบาย</th>
-                          <th>รายละเอียด</th>
-                          <th>สถานะ</th>
-                        </tr>
-                      </thead>
-                      <tbody id="registrations-table-body"></tbody>
-                    </table>
-                </div>
+            <table id="registrations-table">
+                <thead>
+                    <tr>
+                        <th>ชื่อ</th>
+                        <th>ประเภท</th>
+                        <th>นโยบาย</th>
+                        <th>รายละเอียด</th>
+                        <th>สถานะ</th>
+                    </tr>
+                </thead>
+                <tbody id="registrations-table-body"></tbody>
+            </table>
+        </div>
     </div>
 
     <script>
-      
-      const scriptURL = "https://script.google.com/macros/s/AKfycbzeyQEy2TbJLFtgIXjqFrt4Pw9_qUJ-ROYCN_yRjfr3UytcOOuEPDHrp-BauZKL6iLw9w/exec"; // 🔁 ใส่ URL จาก Deploy Web App
+
+        const scriptURL = "https://script.google.com/macros/s/AKfycbzeyQEy2TbJLFtgIXjqFrt4Pw9_qUJ-ROYCN_yRjfr3UytcOOuEPDHrp-BauZKL6iLw9w/exec"; // 🔁 ใส่ URL จาก Deploy Web App
 
         document.addEventListener('DOMContentLoaded', async function () {
             try {
                 const member = JSON.parse(localStorage.getItem('prt_member'));
-        
+
                 if (!member || !member.usernameRoblox) {
                     showAlert('กรุณาเข้าสู่ระบบก่อน', 'danger');
                     window.location.href = '../login.html';
                     return;
                 }
-        
+
                 // ใส่ค่า username ลงในช่องฟอร์ม
                 document.getElementById('usernameRoblox').value = member.usernameRoblox;
-        
+
             } catch (error) {
                 console.error('เกิดข้อผิดพลาด:', error);
                 showAlert('เกิดข้อผิดพลาดบางอย่าง', 'danger');
             }
         });
 
-    
-      // 2. ดึงข้อมูลจาก B1 เพื่อจัดการปุ่ม submit เมื่อโหลดหน้า
-      window.addEventListener("DOMContentLoaded", () => {
-        fetch(scriptURL)
-          .then((res) => res.text())
-          .then((status) => {
-            const submitBtn = document.getElementById("submit-btn");
-            if (status.trim().toLowerCase() === "open") {
-              submitBtn.disabled = false;
-            } else {
-              submitBtn.disabled = true;
-            }
-          })
-          .catch((err) => console.error("Error fetching status:", err));
-      });
 
-        setTimeout(function () {
-          const submitBtn = document.getElementById("submit-btn");
-          const statusDiv = document.getElementById("button-status");
-        
-          if (submitBtn.disabled) {
-            statusDiv.style.display = "block";
-          } else {
-            statusDiv.style.display = "none";
-          }
-        }, 3000);
-          // แสดง Loader 4 วินาที
-          setTimeout(function () {
-            document.getElementById("loader").style.display = "none";
-            document.getElementById("main-content").style.display = "block";
-        
-            // ตรวจสอบปุ่มหลังจาก 3 วินาที (หลัง Loader หาย)
-            setTimeout(function () {
-              const submitBtn = document.getElementById("submit-btn");
-              const statusDiv = document.getElementById("button-status");
-        
-              if (submitBtn.disabled) {
-                statusDiv.style.display = "block";
-              }
-            }, 3000);
-          }, 4000);
+        // 2. ดึงข้อมูลจาก B1 เพื่อจัดการปุ่ม submit เมื่อโหลดหน้า
+        window.addEventListener("DOMContentLoaded", () => {
+            fetch(scriptURL)
+                .then((res) => res.text())
+                .then((status) => {
+                    const submitBtn = document.getElementById("submit-btn");
+                    if (status.trim().toLowerCase() === "open") {
+                        submitBtn.disabled = false;
+                    } else {
+                        submitBtn.disabled = true;
+                    }
+                })
+                .catch((err) => console.error("Error fetching status:", err));
+        });
     </script>
 </body>
 </html>
