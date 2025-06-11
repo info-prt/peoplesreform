@@ -55,17 +55,19 @@
             border-top: 1px solid #c7c7cc;
             padding: 20px 0;
         }
-  #memberButtons button {
-    padding: 10px 20px;
-    margin: 5px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 16px;
-  }
 
-  #memberButtons button:hover {
-    background-color: #0056b3;
-  }
+#memberButtons button {
+  background-color: #60cb30;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s;
+}
+
+#memberButtons button:hover {
+  background-color: #4ea324; /* เขียวเข้มขึ้นนิดหน่อย */
+}
