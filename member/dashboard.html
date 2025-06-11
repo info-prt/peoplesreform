@@ -54,7 +54,13 @@
           <i class="fas fa-spinner fa-spin"></i> กำลังโหลดข้อมูล...
         </div>
         <div class="member-info" id="memberInfo"></div>
-        
+        <!-- ปุ่มสำหรับสมาชิก -->
+        <div id="memberButtons" style="display: none; margin: 20px 0; text-align: center;">
+          <button onclick="window.location.href='policy-submit.html'">เสนอนโยบาย</button>
+          <button onclick="window.location.href='https://discord.com/channels/1377259097132630167/1377259097665044574'">ประชุมพรรค</button>
+          <button onclick="window.location.href='member-system.html'">ระบบสมาชิก</button>
+        </div>
+
         <button id="logoutBtn" class="btn" style="cursor: pointer;">ออกจากระบบ</button>
       </main>
     
@@ -77,6 +83,7 @@
         // แสดงข้อความโหลด
         const loadingDiv = document.getElementById('loading');
         const infoDiv = document.getElementById('memberInfo');
+        const buttonsDiv = document.getElementById('memberButtons');
     
         // เริ่มโหลดข้อมูล
         fetch('https://script.google.com/macros/s/AKfycbwEYR0y1fL82RuPPktnzawKD2oJtqvLBW8ZUXe6aB7ZPUSf7o8F4vZEC3-huirNtWZCIg/exec')
@@ -88,6 +95,7 @@
     
             if (status === 'สมาชิกพรรค') {
               statusClass = 'badge-member';
+              buttonsDiv.style.display = 'block'; // แสดงปุ่มสมาชิก
             } else if (status === 'เจ้าหน้าที่กำลังตรวจสอบ') {
               statusClass = 'badge-warning';
             }
