@@ -220,7 +220,7 @@
             document.getElementById('usernameRoblox').value = member.usernameRoblox;
         
             // ดึงข้อมูลสมาชิกจาก Google Apps Script
-            const response = await fetch('https://script.google.com/macros/s/AKfycbwEYR0y1fL82RuPPktnzawKD2oJtqvLBW8ZUXe6aB7ZPUSf7o8F4vZEC3-huirNtWZCIg/exec');
+            const response = await fetch('https://script.google.com/macros/s/AKfycbxwSdQvcrNCGOC5PlIjlnC6lsASM7po81ThESlzfIT6QdsgooJVkJAkjJmdfIjxCoOi/exec');
             const data = await response.json();
         
             const matchedUser = data.find(item => item.usernameRoblox === member.usernameRoblox);
