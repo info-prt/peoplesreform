@@ -28,6 +28,38 @@
         .member-count {
             font-size: 20px;
             margin-bottom: 10px;
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .icon {
+            width: 144px;
+            height: 144px;
+            background: #efefef;
+            color: #60cb30;
+            border-radius: 50%;
+            font-size: 90px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        @media (max-width: 768px) {
+          .member-count {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+          }
+    
+          .members {
+            margin: 0;
+            text-align: center;
+          }
+    
+          .icon {
+            margin-bottom: 20px;
+          }
         }
     </style>
 </head>
@@ -65,9 +97,9 @@
         </ul>
     </div>
 
-    <main class="container">
+    <main class="container" style="margin-top: 59.2px;padding-top: 2em;">
         <div class="member-count">
-            <i class="fa-solid fa-user"></i> จำนวนสมาชิก <span id="memberCount">0</span> คน
+            <div class="icon"><i class="fa-solid fa-user"></i></div><span class="members"><p style=" color: #000; font-size: 2em; ">พรรคประชาภิวัฒน์</p><span>จำนวนสมาชิก</span> <span id="memberCount">0</span> <span>คน</span></span>
         </div>
 
         <table>
