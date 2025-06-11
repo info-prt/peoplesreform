@@ -197,21 +197,26 @@
     <script>
       
       const scriptURL = "https://script.google.com/macros/s/AKfycbzeyQEy2TbJLFtgIXjqFrt4Pw9_qUJ-ROYCN_yRjfr3UytcOOuEPDHrp-BauZKL6iLw9w/exec"; // 🔁 ใส่ URL จาก Deploy Web App
-        
-      document.addEventListener('DOMContentLoaded', async function () {
-          try {
-            const member = JSON.parse(localStorage.getItem('prt_member'));
-        
-            if (!member || !member.usernameRoblox) {
-              showAlert('กรุณาเข้าสู่ระบบก่อน', 'danger');
-              window.location.href = '../login.html';
-              return;
-            }
-        
-            // ใส่ค่า username ลงในช่องฟอร์ม
-            document.getElementById('usernameRoblox').value = member.usernameRoblox;
 
+        document.addEventListener('DOMContentLoaded', async function () {
+            try {
+                const member = JSON.parse(localStorage.getItem('prt_member'));
+        
+                if (!member || !member.usernameRoblox) {
+                    showAlert('กรุณาเข้าสู่ระบบก่อน', 'danger');
+                    window.location.href = '../login.html';
+                    return;
+                }
+        
+                // ใส่ค่า username ลงในช่องฟอร์ม
+                document.getElementById('usernameRoblox').value = member.usernameRoblox;
+        
+            } catch (error) {
+                console.error('เกิดข้อผิดพลาด:', error);
+                showAlert('เกิดข้อผิดพลาดบางอย่าง', 'danger');
+            }
         });
+
     
       // 2. ดึงข้อมูลจาก B1 เพื่อจัดการปุ่ม submit เมื่อโหลดหน้า
       window.addEventListener("DOMContentLoaded", () => {
