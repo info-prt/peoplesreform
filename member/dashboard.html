@@ -110,7 +110,7 @@
       <main class="dashboard-container container">
         <h1>ยินดีต้อนรับ, <span id="memberName"></span></h1>
         <div id="loading" style="text-align:center; margin-top:20px;">
-          <i class="fas fa-spinner fa-spin"></i> กำลังเข้าสู่ระบบ...
+          <i class="fas fa-spinner fa-spin"></i> กำลังโหลดข้อมูล...
         </div>
         <div class="member-info" id="memberInfo"></div>
         
@@ -126,7 +126,7 @@
     
         if (!user) {
           alert('กรุณาเข้าสู่ระบบก่อน');
-          window.location.href = '../login.html'; // ย้อนกลับไปหน้า login
+          window.location.href = '../member.html'; // ย้อนกลับไปหน้า login
           return;
         }
     
@@ -169,7 +169,7 @@
         document.getElementById('logoutBtn').addEventListener('click', function () {
           if (confirm('คุณแน่ใจหรือไม่ว่าต้องการออกจากระบบ?')) {
             localStorage.removeItem('prt_member');
-            window.location.href = '../login.html';
+            window.location.href = '../member.html';
           }
         });
       });
