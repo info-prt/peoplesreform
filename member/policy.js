@@ -33,7 +33,11 @@
           const form = document.getElementById("land-registration-form");
           form.addEventListener("submit", (e) => {
             e.preventDefault();
+        
+            const usernameRoblox = document.getElementById("usernameRoblox").value;
             const policyType = document.getElementById("policyType").value;
+            const policyName = document.getElementById("policyName").value;
+            const policyDetails = document.getElementById("policyDetails").value;
         
             const data = {
               usernameRoblox: usernameRoblox,
@@ -46,7 +50,7 @@
         
             fetch(API_URL, {
               method: "POST",
-              mode: "no-cors", // use "cors" if your GAS allows it
+              mode: "no-cors",
               headers: {
                 "Content-Type": "application/json",
               },
@@ -58,6 +62,7 @@
             loadRegistrations(); // reload table
           });
         }
+
         
         function loadRegistrations() {
           fetch(API_URL)
