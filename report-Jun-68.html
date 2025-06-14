@@ -512,94 +512,56 @@
         function displayAllMP(data) {
             const container = document.getElementById('all-mp');
             
-            // เรียงลำดับพรรคตามจำนวน ส.ส. รวมมากสุด และกรองเฉพาะพรรคที่มี ส.ส.
-            const sortedData = [...data]
-                .filter(party => parseInt(party.mp_sum) > 0)
-                .sort((a, b) => parseInt(b.mp_sum) - parseInt(a.mp_sum));
+            // กรองเฉพาะพรรคที่มี ส.ส. และคำนวณเปอร์เซ็นต์
+            const partiesWithSeats = data.filter(party => parseInt(party.mp_sum) > 0);
+            const totalSeats = partiesWithSeats.reduce((sum, party) => sum + parseInt(party.mp_sum), 0);
+            
+            // เรียงลำดับพรรคตามจำนวน ส.ส. จากมากไปน้อย
+            const sortedData = [...partiesWithSeats].sort((a, b) => parseInt(b.mp_sum) - parseInt(a.mp_sum));
             
             let html = `
                 <h2>สมาชิกสภาผู้แทนราษฎร (ส.ส.) ทั้งหมด</h2>
+                <p>รวมทั้งหมด ${totalSeats} ที่นั่ง</p>
                 
-                <div class="seats-container">
+                <div class="seats-container" style="margin-top: 30px;">
             `;
             
-            // แสดงที่นั่งแบบแถวหลัก
+            // แสดงแถบเปอร์เซ็นต์สำหรับแต่ละพรรค
             sortedData.forEach(party => {
-                const totalSeats = parseInt(party.mp_sum);
+                const seats = parseInt(party.mp_sum);
+                const percentage = ((seats / totalSeats) * 100).toFixed(1);
                 const zoneSeats = parseInt(party.mp_zone);
                 const listSeats = parseInt(party.mp_partylist);
                 
                 html += `
-                    <div class="party-seats">
-                        <div class="party-seats-header">
-                            <div class="party-color" style="background-color: ${party.color};"></div>
-                            <div class="party-seats-title">${party.party}</div>
-                            <div class="party-seats-count">${totalSeats} ที่นั่ง</div>
+                    <div class="party-bar" style="margin-bottom: 25px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <div style="display: flex; align-items: center;">
+                                <div class="party-color" style="background-color: ${party.color}; margin-right: 10px;"></div>
+                                <strong>${party.party}</strong>
+                            </div>
+                            <div>
+                                ${seats} ที่นั่ง (${percentage}%)
+                            </div>
                         </div>
                         
-                        <div class="seats-row">
-                            <div style="margin-right: 10px;">แบ่งเขต (${zoneSeats}):</div>
-                `;
-                
-                // แสดงที่นั่งแบบแบ่งเขต
-                for (let i = 0; i < zoneSeats; i++) {
-                    html += `<div class="seat" style="background-color: ${party.color};">${i+1}</div>`;
-                }
-                
-                html += `
+                        <div style="display: flex; height: 30px; background-color: #f0f0f0; border-radius: 15px; overflow: hidden;">
+                            <div style="width: ${percentage}%; background-color: ${party.color}; 
+                                 display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; 
+                                 color: white; font-weight: bold;">
+                                ${percentage}%
+                            </div>
                         </div>
                         
-                        <div class="seats-row">
-                            <div style="margin-right: 10px;">บัญชีรายชื่อ (${listSeats}):</div>
-                `;
-                
-                // แสดงที่นั่งแบบบัญชีรายชื่อ
-                for (let i = 0; i < listSeats; i++) {
-                    html += `<div class="seat" style="background-color: ${party.color}; opacity: 0.8;">${i+1}</div>`;
-                }
-                
-                html += `
+                        <div style="display: flex; justify-content: space-between; margin-top: 8px; font-size: 0.9em; color: #666;">
+                            <div>แบ่งเขต: ${zoneSeats} ที่นั่ง</div>
+                            <div>บัญชีรายชื่อ: ${listSeats} ที่นั่ง</div>
                         </div>
                     </div>
                 `;
             });
             
-            html += `
-                </div>
-                
-                <table>
-                    <thead>
-                        <tr>
-                            <th>พรรค</th>
-                            <th>ส.ส.แบ่งเขต</th>
-                            <th>ส.ส.บัญชีรายชื่อ</th>
-                            <th>ส.ส.รวม</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-            `;
-            
-            sortedData.forEach(party => {
-                const highlightClass = party.party === 'พรรคประชาภิวัฒน์' ? 'highlight-prachaphiwat' : 
-                                      party.party === 'พรรคสหประชาไทย' ? 'highlight-sahapracha' : '';
-                
-                html += `
-                    <tr class="${highlightClass}">
-                        <td>
-                            <div class="party-color" style="background-color: ${party.color};"></div>
-                            ${party.party}
-                        </td>
-                        <td>${party.mp_zone}</td>
-                        <td>${party.mp_partylist}</td>
-                        <td><strong>${party.mp_sum}</strong></td>
-                    </tr>
-                `;
-            });
-            
-            html += `
-                    </tbody>
-                </table>
-            `;
+            html += `</div>`;
             
             container.innerHTML = html;
         }
