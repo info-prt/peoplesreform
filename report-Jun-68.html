@@ -132,6 +132,51 @@
             font-weight: bold;
             margin: 10px 0;
         }
+        
+        /* สไตล์สำหรับแสดงที่นั่งแบบแถวหลัก */
+        .seats-container {
+            margin: 30px 0;
+        }
+        .seats-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+        .seat {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+            box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+        }
+        .party-seats {
+            margin-bottom: 30px;
+        }
+        .party-seats-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .party-seats-title {
+            font-weight: 500;
+            margin-left: 10px;
+        }
+        .party-seats-count {
+            margin-left: auto;
+            background-color: #2c3e50;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+        
         @media (max-width: 768px) {
             .tabs {
                 flex-direction: column;
@@ -151,6 +196,11 @@
             }
             .summary-cards {
                 flex-direction: column;
+            }
+            .seat {
+                width: 25px;
+                height: 25px;
+                font-size: 10px;
             }
         }
     </style>
@@ -390,7 +440,7 @@
                             <thead>
                                 <tr>
                                     <th>เขตเลือกตั้ง</th>
-                                    <th>คะแนนเสียง</th>
+                                    <th>จำนวนผู้สมัคร</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -462,11 +512,60 @@
         function displayAllMP(data) {
             const container = document.getElementById('all-mp');
             
-            // เรียงลำดับพรรคตามจำนวน ส.ส. รวมมากสุด
-            const sortedData = [...data].sort((a, b) => parseInt(b.mp_sum) - parseInt(a.mp_sum));
+            // เรียงลำดับพรรคตามจำนวน ส.ส. รวมมากสุด และกรองเฉพาะพรรคที่มี ส.ส.
+            const sortedData = [...data]
+                .filter(party => parseInt(party.mp_sum) > 0)
+                .sort((a, b) => parseInt(b.mp_sum) - parseInt(a.mp_sum));
             
             let html = `
                 <h2>สมาชิกสภาผู้แทนราษฎร (ส.ส.) ทั้งหมด</h2>
+                
+                <div class="seats-container">
+            `;
+            
+            // แสดงที่นั่งแบบแถวหลัก
+            sortedData.forEach(party => {
+                const totalSeats = parseInt(party.mp_sum);
+                const zoneSeats = parseInt(party.mp_zone);
+                const listSeats = parseInt(party.mp_partylist);
+                
+                html += `
+                    <div class="party-seats">
+                        <div class="party-seats-header">
+                            <div class="party-color" style="background-color: ${party.color};"></div>
+                            <div class="party-seats-title">${party.party}</div>
+                            <div class="party-seats-count">${totalSeats} ที่นั่ง</div>
+                        </div>
+                        
+                        <div class="seats-row">
+                            <div style="margin-right: 10px;">แบ่งเขต (${zoneSeats}):</div>
+                `;
+                
+                // แสดงที่นั่งแบบแบ่งเขต
+                for (let i = 0; i < zoneSeats; i++) {
+                    html += `<div class="seat" style="background-color: ${party.color};">${i+1}</div>`;
+                }
+                
+                html += `
+                        </div>
+                        
+                        <div class="seats-row">
+                            <div style="margin-right: 10px;">บัญชีรายชื่อ (${listSeats}):</div>
+                `;
+                
+                // แสดงที่นั่งแบบบัญชีรายชื่อ
+                for (let i = 0; i < listSeats; i++) {
+                    html += `<div class="seat" style="background-color: ${party.color}; opacity: 0.8;">${i+1}</div>`;
+                }
+                
+                html += `
+                        </div>
+                    </div>
+                `;
+            });
+            
+            html += `
+                </div>
                 
                 <table>
                     <thead>
