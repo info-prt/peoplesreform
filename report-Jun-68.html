@@ -5,6 +5,103 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>รายงานผลเลือกตั้ง - พรรคประชาภิวัฒน์</title>
     <style>
+        /* CSS สำหรับหน้า ส.ส.ทั้งหมด - แสดงเป็นแถบเปอร์เซ็นต์ */
+        #all-mp .seats-container {
+          margin: 30px 0;
+          padding: 20px;
+          background-color: #fff;
+          border-radius: 8px;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        #all-mp h2 {
+          color: #2c3e50;
+          margin-bottom: 10px;
+          font-size: 1.8em;
+        }
+        
+        #all-mp p {
+          color: #7f8c8d;
+          margin-bottom: 20px;
+          font-size: 1.1em;
+        }
+        
+        #all-mp .party-bar {
+          margin-bottom: 30px;
+          padding-bottom: 15px;
+          border-bottom: 1px solid #ecf0f1;
+        }
+        
+        #all-mp .party-bar:last-child {
+          margin-bottom: 0;
+          padding-bottom: 0;
+          border-bottom: none;
+        }
+        
+        #all-mp .party-color {
+          width: 18px;
+          height: 18px;
+          border-radius: 3px;
+          display: inline-block;
+          margin-right: 10px;
+        }
+        
+        #all-mp .progress-bar {
+          height: 30px;
+          background-color: #f0f0f0;
+          border-radius: 15px;
+          overflow: hidden;
+          position: relative;
+          margin: 8px 0;
+        }
+        
+        #all-mp .progress-fill {
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          padding-right: 15px;
+          color: white;
+          font-weight: bold;
+          font-size: 0.9em;
+          transition: width 0.5s ease-in-out;
+        }
+        
+        #all-mp .seat-details {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 8px;
+          font-size: 0.9em;
+          color: #7f8c8d;
+        }
+        
+        #all-mp .zone-seats {
+          color: #3498db;
+        }
+        
+        #all-mp .list-seats {
+          color: #e74c3c;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+          #all-mp .seats-container {
+            padding: 15px;
+          }
+          
+          #all-mp h2 {
+            font-size: 1.5em;
+          }
+          
+          #all-mp .progress-bar {
+            height: 25px;
+          }
+          
+          #all-mp .progress-fill {
+            padding-right: 8px;
+            font-size: 0.8em;
+          }
+        }
         body {
             font-family: 'Kanit', sans-serif;
             margin: 0;
@@ -523,7 +620,7 @@
                 <h2>สมาชิกสภาผู้แทนราษฎร (ส.ส.) ทั้งหมด</h2>
                 <p>รวมทั้งหมด ${totalSeats} ที่นั่ง</p>
                 
-                <div class="seats-container" style="margin-top: 30px;">
+                <div class="seats-container">
             `;
             
             // แสดงแถบเปอร์เซ็นต์สำหรับแต่ละพรรค
@@ -534,28 +631,26 @@
                 const listSeats = parseInt(party.mp_partylist);
                 
                 html += `
-                    <div class="party-bar" style="margin-bottom: 25px;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                            <div style="display: flex; align-items: center;">
-                                <div class="party-color" style="background-color: ${party.color}; margin-right: 10px;"></div>
+                    <div class="party-bar">
+                        <div class="party-header">
+                            <div class="party-info">
+                                <div class="party-color" style="background-color: ${party.color};"></div>
                                 <strong>${party.party}</strong>
                             </div>
-                            <div>
+                            <div class="party-seats">
                                 ${seats} ที่นั่ง (${percentage}%)
                             </div>
                         </div>
                         
-                        <div style="display: flex; height: 30px; background-color: #f0f0f0; border-radius: 15px; overflow: hidden;">
-                            <div style="width: ${percentage}%; background-color: ${party.color}; 
-                                 display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; 
-                                 color: white; font-weight: bold;">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${percentage}%; background-color: ${party.color};">
                                 ${percentage}%
                             </div>
                         </div>
                         
-                        <div style="display: flex; justify-content: space-between; margin-top: 8px; font-size: 0.9em; color: #666;">
-                            <div>แบ่งเขต: ${zoneSeats} ที่นั่ง</div>
-                            <div>บัญชีรายชื่อ: ${listSeats} ที่นั่ง</div>
+                        <div class="seat-details">
+                            <div class="zone-seats">แบ่งเขต: ${zoneSeats} ที่นั่ง</div>
+                            <div class="list-seats">บัญชีรายชื่อ: ${listSeats} ที่นั่ง</div>
                         </div>
                     </div>
                 `;
