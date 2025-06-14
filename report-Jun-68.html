@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รายงานผลเลือกตั้ง - พรรคประชาภิวัฒน์</title>
+    <style>
+        body {
+            font-family: 'Kanit', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: #60cb30;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+            border-bottom: none;
+            border-radius: 5px 5px 0 0;
+            margin-right: 5px;
+        }
+        .tab.active {
+            background-color: #60cb30;
+            color: white;
+        }
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background-color: white;
+            border-radius: 0 5px 5px 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .tab-content.active {
+            display: block;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: 500;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .party-color {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            vertical-align: middle;
+            border-radius: 3px;
+        }
+        .loading {
+            text-align: center;
+            padding: 20px;
+            font-size: 1.2em;
+        }
+        .highlight {
+            background-color: rgba(96, 203, 48, 0.1);
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>รายงานผลเลือกตั้งพรรคประชาภิวัฒน์</h1>
+        </header>
+        
+        <div class="tabs">
+            <div class="tab active" data-tab="overview">ภาพรวม</div>
+            <div class="tab" data-tab="district">รายเขต</div>
+            <div class="tab" data-tab="partylist">บัญชีรายชื่อ</div>
+            <div class="tab" data-tab="all-mp">ส.ส.ทั้งหมด</div>
+        </div>
+        
+        <div id="overview" class="tab-content active">
+            <div class="loading">กำลังโหลดข้อมูลภาพรวม...</div>
+        </div>
+        
+        <div id="district" class="tab-content">
+            <div class="loading">กำลังโหลดข้อมูลรายเขต...</div>
+        </div>
+        
+        <div id="partylist" class="tab-content">
+            <div class="loading">กำลังโหลดข้อมูลบัญชีรายชื่อ...</div>
+        </div>
+        
+        <div id="all-mp" class="tab-content">
+            <div class="loading">กำลังโหลดข้อมูลส.ส.ทั้งหมด...</div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // เปลี่ยนแท็บ
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // ลบ class active จากแท็บทั้งหมด
+                    tabs.forEach(t => t.classList.remove('active'));
+                    // เพิ่ม class active ให้แท็บที่คลิก
+                    this.classList.add('active');
+                    
+                    // ซ่อน content ทั้งหมด
+                    document.querySelectorAll('.tab-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    
+                    // แสดง content ที่เกี่ยวข้อง
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // ดึงข้อมูลจาก API
+            fetchData();
+        });
+        
+        function fetchData() {
+            const apiUrl = 'https://script.google.com/macros/s/AKfycbzkPnSjsSNzR5UyaP4XYu4-VG4WwJ-oS5QmefyirQmcBE-iNQMnh7ia8QsLVFlgymAb/exec';
+            
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    // แสดงข้อมูลภาพรวม
+                    displayOverview(data['ภาพรวม']);
+                    
+                    // แสดงข้อมูลรายเขต
+                    displayDistrict(data['รายเขต']);
+                    
+                    // แสดงข้อมูลบัญชีรายชื่อ
+                    displayPartyList(data['ภาพรวม']); // ใช้ข้อมูลจากภาพรวมเพราะมีฟิลด์ partylist
+                    
+                    // แสดงข้อมูลส.ส.ทั้งหมด
+                    displayAllMP(data['ภาพรวม']); // ใช้ข้อมูลจากภาพรวมเพราะมีฟิลด์ mp_*
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                    document.querySelectorAll('.loading').forEach(el => {
+                        el.textContent = 'เกิดข้อผิดพลาดในการโหลดข้อมูล';
+                    });
+                });
+        }
+        
+        function displayOverview(data) {
+            const container = document.getElementById('overview');
+            
+            // กรองข้อมูลเฉพาะพรรคประชาภิวัฒน์
+            const prachaphiwatData = data.filter(item => item.party === 'พรรคประชาภิวัฒน์');
+            
+            if (prachaphiwatData.length === 0) {
+                container.innerHTML = '<p>ไม่พบข้อมูลพรรคประชาภิวัฒน์</p>';
+                return;
+            }
+            
+            const item = prachaphiwatData[0];
+            
+            let html = `
+                <h2>ภาพรวมผลการเลือกตั้ง</h2>
+                <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                    <div class="party-color" style="background-color: ${item.color};"></div>
+                    <h3 style="margin: 0;">${item.party}</h3>
+                </div>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ประเภท</th>
+                            <th>จำนวนผู้สมัคร</th>
+                            <th>จำนวน ส.ส.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="highlight">
+                            <td>แบบแบ่งเขต</td>
+                            <td>${item.zone}</td>
+                            <td>${item.mp_zone}</td>
+                        </tr>
+                        <tr class="highlight">
+                            <td>แบบบัญชีรายชื่อ</td>
+                            <td>${item.partylist}</td>
+                            <td>${item.mp_partylist}</td>
+                        </tr>
+                        <tr class="highlight">
+                            <td><strong>รวม</strong></td>
+                            <td><strong>${item.sum}</strong></td>
+                            <td><strong>${item.mp_sum}</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            `;
+            
+            container.innerHTML = html;
+        }
+        
+        function displayDistrict(data) {
+            const container = document.getElementById('district');
+            
+            // กรองข้อมูลเฉพาะพรรคประชาภิวัฒน์
+            const prachaphiwatData = data.filter(item => item.party === 'พรรคประชาภิวัฒน์');
+            
+            if (prachaphiwatData.length === 0) {
+                container.innerHTML = '<p>ไม่พบข้อมูลพรรคประชาภิวัฒน์</p>';
+                return;
+            }
+            
+            let html = `
+                <h2>ผลการเลือกตั้งแบบแบ่งเขต</h2>
+                <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                    <div class="party-color" style="background-color: ${prachaphiwatData[0].color};"></div>
+                    <h3 style="margin: 0;">${prachaphiwatData[0].party}</h3>
+                </div>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>เขตเลือกตั้ง</th>
+                            <th>จำนวนผู้สมัคร</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+            
+            prachaphiwatData.forEach(item => {
+                html += `
+                    <tr class="highlight">
+                        <td>${item.nameZone}</td>
+                        <td>${item.zone}</td>
+                    </tr>
+                `;
+            });
+            
+            html += `
+                    </tbody>
+                </table>
+            `;
+            
+            container.innerHTML = html;
+        }
+        
+        function displayPartyList(data) {
+            const container = document.getElementById('partylist');
+            
+            // กรองข้อมูลเฉพาะพรรคประชาภิวัฒน์
+            const prachaphiwatData = data.filter(item => item.party === 'พรรคประชาภิวัฒน์');
+            
+            if (prachaphiwatData.length === 0) {
+                container.innerHTML = '<p>ไม่พบข้อมูลพรรคประชาภิวัฒน์</p>';
+                return;
+            }
+            
+            const item = prachaphiwatData[0];
+            
+            let html = `
+                <h2>ผลการเลือกตั้งแบบบัญชีรายชื่อ</h2>
+                <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                    <div class="party-color" style="background-color: ${item.color};"></div>
+                    <h3 style="margin: 0;">${item.party}</h3>
+                </div>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ประเภท</th>
+                            <th>จำนวนผู้สมัคร</th>
+                            <th>จำนวน ส.ส.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="highlight">
+                            <td>บัญชีรายชื่อ</td>
+                            <td>${item.partylist}</td>
+                            <td>${item.mp_partylist}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            `;
+            
+            container.innerHTML = html;
+        }
+        
+        function displayAllMP(data) {
+            const container = document.getElementById('all-mp');
+            
+            // กรองข้อมูลเฉพาะพรรคประชาภิวัฒน์
+            const prachaphiwatData = data.filter(item => item.party === 'พรรคประชาภิวัฒน์');
+            
+            if (prachaphiwatData.length === 0) {
+                container.innerHTML = '<p>ไม่พบข้อมูลพรรคประชาภิวัฒน์</p>';
+                return;
+            }
+            
+            const item = prachaphiwatData[0];
+            
+            let html = `
+                <h2>สมาชิกสภาผู้แทนราษฎร (ส.ส.)</h2>
+                <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                    <div class="party-color" style="background-color: ${item.color};"></div>
+                    <h3 style="margin: 0;">${item.party}</h3>
+                </div>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ประเภท</th>
+                            <th>จำนวน ส.ส.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="highlight">
+                            <td>แบบแบ่งเขต</td>
+                            <td>${item.mp_zone}</td>
+                        </tr>
+                        <tr class="highlight">
+                            <td>แบบบัญชีรายชื่อ</td>
+                            <td>${item.mp_partylist}</td>
+                        </tr>
+                        <tr class="highlight">
+                            <td><strong>รวม</strong></td>
+                            <td><strong>${item.mp_sum}</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            `;
+            
+            container.innerHTML = html;
+        }
+    </script>
+</body>
+</html>
