@@ -3,7 +3,9 @@
     width: 100%;
     background: rgba(96, 203, 48, 0.8);
 }
-
+li {
+    list-style: none;
+}
 .book {
     background-color: #fff;
     border-radius: 1rem;
