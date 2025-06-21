@@ -1,6 +1,7 @@
 .section {
     padding: 2rem;
     width: 100%;
+    background: rgba(96, 203, 48, 0.8);
 }
 
 .book {
