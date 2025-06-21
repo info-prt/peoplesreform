@@ -4,9 +4,9 @@
 }
 
 .book {
-    background-color: var(--cl-white);
+    background-color: #fff;
     border-radius: 1rem;
-    box-shadow: 5px 5px var(--cl-black);
+    box-shadow: 5px 5px #27272750;
     display: flex;
     flex-direction: column;
     height: auto;
