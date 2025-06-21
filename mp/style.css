@@ -31,7 +31,6 @@
 .css-1n2pgbo {
     height: 160px;
     width: 160px;
-    border-radius: 80px;
     margin: 0 auto;
     overflow: hidden;
     margin-bottom: 20px;
@@ -62,6 +61,59 @@
 }
 img {
     max-width: 100%;
+}
+.css-g53r96 {
+    font-size: 1.8rem;
+}
+.css-17rtivs {
+    font-size: 1.6rem;
+    margin-top: 1rem;
+    margin-bottom: 1.08rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.gatsby-image-wrapper img {
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    margin: 0;
+    max-width: none;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    object-fit: cover;
+}
+.gatsby-image-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.people-template-module--hr--005a0 {
+    background: #000;
+    height: 4px;
+}
+hr {
+    box-sizing: content-box;
+    height: 0;
+    overflow: visible;
+}
+
+.css-g53r96 p {
+    margin-bottom: 1rem;
+}
+.css-1efi8gv {
+    font-weight: bold;
+}
+.css-g53r96 a {
+    color: #002ca7;
+    text-decoration: underline;
+}
+p *:last-child {
+    margin-bottom: 0;
 }
 @media screen and (min-width: 767px) {
     .section {
