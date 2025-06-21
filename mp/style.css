@@ -37,13 +37,12 @@
     margin-bottom: 20px;
 }
 .css-1s139o8 {
-    font-size: 4rem;
     margin: 1rem 0 0 0;
 }
 .css-2upqb4 {
     box-sizing: border-box;
     width: 18rem;
-    border: 1px solid var(--cl-gray-3);
+    border: 1px solid #ccc;
     border-radius: 5px;
     margin: 1.5rem auto;
     font-weight: bold;
@@ -60,6 +59,9 @@
 }
 .css-1v52ju4 {
     color: #00c81a;
+}
+img {
+    max-width: 100%;
 }
 @media screen and (min-width: 767px) {
     .section {
