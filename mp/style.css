@@ -14,6 +14,53 @@
     width: 100%;
 }
 
+.leftPage {
+    background: none;
+    border-radius: 1rem 0 0 1rem;
+}
+.page {
+    display: inline-block;
+    padding: 1rem 2rem 2rem;
+    vertical-align: top;
+    width: 100%;
+}
+.css-craf4i {
+    text-align: center;
+    margin-top: 5rem;
+}
+.css-1n2pgbo {
+    height: 160px;
+    width: 160px;
+    border-radius: 80px;
+    margin: 0 auto;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+.css-1s139o8 {
+    font-size: 4rem;
+    margin: 1rem 0 0 0;
+}
+.css-2upqb4 {
+    box-sizing: border-box;
+    width: 18rem;
+    border: 1px solid var(--cl-gray-3);
+    border-radius: 5px;
+    margin: 1.5rem auto;
+    font-weight: bold;
+    line-height: 1.4;
+}
+.css-1mrmkvp {
+    height: 0.8rem;
+    width: 0.8rem;
+    background-color: #00c81a;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0.1rem;
+    margin-left: 1rem;
+}
+.css-1v52ju4 {
+    color: #00c81a;
+}
 @media screen and (min-width: 767px) {
     .section {
         padding-bottom: 5rem;
@@ -23,5 +70,12 @@
         flex-direction: row;
         min-height: 665px;
         width: 962px;
+    }
+    .leftPage {
+        background: linear-gradient(90deg, #fff 72%, #f6f6f6);
+    }
+    .page {
+        display: block;
+        width: 50%;
     }
 }
