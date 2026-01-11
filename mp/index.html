@@ -323,7 +323,7 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <div class="logo-icon">ปชภ</div>
+                    <div class="logo-icon">2</div>
                     <div class="logo-text">
                         <h1>พรรคประชาภิวัฒน์</h1>
                         <p>รายชื่อสมาชิกสภาผู้แทนราษฎร ชุดที่ 3</p>
@@ -378,233 +378,174 @@
     </footer>
     
     <script>
-        // ข้อมูลตัวอย่าง (แทนที่ด้วยการดึงจากไฟล์ mp_users.json ในสภาพแวดล้อมจริง)
-        // const mpData = {
-        //     "partyList": [
-        //         {
-        //             "id": 1,
-        //             "order": 1,
-        //             "name": "นายสมชาย ใจดี",
-        //             "details": "กรรมการบริหารพรรค, อดีตอธิการบดีมหาวิทยาลัยศรีนครินทรวิโรฒ, ด้านการศึกษาและเทคโนโลยี"
-        //         },
-        //         {
-        //             "id": 2,
-        //             "order": 2,
-        //             "name": "นางสาวสุภาพร วัฒนกิจ",
-        //             "details": "กรรมการนโยบายพรรค, อดีตปลัดกระทรวงอุตสาหกรรม, ด้านเศรษฐกิจอุตสาหกรรม"
-        //         },
-        //         {
-        //             "id": 3,
-        //             "order": 3,
-        //             "name": "นายกิตติพงษ์ ศรีสุข",
-        //             "details": "โฆษกพรรค, อดีตผู้ประกาศข่าว, ด้านสื่อสารมวลชนและวัฒนธรรม"
-        //         },
-        //         {
-        //             "id": 4,
-        //             "order": 4,
-        //             "name": "นางธนาภรณ์ รักชาติ",
-        //             "details": "รองหัวหน้าพรรค, อดีตผู้อำนวยการโรงพยาบาลศิริราช, ด้านสาธารณสุขและสิ่งแวดล้อม"
-        //         },
-        //         {
-        //             "id": 5,
-        //             "order": 5,
-        //             "name": "นายอภิชาติ มั่นคง",
-        //             "details": "เลขาธิการพรรค, อดีตผู้พิพากษาศาลฎีกา, ด้านกฎหมายและกระบวนการยุติธรรม"
-        //         }
-        //     ],
-        //     "constituency": [
-        //         {
-        //             "id": 101,
-        //             "name": "นายวิทยา พัฒนาชาติ",
-        //             "province": "กรุงเทพมหานคร",
-        //             "district": "เขตบางรัก",
-        //             "details": "สมาชิกสภาผู้แทนราษฎรกรุงเทพมหานคร เขตบางรัก, กรรมการคณะกรรมาธิการการพัฒนาการเมือง"
-        //         },
-        //         {
-        //             "id": 102,
-        //             "name": "นางสาวศิริพร สุขสมบูรณ์",
-        //             "province": "เชียงใหม่",
-        //             "district": "เขต 1",
-        //             "details": "สมาชิกสภาผู้แทนราษฎรจังหวัดเชียงใหม่ เขต 1, กรรมการคณะกรรมาธิการการท่องเที่ยว"
-        //         },
-        //         {
-        //             "id": 103,
-        //             "name": "นายประเสริฐ เกียรติก้อง",
-        //             "province": "ขอนแก่น",
-        //             "district": "เขต 3",
-        //             "details": "สมาชิกสภาผู้แทนราษฎรจังหวัดขอนแก่น เขต 3, กรรมการคณะกรรมาธิการการเกษตรและสหกรณ์"
-        //         },
-        //         {
-        //             "id": 104,
-        //             "name": "นางรุ่งทิพย์ แสงจันทร์",
-        //             "province": "สงขลา",
-        //             "district": "เขต 2",
-        //             "details": "สมาชิกสภาผู้แทนราษฎรจังหวัดสงขลา เขต 2, กรรมการคณะกรรมาธิการการพัฒนาสังคม"
-        //         },
-        //         {
-        //             "id": 105,
-        //             "name": "นายธนวัฒน์ วัฒนธร",
-        //             "province": "นนทบุรี",
-        //             "district": "เขต 2",
-        //             "details": "สมาชิกสภาผู้แทนราษฎรจังหวัดนนทบุรี เขต 2, กรรมการคณะกรรมาธิการการสื่อสารและโทรคมนาคม"
-        //         },
-        //         {
-        //             "id": 106,
-        //             "name": "นางสาวอรุณี ใจกว้าง",
-        //             "province": "ชลบุรี",
-        //             "district": "เขต 5",
-        //             "details": "สมาชิกสภาผู้แทนราษฎรจังหวัดชลบุรี เขต 5, กรรมการคณะกรรมาธิการการอุตสาหกรรม"
-        //         },
-        //         {
-        //             "id": 107,
-        //             "name": "นายวีรศักดิ์ ภูผาดิน",
-        //             "province": "อุบลราชธานี",
-        //             "district": "เขต 4",
-        //             "details": "สมาชิกสภาผู้แทนราษฎรจังหวัดอุบลราชธานี เขต 4, กรรมการคณะกรรมาธิการการพลังงาน"
-        //         }
-        //     ]
-        // };
-
-        // รอให้ DOM โหลดเสร็จก่อน
-        document.addEventListener('DOMContentLoaded', function() {
-            const mpTypeSelect = document.getElementById('mpType');
-            const cardsContainer = document.getElementById('cardsContainer');
-            
-            // สร้างการ์ดสำหรับ ส.ส.ประเภทบัญชีรายชื่อ
-            function createPartyListCard(mp) {
-                return `
-                    <div class="mp-card party-list-card" data-type="party-list">
-                        <div class="card-header">
-                            <span class="card-type">บัญชีรายชื่อ</span>
-                            <h3><span class="order-badge">${mp.order}</span>${mp.name}</h3>
-                            <p>สมาชิกสภาผู้แทนราษฎรแบบบัญชีรายชื่อ</p>
+    // รอให้ DOM โหลดเสร็จก่อน
+    document.addEventListener('DOMContentLoaded', function () {
+    
+        const mpTypeSelect = document.getElementById('mpType');
+        const cardsContainer = document.getElementById('cardsContainer');
+    
+        // ===============================
+        // ตัวแปรเก็บข้อมูล ส.ส.
+        // ===============================
+        let mpData = {
+            partyList: [],
+            constituency: []
+        };
+    
+        // ===============================
+        // สร้างการ์ด ส.ส.บัญชีรายชื่อ
+        // ===============================
+        function createPartyListCard(mp) {
+            return `
+                <div class="mp-card party-list-card" data-type="party-list">
+                    <div class="card-header">
+                        <span class="card-type">บัญชีรายชื่อ</span>
+                        <h3>
+                            <span class="order-badge">${mp.order}</span>
+                            ${mp.name}
+                        </h3>
+                        <p>สมาชิกสภาผู้แทนราษฎรแบบบัญชีรายชื่อ</p>
+                    </div>
+                    <div class="card-content">
+                        <div class="mp-detail">
+                            <i class="fas fa-user"></i>
+                            <div class="detail-label">ชื่อ-สกุล:</div>
+                            <div class="detail-value">${mp.name}</div>
                         </div>
-                        <div class="card-content">
-                            <div class="mp-detail">
-                                <i class="fas fa-user"></i>
-                                <div class="detail-label">ชื่อ-สกุล:</div>
-                                <div class="detail-value">${mp.name}</div>
-                            </div>
-                            <div class="mp-detail">
-                                <i class="fas fa-list-ol"></i>
-                                <div class="detail-label">ลำดับที่:</div>
-                                <div class="detail-value">${mp.order}</div>
-                            </div>
-                            <div class="mp-detail">
-                                <i class="fas fa-info-circle"></i>
-                                <div class="detail-label">รายละเอียด:</div>
-                                <div class="detail-value">${mp.details}</div>
-                            </div>
+                        <div class="mp-detail">
+                            <i class="fas fa-list-ol"></i>
+                            <div class="detail-label">ลำดับที่:</div>
+                            <div class="detail-value">${mp.order}</div>
+                        </div>
+                        <div class="mp-detail">
+                            <i class="fas fa-info-circle"></i>
+                            <div class="detail-label">รายละเอียด:</div>
+                            <div class="detail-value">${mp.details}</div>
                         </div>
                     </div>
-                `;
-            }
-            
-            // สร้างการ์ดสำหรับ ส.ส.แบบแบ่งเขต
-            function createConstituencyCard(mp) {
-                return `
-                    <div class="mp-card constituency-card" data-type="constituency">
-                        <div class="card-header">
-                            <span class="card-type">แบ่งเขต</span>
-                            <h3>${mp.name}</h3>
-                            <p>สมาชิกสภาผู้แทนราษฎรแบบแบ่งเขต</p>
+                </div>
+            `;
+        }
+    
+        // ===============================
+        // สร้างการ์ด ส.ส.แบบแบ่งเขต
+        // ===============================
+        function createConstituencyCard(mp) {
+            return `
+                <div class="mp-card constituency-card" data-type="constituency">
+                    <div class="card-header">
+                        <span class="card-type">แบ่งเขต</span>
+                        <h3>${mp.name}</h3>
+                        <p>สมาชิกสภาผู้แทนราษฎรแบบแบ่งเขต</p>
+                    </div>
+                    <div class="card-content">
+                        <div class="mp-detail">
+                            <i class="fas fa-user"></i>
+                            <div class="detail-label">ชื่อ-สกุล:</div>
+                            <div class="detail-value">${mp.name}</div>
                         </div>
-                        <div class="card-content">
-                            <div class="mp-detail">
-                                <i class="fas fa-user"></i>
-                                <div class="detail-label">ชื่อ-สกุล:</div>
-                                <div class="detail-value">${mp.name}</div>
-                            </div>
-                            <div class="mp-detail">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <div class="detail-label">จังหวัด:</div>
-                                <div class="detail-value">${mp.province}</div>
-                            </div>
-                            <div class="mp-detail">
-                                <i class="fas fa-map-pin"></i>
-                                <div class="detail-label">เขตเลือกตั้ง:</div>
-                                <div class="detail-value">${mp.district}</div>
-                            </div>
-                            <div class="mp-detail">
-                                <i class="fas fa-info-circle"></i>
-                                <div class="detail-label">รายละเอียด:</div>
-                                <div class="detail-value">${mp.details}</div>
-                            </div>
+                        <div class="mp-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div class="detail-label">จังหวัด:</div>
+                            <div class="detail-value">${mp.province}</div>
+                        </div>
+                        <div class="mp-detail">
+                            <i class="fas fa-map-pin"></i>
+                            <div class="detail-label">เขตเลือกตั้ง:</div>
+                            <div class="detail-value">${mp.district}</div>
+                        </div>
+                        <div class="mp-detail">
+                            <i class="fas fa-info-circle"></i>
+                            <div class="detail-label">รายละเอียด:</div>
+                            <div class="detail-value">${mp.details}</div>
                         </div>
                     </div>
-                `;
+                </div>
+            `;
+        }
+    
+        // ===============================
+        // แสดงการ์ดทั้งหมด
+        // ===============================
+        function renderCards(type = 'all') {
+            let cardsHTML = '';
+    
+            if (type === 'all' || type === 'party-list') {
+                mpData.partyList.forEach(mp => {
+                    cardsHTML += createPartyListCard(mp);
+                });
             }
-            
-            // แสดงการ์ดทั้งหมด
-            function renderCards(type = 'all') {
-                let cardsHTML = '';
-                
-                // แสดง ส.ส.บัญชีรายชื่อ
-                if (type === 'all' || type === 'party-list') {
-                    mpData.partyList.forEach(mp => {
-                        cardsHTML += createPartyListCard(mp);
-                    });
-                }
-                
-                // แสดง ส.ส.แบบแบ่งเขต
-                if (type === 'all' || type === 'constituency') {
-                    mpData.constituency.forEach(mp => {
-                        cardsHTML += createConstituencyCard(mp);
-                    });
-                }
-                
-                cardsContainer.innerHTML = cardsHTML;
-                
-                // แสดงข้อความถ้าไม่มีข้อมูล
-                if (!cardsHTML) {
+    
+            if (type === 'all' || type === 'constituency') {
+                mpData.constituency.forEach(mp => {
+                    cardsHTML += createConstituencyCard(mp);
+                });
+            }
+    
+            if (!cardsHTML) {
+                cardsContainer.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 40px;">
+                        <h3>ไม่พบข้อมูลสมาชิกสภาผู้แทนราษฎร</h3>
+                        <p>โปรดเลือกประเภทอื่น</p>
+                    </div>
+                `;
+                return;
+            }
+    
+            cardsContainer.innerHTML = cardsHTML;
+        }
+    
+        // ===============================
+        // อัปเดตจำนวนใน select
+        // ===============================
+        function updateSelectCount() {
+            const total = mpData.partyList.length + mpData.constituency.length;
+    
+            document.querySelector('#mpType option[value="all"]').textContent =
+                `ทั้งหมด (${total} คน)`;
+    
+            document.querySelector('#mpType option[value="party-list"]').textContent =
+                `บัญชีรายชื่อ (${mpData.partyList.length} คน)`;
+    
+            document.querySelector('#mpType option[value="constituency"]').textContent =
+                `แบ่งเขต (${mpData.constituency.length} คน)`;
+        }
+    
+        // ===============================
+        // โหลดข้อมูลจาก JSON
+        // ===============================
+        function loadMPData() {
+            fetch('mp_users.json')
+                .then(response => response.json())
+                .then(data => {
+                    mpData = data;
+                    renderCards();
+                    updateSelectCount();
+                })
+                .catch(error => {
+                    console.error('Error loading MP data:', error);
                     cardsContainer.innerHTML = `
-                        <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: var(--light-text);">
-                            <i class="fas fa-users" style="font-size: 48px; margin-bottom: 15px; color: var(--primary-light);"></i>
-                            <h3>ไม่พบข้อมูลสมาชิกสภาผู้แทนราษฎร</h3>
-                            <p>โปรดเลือกรายการประเภท ส.ส. อื่น</p>
+                        <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #d32f2f;">
+                            <h3>เกิดข้อผิดพลาดในการโหลดข้อมูล</h3>
                         </div>
                     `;
-                }
-            }
-            
-            // ฟังก์ชันดึงข้อมูลจากไฟล์ JSON (ตัวอย่าง)
-            function loadMPData() {
-                // ในสภาพแวดล้อมจริงจะใช้ fetch เพื่อดึงข้อมูลจากไฟล์ mp_users.json
-                fetch('mp_users.json')
-                    .then(response => response.json())
-                    .then(data => {
-                        mpData = data;
-                        renderCards();
-                    })
-                    .catch(error => {
-                        console.error('Error loading MP data:', error);
-                        cardsContainer.innerHTML = `
-                            <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #d32f2f;">
-                                <i class="fas fa-exclamation-triangle" style="font-size: 48px; margin-bottom: 15px;"></i>
-                                <h3>เกิดข้อผิดพลาดในการโหลดข้อมูล</h3>
-                                <p>ไม่สามารถดึงข้อมูลสมาชิกสภาผู้แทนราษฎรได้ในขณะนี้</p>
-                            </div>
-                        `;
-                    });
-                
-                // สำหรับตัวอย่างนี้ เราจะใช้ข้อมูลที่กำหนดไว้ข้างต้น
-                renderCards();
-            }
-            
-            // เริ่มต้นโหลดข้อมูล
-            loadMPData();
-            
-            // จัดการ event เมื่อเลือกประเภท ส.ส.
-            mpTypeSelect.addEventListener('change', function() {
-                renderCards(this.value);
-            });
-            
-            // แสดงจำนวน ส.ส. ทั้งหมดใน select
-            const totalCount = mpData.partyList.length + mpData.constituency.length;
-            document.querySelector('.type-select option[value="all"]').textContent = `ทั้งหมด (${totalCount} คน)`;
-            document.querySelector('.type-select option[value="party-list"]').textContent = `บัญชีรายชื่อ (${mpData.partyList.length} คน)`;
-            document.querySelector('.type-select option[value="constituency"]').textContent = `แบ่งเขต (${mpData.constituency.length} คน)`;
+                });
+        }
+    
+        // ===============================
+        // Event: เปลี่ยนประเภท ส.ส.
+        // ===============================
+        mpTypeSelect.addEventListener('change', function () {
+            renderCards(this.value);
         });
+    
+        // ===============================
+        // เริ่มต้น
+        // ===============================
+        loadMPData();
+    
+    });
+
     </script>
 </body>
 </html>
