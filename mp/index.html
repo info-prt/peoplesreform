@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -340,20 +341,32 @@
     
     <section class="filter-section">
         <div class="container">
-                <style>
-                    .seats-container { position: relative; width: 420px; height: 210px; margin: 30px auto; } .seat { position: absolute; width: 14px; height: 14px; border-radius: 50%; } .seat.party-list { background-color: #1976d2;  น้ำเงิน  } .seat.constituency { background-color: #2e7d32;  เขียว  } .seats-title { text-align: center; margin-bottom: 10px; }
-                </style>
-            <select id="mpType">
-                <option value="all">ทั้งหมด</option>
-                <option value="party-list">บัญชีรายชื่อ</option>
-                <option value="constituency">แบ่งเขต</option>
-            </select>
-            
-            <div id="seatsContainer" class="seats-container"></div>
-            <div id="cardsContainer"></div>
-
+            <div class="filter-container">
+                <div class="filter-title">
+                    <h2>รายชื่อสมาชิกสภาผู้แทนราษฎร</h2>
+                    <p>ชุดที่ 3 - พรรคประชาภิวัฒน์</p>
+                </div>
+                <div class="type-selector">
+                    <label for="mpType">เลือกประเภท ส.ส.:</label>
+                    <select id="mpType" class="type-select">
+                        <option value="all">ทั้งหมด</option>
+                        <option value="party-list">บัญชีรายชื่อ</option>
+                        <option value="constituency">แบ่งเขต</option>
+                    </select>
+                </div>
+            </div>
         </div>
     </section>
+    
+    <main class="container">
+        <div id="cardsContainer" class="cards-container">
+            <!-- ข้อมูลจะถูกแสดงผลที่นี่โดย JavaScript -->
+            <div class="loading">
+                <div class="loading-spinner"></div>
+                <p>กำลังโหลดข้อมูลสมาชิกสภาผู้แทนราษฎร...</p>
+            </div>
+        </div>
+    </main>
     
     <footer>
         <div class="container">
@@ -366,14 +379,14 @@
     </footer>
     
     <script>
+    // รอให้ DOM โหลดเสร็จก่อน
     document.addEventListener('DOMContentLoaded', function () {
     
         const mpTypeSelect = document.getElementById('mpType');
         const cardsContainer = document.getElementById('cardsContainer');
-        const seatsContainer = document.getElementById('seatsContainer');
     
         // ===============================
-        // ตัวแปรข้อมูล ส.ส.
+        // ตัวแปรเก็บข้อมูล ส.ส.
         // ===============================
         let mpData = {
             partyList: [],
@@ -381,7 +394,7 @@
         };
     
         // ===============================
-        // การ์ด ส.ส.บัญชีรายชื่อ
+        // สร้างการ์ด ส.ส.บัญชีรายชื่อ
         // ===============================
         function createPartyListCard(mp) {
             return `
@@ -392,18 +405,31 @@
                             <span class="order-badge">${mp.order}</span>
                             ${mp.name}
                         </h3>
+                        <p>สมาชิกสภาผู้แทนราษฎรแบบบัญชีรายชื่อ</p>
                     </div>
                     <div class="card-content">
-                        <div class="mp-detail"><b>ชื่อ:</b> ${mp.name}</div>
-                        <div class="mp-detail"><b>ลำดับ:</b> ${mp.order}</div>
-                        <div class="mp-detail"><b>รายละเอียด:</b> ${mp.details}</div>
+                        <div class="mp-detail">
+                            <i class="fas fa-user"></i>
+                            <div class="detail-label">ชื่อ-สกุล:</div>
+                            <div class="detail-value">${mp.name}</div>
+                        </div>
+                        <div class="mp-detail">
+                            <i class="fas fa-list-ol"></i>
+                            <div class="detail-label">ลำดับที่:</div>
+                            <div class="detail-value">${mp.order}</div>
+                        </div>
+                        <div class="mp-detail">
+                            <i class="fas fa-info-circle"></i>
+                            <div class="detail-label">รายละเอียด:</div>
+                            <div class="detail-value">${mp.details}</div>
+                        </div>
                     </div>
                 </div>
             `;
         }
     
         // ===============================
-        // การ์ด ส.ส.แบ่งเขต
+        // สร้างการ์ด ส.ส.แบบแบ่งเขต
         // ===============================
         function createConstituencyCard(mp) {
             return `
@@ -411,39 +437,63 @@
                     <div class="card-header">
                         <span class="card-type">แบ่งเขต</span>
                         <h3>${mp.name}</h3>
+                        <p>สมาชิกสภาผู้แทนราษฎรแบบแบ่งเขต</p>
                     </div>
                     <div class="card-content">
-                        <div class="mp-detail"><b>จังหวัด:</b> ${mp.province}</div>
-                        <div class="mp-detail"><b>เขต:</b> ${mp.district}</div>
-                        <div class="mp-detail"><b>รายละเอียด:</b> ${mp.details}</div>
+                        <div class="mp-detail">
+                            <i class="fas fa-user"></i>
+                            <div class="detail-label">ชื่อ-สกุล:</div>
+                            <div class="detail-value">${mp.name}</div>
+                        </div>
+                        <div class="mp-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div class="detail-label">จังหวัด:</div>
+                            <div class="detail-value">${mp.province}</div>
+                        </div>
+                        <div class="mp-detail">
+                            <i class="fas fa-map-pin"></i>
+                            <div class="detail-label">เขตเลือกตั้ง:</div>
+                            <div class="detail-value">${mp.district}</div>
+                        </div>
+                        <div class="mp-detail">
+                            <i class="fas fa-info-circle"></i>
+                            <div class="detail-label">รายละเอียด:</div>
+                            <div class="detail-value">${mp.details}</div>
+                        </div>
                     </div>
                 </div>
             `;
         }
     
         // ===============================
-        // แสดงการ์ด
+        // แสดงการ์ดทั้งหมด
         // ===============================
         function renderCards(type = 'all') {
-            let html = '';
+            let cardsHTML = '';
     
             if (type === 'all' || type === 'party-list') {
                 mpData.partyList.forEach(mp => {
-                    html += createPartyListCard(mp);
+                    cardsHTML += createPartyListCard(mp);
                 });
             }
     
             if (type === 'all' || type === 'constituency') {
                 mpData.constituency.forEach(mp => {
-                    html += createConstituencyCard(mp);
+                    cardsHTML += createConstituencyCard(mp);
                 });
             }
     
-            cardsContainer.innerHTML = html || `
-                <div style="grid-column:1/-1;text-align:center;padding:40px">
-                    <h3>ไม่พบข้อมูล</h3>
-                </div>
-            `;
+            if (!cardsHTML) {
+                cardsContainer.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 40px;">
+                        <h3>ไม่พบข้อมูลสมาชิกสภาผู้แทนราษฎร</h3>
+                        <p>โปรดเลือกประเภทอื่น</p>
+                    </div>
+                `;
+                return;
+            }
+    
+            cardsContainer.innerHTML = cardsHTML;
         }
     
         // ===============================
@@ -452,70 +502,39 @@
         function updateSelectCount() {
             const total = mpData.partyList.length + mpData.constituency.length;
     
-            mpTypeSelect.querySelector('option[value="all"]').textContent =
+            document.querySelector('#mpType option[value="all"]').textContent =
                 `ทั้งหมด (${total} คน)`;
     
-            mpTypeSelect.querySelector('option[value="party-list"]').textContent =
+            document.querySelector('#mpType option[value="party-list"]').textContent =
                 `บัญชีรายชื่อ (${mpData.partyList.length} คน)`;
     
-            mpTypeSelect.querySelector('option[value="constituency"]').textContent =
+            document.querySelector('#mpType option[value="constituency"]').textContent =
                 `แบ่งเขต (${mpData.constituency.length} คน)`;
         }
     
         // ===============================
-        // แสดงที่นั่งครึ่งวงกลม (Seats)
-        // ===============================
-        function renderSeats() {
-            if (!seatsContainer) return;
-    
-            seatsContainer.innerHTML = '';
-    
-            const seats = [];
-            mpData.partyList.forEach(() => seats.push('party-list'));
-            mpData.constituency.forEach(() => seats.push('constituency'));
-    
-            const total = seats.length;
-            if (total === 0) return;
-    
-            const radius = 180;
-            const centerX = 210;
-            const centerY = 200;
-    
-            seats.forEach((type, i) => {
-                const angle = Math.PI * (i / (total - 1));
-                const x = centerX + radius * Math.cos(Math.PI - angle);
-                const y = centerY - radius * Math.sin(Math.PI - angle);
-    
-                const seat = document.createElement('div');
-                seat.className = `seat ${type}`;
-                seat.style.left = `${x}px`;
-                seat.style.top = `${y}px`;
-    
-                seatsContainer.appendChild(seat);
-            });
-        }
-    
-        // ===============================
-        // โหลดข้อมูล
+        // โหลดข้อมูลจาก JSON
         // ===============================
         function loadMPData() {
             fetch('mp_users.json')
-                .then(res => res.json())
+                .then(response => response.json())
                 .then(data => {
                     mpData = data;
-    
                     renderCards();
                     updateSelectCount();
-                    renderSeats();
                 })
-                .catch(err => {
-                    console.error(err);
-                    cardsContainer.innerHTML = `<h3>โหลดข้อมูลไม่สำเร็จ</h3>`;
+                .catch(error => {
+                    console.error('Error loading MP data:', error);
+                    cardsContainer.innerHTML = `
+                        <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #d32f2f;">
+                            <h3>เกิดข้อผิดพลาดในการโหลดข้อมูล</h3>
+                        </div>
+                    `;
                 });
         }
     
         // ===============================
-        // Event
+        // Event: เปลี่ยนประเภท ส.ส.
         // ===============================
         mpTypeSelect.addEventListener('change', function () {
             renderCards(this.value);
