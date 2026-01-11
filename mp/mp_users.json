@@ -1,0 +1,80 @@
+{
+  "partyList": [
+    {
+      "id": 1,
+      "order": 1,
+      "name": "นาย AFDZB_012",
+      "details": "อดีตรองนายกรัฐมนตรี, สมาชิกสภาผู้แทนราษฎร 2 สมัย"
+    },
+    {
+      "id": 2,
+      "order": 2,
+      "name": "นาย F1IXEL580",
+      "details": "อดีตสมาชิกสภาผู้แทนราษฎร"
+    },
+    {
+      "id": 3,
+      "order": 3,
+      "name": "นาย GameGEED",
+      "details": ""
+    },
+    {
+      "id": 4,
+      "order": 4,
+      "name": "นาย General_BeamGGG",
+      "details": ""
+    },
+    {
+      "id": 5,
+      "order": 5,
+      "name": "นาย LOVE_13429",
+      "details": "อดีตสมาชิกสภาผู้แทนราษฎร"
+    },
+    {
+      "id": 6,
+      "order": 6,
+      "name": "นาย nattawit111",
+      "details": ""
+    },
+    {
+      "id": 7,
+      "order": 7,
+      "name": "นาย Number00716",
+      "details": "อดีตสมาชิกสภาผู้แทนราษฎร"
+    },
+    {
+      "id": 8,
+      "order": 8,
+      "name": "นางสาว pluem21574",
+      "details": "อดีตสมาชิกสภาผู้แทนราษฎร"
+    },
+    {
+      "id": 9,
+      "order": 9,
+      "name": "นาย TANKUNJRNO1",
+      "details": "อดีตสมาชิกสภาผู้แทนราษฎร"
+    },
+    {
+      "id": 10,
+      "order": 10,
+      "name": "นาย WeirTeerapatStudio",
+      "details": "อดีตนายกรัฐมนตรี, สมาชิกสภาผู้แทนราษฎร 2 สมัย"
+    }
+  ],
+  "constituency": [
+    {
+      "id": 11,
+      "name": "นาย Info_PS",
+      "province": "เชียงใหม่",
+      "district": "เขตอำเภอเมืองเชียงใหม่",
+      "details": "อดีตรองนายกรัฐมนตรี, สมาชิกสภาผู้แทนราษฎรเชียงใหม่ 2 สมัย"
+    },
+    {
+      "id": 12,
+      "name": "นาย tomatomameee1234",
+      "province": "นครราชสีมา",
+      "district": "เขตอำเภอเมืองนครราชสีมา",
+      "details": "อดีตสมาชิกสภาผู้แทนราษฎร"
+    }
+  ]
+}
